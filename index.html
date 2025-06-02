@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal House - Simulador WhatsApp Bot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #0a1014;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .whatsapp-container {
+            display: flex;
+            height: 100vh;
+            background: #111b21;
+        }
+
+        /* Panel izquierdo - Lista de chats */
+        .sidebar {
+            width: 30%;
+            min-width: 340px;
+            background: #111b21;
+            border-right: 1px solid #2a3942;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            background: #202c33;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #6b7c85;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #111b21;
+            font-weight: bold;
+        }
+
+        .sidebar-icons {
+            display: flex;
+            gap: 24px;
+        }
+
+        .icon-btn {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            color: #aebac1;
+            background: none;
+            border: none;
+            transition: color 0.2s;
+        }
+
+        .icon-btn:hover {
+            color: #d1d7db;
+        }
+
+        .search-container {
+            background: #111b21;
+            padding: 8px 12px;
+            border-bottom: 1px solid #2a3942;
+        }
+
+        .search-bar {
+            background: #202c33;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            height: 36px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: #e9edef;
+            font-size: 14px;
+            margin-left: 24px;
+        }
+
+        .search-bar input::placeholder {
+            color: #8696a0;
+        }
+
+        .chats-list {
+            flex: 1;
+            overflow-y: auto;
+            background: #111b21;
+        }
+
+        .chat-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-bottom: 1px solid #202c33;
+        }
+
+        .chat-item:hover {
+            background: #202c33;
+        }
+
+        .chat-item.active {
+            background: #2a3942;
+        }
+
+        .chat-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #00a884;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 20px;
+        }
+
+        .chat-info {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .chat-name {
+            color: #e9edef;
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 2px;
+        }
+
+        .chat-message {
+            color: #8696a0;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chat-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .chat-time {
+            color: #8696a0;
+            font-size: 12px;
+        }
+
+        .unread-badge {
+            background: #00a884;
+            color: #111b21;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 10px;
+            padding: 2px 6px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* Panel derecho - Conversación */
+        .main-chat {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #0b141a;
+            position: relative;
+        }
+
+        .chat-header {
+            background: #202c33;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            height: 60px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .chat-header-info {
+            flex: 1;
+            margin-left: 12px;
+        }
+
+        .chat-header-name {
+            color: #e9edef;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .chat-header-status {
+            color: #8696a0;
+            font-size: 13px;
+        }
+
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 60px;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAARklEQVQYV2NkYGD4z0ABYBw1kL6WMjIyMpADRg2kv4WjBo4aOGrgqIGjBo4aOGrgqIGjBo4aOGrgqIGjBo4aOGrgqIEDZyAAWgAKCnYG3qgAAAAASUVORK5CYII=');
+            background-repeat: repeat;
+            position: relative;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 12px;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.sent {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 65%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        }
+
+        .message.received .message-content {
+            background: #202c33;
+            color: #e9edef;
+            border-top-left-radius: 0;
+        }
+
+        .message.sent .message-content {
+            background: #005c4b;
+            color: #e9edef;
+            border-top-right-radius: 0;
+        }
+
+        .message-text {
+            font-size: 14.5px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: #8696a0;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 2px;
+        }
+
+        .message.sent .message-time {
+            color: #81a89d;
+        }
+
+        .check-marks {
+            width: 16px;
+            height: 11px;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 12px;
+            background: #202c33;
+            border-radius: 8px;
+            max-width: 80px;
+            margin-bottom: 12px;
+        }
+
+        .typing-indicator.show {
+            display: flex;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #8696a0;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            30% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .input-container {
+            background: #202c33;
+            padding: 10px 16px;
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            min-height: 62px;
+        }
+
+        .input-wrapper {
+            flex: 1;
+            background: #2a3942;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-end;
+            padding: 5px 12px;
+        }
+
+        .message-input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: #e9edef;
+            font-size: 15px;
+            line-height: 20px;
+            max-height: 100px;
+            resize: none;
+            padding: 8px 0;
+            font-family: inherit;
+        }
+
+        .message-input::placeholder {
+            color: #8696a0;
+        }
+
+        .send-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #00a884;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            color: #111b21;
+        }
+
+        .send-button:hover {
+            background: #00c897;
+        }
+
+        .send-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Scrollbar personalizado */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #374045;
+            border-radius: 3px;
+        }
+
+        /* Estados del sistema */
+        .system-message {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .system-message span {
+            background: #182229;
+            color: #8696a0;
+            font-size: 12px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        /* Notificación de nuevo mensaje */
+        .new-message-alert {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #202c33;
+            color: #e9edef;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            display: none;
+            animation: slideUp 0.3s ease-out;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 20px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        /* Admin panel toggle */
+        .admin-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #202c33;
+            color: #e9edef;
+            border: 1px solid #374045;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 1000;
+            transition: all 0.2s;
+        }
+
+        .admin-toggle:hover {
+            background: #2a3942;
+            transform: translateY(-2px);
+        }
+
+        /* Panel de administración */
+        .admin-panel {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: #0b141a;
+            border-left: 1px solid #2a3942;
+            transition: right 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .admin-panel.open {
+            right: 0;
+        }
+
+        .admin-header {
+            color: #e9edef;
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-admin {
+            background: none;
+            border: none;
+            color: #8696a0;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .flow-step {
+            background: #202c33;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #374045;
+        }
+
+        .flow-step-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .flow-step-title {
+            color: #00a884;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .flow-step-state {
+            color: #8696a0;
+            font-size: 12px;
+            background: #182229;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .flow-step-content {
+            color: #e9edef;
+            font-size: 14px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            background: #111b21;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .edit-button {
+            background: #00a884;
+            color: #111b21;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        .edit-button:hover {
+            background: #00c897;
+        }
+
+        /* Editor de flujo */
+        .flow-editor {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #202c33;
+            border-radius: 12px;
+            padding: 24px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1001;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+
+        .flow-editor.show {
+            display: block;
+        }
+
+        .editor-header {
+            color: #e9edef;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .editor-field {
+            margin-bottom: 15px;
+        }
+
+        .editor-label {
+            color: #8696a0;
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .editor-input, .editor-textarea {
+            width: 100%;
+            background: #2a3942;
+            border: 1px solid #374045;
+            color: #e9edef;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .editor-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .editor-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .editor-button {
+            padding: 8px 20px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .editor-button.save {
+            background: #00a884;
+            color: #111b21;
+        }
+
+        .editor-button.cancel {
+            background: #374045;
+            color: #e9edef;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="whatsapp-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="profile-pic">UH</div>
+                <div class="sidebar-icons">
+                    <button class="icon-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.664a9.163 9.163 0 0 1-6.521-2.702.977.977 0 0 1 1.381-1.381 7.269 7.269 0 0 0 10.280 0 .977.977 0 0 1 1.381 1.381A9.163 9.163 0 0 1 12 20.664zM6.965 14.096a.977.977 0 0 1-.977-.977v-2.31a.977.977 0 0 1 1.954 0v2.31a.977.977 0 0 1-.977.977zm10.07 0a.977.977 0 0 1-.977-.977v-2.31a.977.977 0 0 1 1.954 0v2.31a.977.977 0 0 1-.977.977z"/></svg>
+                    </button>
+                    <button class="icon-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.005 3.175H4.674C3.642 3.175 3 3.789 3 4.821v1.792c0 1.097.642 1.648 1.674 1.648h15.331c1.032 0 1.674-.551 1.674-1.648V4.821c0-1.032-.642-1.646-1.674-1.646zM8.006 18.342a.977.977 0 0 1-.977-.977v-7.456a.977.977 0 0 1 1.954 0v7.456a.977.977 0 0 1-.977.977zm8 0a.977.977 0 0 1-.977-.977v-7.456a.977.977 0 0 1 1.954 0v7.456a.977.977 0 0 1-.977.977z"/></svg>
+                    </button>
+                    <button class="icon-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-bar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#8696a0">
+                        <path d="M15.009 13.805h-.636l-.22-.217a5.184 5.184 0 0 0 1.256-3.386 5.207 5.207 0 1 0-5.207 5.208 5.183 5.183 0 0 0 3.385-1.255l.217.22v.635l4.004 3.999 1.194-1.195-3.993-4.009zm-4.808 0a3.605 3.605 0 1 1 0-7.21 3.605 3.605 0 0 1 0 7.21z"/>
+                    </svg>
+                    <input type="text" placeholder="Buscar o empezar un chat nuevo">
+                </div>
+            </div>
+            
+            <div class="chats-list">
+                <div class="chat-item active">
+                    <div class="chat-avatar">🤖</div>
+                    <div class="chat-info">
+                        <div class="chat-name">Universal House Bot</div>
+                        <div class="chat-message">Hola! Bienvenido a Universal House</div>
+                    </div>
+                    <div class="chat-meta">
+                        <div class="chat-time">ahora</div>
+                        <div class="unread-badge">1</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Chat -->
+        <div class="main-chat">
+            <div class="chat-header">
+                <div class="chat-avatar">🤖</div>
+                <div class="chat-header-info">
+                    <div class="chat-header-name">Universal House Bot</div>
+                    <div class="chat-header-status">en línea</div>
+                </div>
+                <div class="sidebar-icons">
+                    <button class="icon-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.9 14.3H15l-.3-.3c1-1.1 1.6-2.7 1.6-4.3 0-3.7-3-6.7-6.7-6.7S3 6 3 9.7s3 6.7 6.7 6.7c1.6 0 3.2-.6 4.3-1.6l.3.3v.8l5.1 5.1 1.5-1.5-5-5.2zm-6.2 0c-2.6 0-4.6-2.1-4.6-4.6s2.1-4.6 4.6-4.6 4.6 2.1 4.6 4.6-2 4.6-4.6 4.6z"/></svg>
+                    </button>
+                    <button class="icon-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="messages-container" id="messagesContainer">
+                <div class="system-message">
+                    <span>Los mensajes están cifrados de extremo a extremo</span>
+                </div>
+            </div>
+
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+
+            <div class="new-message-alert" id="newMessageAlert">
+                ↓ Nuevo mensaje
+            </div>
+
+            <div class="input-container">
+                <button class="icon-btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.153 11.603c.795 0 1.439-.879 1.439-1.962s-.644-1.962-1.439-1.962-1.439.879-1.439 1.962.644 1.962 1.439 1.962zm-3.204 1.362c-.026-.307-.131 5.218 6.063 5.551 6.066-.25 6.066-5.551 6.066-5.551-6.078 1.416-12.129 0-12.129 0zm11.363 1.108s-.669 1.959-5.051 1.959c-3.505 0-5.388-1.164-5.607-1.959 0 0 5.912 1.055 10.658 0zM11.804 1.011C5.609 1.011.978 6.033.978 12.228s4.826 10.761 11.021 10.761S23.02 18.423 23.02 12.228c.001-6.195-5.021-11.217-11.216-11.217zM12 21.354c-5.273 0-9.381-3.886-9.381-9.159s3.942-9.548 9.215-9.548 9.548 4.275 9.548 9.548c-.001 5.272-4.109 9.159-9.382 9.159zm3.108-9.751c.795 0 1.439-.879 1.439-1.962s-.644-1.962-1.439-1.962-1.439.879-1.439 1.962.644 1.962 1.439 1.962z"/></svg>
+                </button>
+                <div class="input-wrapper">
+                    <textarea 
+                        class="message-input" 
+                        id="messageInput"
+                        placeholder="Escribe un mensaje"
+                        rows="1"
+                    ></textarea>
+                </div>
+                <button class="send-button" id="sendButton">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                        <path d="M1.101 21.757L23.8 12.028 1.101 2.3l.011 7.912 13.623 1.816-13.623 1.817-.011 7.912z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <button class="admin-toggle" onclick="toggleAdminPanel()">
+        Panel de Administración
+    </button>
+
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <span>Flujo del Bot</span>
+            <button class="close-admin" onclick="toggleAdminPanel()">×</button>
+        </div>
+        <div id="flowSteps"></div>
+    </div>
+
+    <!-- Flow Editor -->
+    <div class="overlay" id="overlay" onclick="closeEditor()"></div>
+    <div class="flow-editor" id="flowEditor">
+        <div class="editor-header">Editar Paso del Flujo</div>
+        <div class="editor-field">
+            <label class="editor-label">Título</label>
+            <input type="text" class="editor-input" id="editorTitle">
+        </div>
+        <div class="editor-field">
+            <label class="editor-label">Estado</label>
+            <input type="text" class="editor-input" id="editorState">
+        </div>
+        <div class="editor-field">
+            <label class="editor-label">Contenido del Mensaje</label>
+            <textarea class="editor-textarea" id="editorContent"></textarea>
+        </div>
+        <div class="editor-buttons">
+            <button class="editor-button cancel" onclick="closeEditor()">Cancelar</button>
+            <button class="editor-button save" onclick="saveEdit()">Guardar</button>
+        </div>
+    </div>
+
+    <script>
+        // Estado del bot
+        const botState = {
+            currentState: 'inicio',
+            userName: '',
+            userPhone: '',
+            conversationHistory: [],
+            currentFlow: null,
+            editingIndex: null
+        };
+
+        // Flujo completo del bot
+        const flowData = [
+            {
+                id: 1,
+                title: "Menú Principal",
+                state: "menu_principal",
+                content: `🏫 *Universal House - Escuela de Inglés*
+
+🤖 Buen día, mi nombre es Javi y es un gusto para mí atenderte el día de hoy.
+Por favor bríndame la siguiente información y con gusto te atenderé de la mejor manera:
+
+• 1. 🌐💻 Me interesa información para ingresar a sus cursos. 
+• 2. 👨‍🎓👩‍🎓 Soy alumno/a de Universal House.
+• 3. 🔐 Admin (Biométricos)
+
+🤖 Puedes indicarme únicamente el número correspondiente. 🤗`
+            },
+            {
+                id: 2,
+                title: "Menú Información",
+                state: "menu_informacion",
+                content: `• 1. 🌐💻 Me interesa información para ingresar a sus cursos. 🔻
+
+🤖 ¡Muy bien! Por favor indícame que información deseas conocer:
+
+* 1 💰 Información y costos de nuestros cursos.
+* 2 🕒 Horarios de clases.
+* 3 📝 Examen de ubicación.
+* 4 ✍🏻 Cómo realizo mi inscripción?
+* 5 🗓️ Inicio de sus cursos.
+* 6 ℹ️ Quiero conocer toda la información anterior.
+* 7 🎖️ Deseo conocer sus niveles.
+* 8 📜 Certificaciones.
+* 9 🕣 Quiero conocer sus horarios de atención.
+* 10 🪪 Quiero conocer sus métodos de pago.
+
+🤖 Puedes indicarme únicamente el número correspondiente. 🤗`
+            },
+            {
+                id: 3,
+                title: "Submenú Precios",
+                state: "submenu_precios",
+                content: `* 1 💰 Información y costos de nuestros cursos. 🔻
+
+SUBMENÚ:
+* 1 Curso Dominio (11 años en adelante niveles Básicos – Intermedios)
+* 2 Curso Kids (Alumnos 7 – 10 años Cualquier nivel)
+* 3 Curso Mastery Course. (Alumnos 11 años en adelante niveles de Perfeccionamiento B2 o más)`
+            },
+            {
+                id: 4,
+                title: "Info Curso Dominio",
+                state: "info_curso_dominio",
+                content: `*1 Curso Dominio (11 años en adelante niveles Básicos – Avanzados)
+🤖 ¡Claro! Con gusto te comparto los precios de nuestros cursos en Universal House 🏫:
+
+Información para curso niveles A1-B1
+
+🔘Frecuencia Semanal: 4 horas a la semana, 1 hora diaria de lunes a jueves. Costo $1,300.00 al mes.
+
+🔹Horario de lunes a jueves de;
+     17:00 a 18:00 hrs
+     18:00 a 19:00 hrs
+     19:00 a 20:00 hrs
+
+El horario exacto dependerá de tu nivel el cual podemos conocer mediante un examen de ubicación
+
+
+🔘 Frecuencia Sabatino: 3 horas semanales, 3 horas de clase. 
+Costo $1,200.00 cada 4 semanas. (El pago no es mensual).
+
+🔸Horario sabatino de:
+     - 8:00 a 11:00 hrs  
+     - 11:00 a 14:00 hrs
+*El horario exacto dependerá de tu nivel el cual podemos conocer mediante un examen de ubicación*
+
+
+📋Inscripción $280.00
+📚Material $1,700.00 (Duración aprox. de 18 meses)
+
+El material consiste en 2 libros originales los cuales incluyen el acceso a una plataforma electrónica que podrás utilizar desde casa.
+
+-La duración de todo el curso es de 3.5 años.
+Este tiempo puede reducirse, dependiendo el nivel en el que comiences.
+
+
+🤖 De igual manera, te comento que, si decides incorporarte a nuestros cursos este mes, contarás con un servicio adicional por ser parte de nosotros; (En caso de faltar a tu clase presencial, tendrás la opción de visualizarla a distancia sin costo adicional y así no perder ningún avance estes donde estes).`
+            },
+            {
+                id: 5,
+                title: "Menú Seguimiento Dominio",
+                state: "seguimiento_dominio",
+                content: `🤖 ¿Te gustaría conocer más información sobre nuestros servicios?
+
+✨ Presiona 1 para continuar explorando nuestras opciones:
+
+* 1 ➡️ Continuar
+* 0 👋 Salir`
+            },
+            {
+                id: 6,
+                title: "Menú Opciones Dominio",
+                state: "menu_opciones_dominio",
+                content: `🤖 ¡Excelente! Aquí tienes más opciones para complementar tu información:
+
+* 1 🎓 Cursos de Perfeccionamiento Mastery (B2 y C1)
+* 2 📝 Examen de Ubicación
+* 3 ⬅️ Volver al menú de Información y costos de nuestros cursos
+* 4 👋 Salir
+
+🤖 Puedes indicarme únicamente el número correspondiente. 🤗`
+            },
+            {
+                id: 7,
+                title: "Info Curso Kids",
+                state: "info_curso_kids",
+                content: `*2 Curso Kids (Alumnos 7 – 10 años Cualquier nivel)
+
+🤖: ¡Perfecto! Te proporciono los costos y horarios de nuestro curso de niños:
+
+🔘Semanal kids: 4 horas a la semana por $1,100.00 al mes.
+
+🔹Martes y jueves de 17:00 a 19:00 hrs
+
+📋Inscripción $280.00
+📚Material: $1,700.00 (2 Libros originales con duración de 18 meses) 
+*Depende de tu nivel y donde comiences el tiempo puede reducirse.
+
+🤖: De igual manera, te comento que, si decides incorporarte a nuestros cursos este mes, contarás con un servicio adicional por ser parte de nosotros; En caso de faltar a tu clase presencial, tendrás la opción de visualizarla a distancia sin costo adicional y así no perder ningún avance estes donde estes.`
+            },
+            {
+                id: 8,
+                title: "Info Curso Mastery",
+                state: "info_curso_mastery",
+                content: `*3 Curso Mastery Course. (Alumnos 11 años en adelante niveles de Perfeccionamiento B2 o más)
+
+🤖: ¡Claro! Te proporciono los costos y horarios de nuestros Mastery Course:
+
+CURSO B2:
+
+Actualmente el curso de B2 puedes tomarlo únicamente entre semana.
+
+🔘Curso Semanal: 4 horas a la semana por $1,600.00 al mes.
+
+🔹Horario de lunes a jueves de;
+     
+     18:00 a 19:00 hrs
+
+📋Inscripción $280.00
+📚Material: $1,700.00 (2 Libros originales con duración de 18 meses) 
+
+-La duración del curso B2 semanal es de 18 meses. 
+*Dependiendo de tu nivel y donde comiences el tiempo puede reducirse.
+
+🤖: CURSO C1
+Nuestro curso C1 se encuentra actualmente los días sábado;
+
+🔘Curso Sabatino C1: 3 horas semanales por $1,500 cada 4 semanas.
+
+🔹Horario sabatino de;
+     11:00 a 14:00 hrs
+
+📋Inscripción $280.00
+📚Material: $1,700.00 (2 Libros originales con duración de 18 meses) 
+
+-La duración del curso C1 sabatino es de 18 meses. 
+*Dependiendo de tu nivel y donde comiences el tiempo puede reducirse.
+Inicios inmediatos.
+
+
+🤖: De igual manera, te comento que, si decides incorporarte a nuestros cursos este mes, contarás con un servicio adicional por ser parte de nosotros; En caso de faltar a tu clase presencial, tendrás la opción de visualizarla a distancia sin costo adicional y así no perder ningún avance estes donde estes.`
+            },
+            {
+                id: 9,
+                title: "Info Horarios",
+                state: "info_horarios",
+                content: `*2 🕒 Horarios de clases.*
+
+🤖 Claro te comparto los horarios para que elijas el que mejor se acomode a tus actividades:
+
+*Horarios semanales:*
+     17:00 a 18:00 hrs
+     18:00 a 19:00 hrs
+     19:00 a 20:00 hrs
+
+*Horarios sabatinos:*
+     8:00 a 11:00 hrs  
+     11:00 a 14:00 hrs
+
+*Kids 🧒:*
+     Martes y jueves de 17:00 a 19:00 hrs
+
+*El horario exacto dependerá de tu nivel.*`
+            },
+            {
+                id: 10,
+                title: "Info Examen",
+                state: "info_examen",
+                content: `*3 📝 Examen de ubicación.*
+
+🤖 El examen de ubicación tiene un costo de $280 pesos.
+
+Se realiza en las siguientes fechas y horarios:
+
+*Lunes y miércoles de 19:00 hrs*
+*Sábado de 11:00 hrs*
+
+Si deseas tu examen no necesitas agendar, simplemente debes llegar 15 minutos antes del horario indicado en nuestras instalaciones.
+
+🏫 Dirección: Francisco I. Madero 1408 Col Centro Cd. Guzmán. (Estamos ubicados a espaldas de la presidencia dentro del centro comercial Portal Morelos planta alta local 14.
+
+Para desbloquear tu examen necesitas acudir con tu baucher de pago.`
+            },
+            {
+                id: 11,
+                title: "Menú Alumno",
+                state: "menu_alumno",
+                content: `👨‍🎓 *PORTAL DE ALUMNOS*
+
+Por favor ingresa tu matrícula (8 dígitos) para continuar.
+
+Ejemplo: 12345678
+
+*Escribe tu matrícula o 0 para volver al menú principal*`
+            },
+            {
+                id: 12,
+                title: "Info Horarios Atención",
+                state: "info_horarios_atencion",
+                content: `🕣 Nuestros horarios de atención son:
+
+*Lunes a viernes:*
+🏫 11:00 a 14:00 hrs
+🏫 16:00 a 20:00 hrs
+
+*Sábados:*
+🏫 9:00 a 14:00 hrs
+
+📍 *Ubicación:*
+Francisco I. Madero 1408 Col Centro
+Cd. Guzmán, Jalisco
+(A espaldas de la presidencia dentro del centro comercial Portal Morelos planta alta local 14)
+
+📞 Teléfono: 341 414 1215`
+            },
+            {
+                id: 13,
+                title: "Info Métodos Pago",
+                state: "info_metodos_pago",
+                content: `*10 🪪 Quiero conocer sus métodos de pago.*
+
+🤖 Claro, aceptamos los siguientes métodos de pago:
+
+💳 *Tarjetas de crédito y débito* (En sucursal)
+💵 *Efectivo* (En sucursal)  
+🏦 *Transferencia o depósito bancario*
+
+Para pagos con transferencia:
+*Banco:* BBVA
+*Nombre:* Universal Language Center SC
+*Número de cuenta:* 0115693108
+*CLABE:* 012320001156931088
+
+¡Importante! Envía tu comprobante por WhatsApp para registrar tu pago.`
+            },
+            {
+                id: 14,
+                title: "Info Certificaciones",
+                state: "info_certificaciones",
+                content: `*8 📜 Certificaciones.*
+
+🤖 En Universal House ofrecemos:
+
+🎓 *Certificaciones Cambridge:*
+• A2 KEY (KET)
+• B1 Preliminary (PET)
+• B2 First (FCE)
+• C1 Advanced (CAE)
+• C2 Proficiency (CPE)
+
+📚 *TKT* (Teaching Knowledge Test)
+Para profesores de inglés
+
+🌎 *TOEFL & IELTS*
+Preparación especializada
+
+Todas nuestras certificaciones tienen validez internacional y son reconocidas por universidades y empresas en todo el mundo.`
+            },
+            {
+                id: 15,
+                title: "Despedida",
+                state: "despedida",
+                content: `🤖 ¡Fue un placer atenderte! 😊
+
+Recuerda que en Universal House estamos para apoyarte en tu aprendizaje del inglés.
+
+📞 Si necesitas más información:
+341 414 1215
+
+🏫 Te esperamos en:
+Francisco I. Madero 1408 Col Centro
+Cd. Guzmán, Jalisco
+
+*¡Have a great day!* 🌟`
+            },
+            {
+                id: 16,
+                title: "Menú Seguimiento General",
+                state: "seguimiento_general",
+                content: `🤖 ¿Te gustaría conocer más información?
+
+* 1 ➡️ Ver todos los cursos y precios
+* 2 📝 Agendar examen de ubicación 
+* 3 📞 Hablar con un asesor
+* 4 📍 Ver ubicación
+* 0 👋 Salir`
+            }
+        ];
+
+        // Mapeo de respuestas a flujos
+        const responseMap = {
+            'menu_principal': {
+                '1': 'menu_informacion',
+                '2': 'alumno_existente',
+                '3': 'admin_biometricos'
+            },
+            'menu_informacion': {
+                '1': 'submenu_precios',
+                '2': 'info_horarios',
+                '3': 'info_examen',
+                '4': 'info_inscripcion',
+                '5': 'info_inicio_cursos',
+                '6': 'info_general',
+                '7': 'info_niveles',
+                '8': 'info_certificaciones',
+                '9': 'info_horarios_atencion',
+                '10': 'info_metodos_pago'
+            },
+            'submenu_precios': {
+                '1': 'info_curso_dominio',
+                '2': 'info_curso_kids',
+                '3': 'info_curso_mastery'
+            },
+            'info_curso_dominio': {
+                '1': 'menu_opciones_dominio',
+                '0': 'despedida'
+            },
+            'seguimiento_dominio': {
+                '1': 'menu_opciones_dominio',
+                '0': 'despedida'
+            },
+            'menu_opciones_dominio': {
+                '1': 'info_curso_mastery',
+                '2': 'info_examen',
+                '3': 'submenu_precios',
+                '4': 'despedida'
+            }
+        };
+
+        // Elementos del DOM
+        const messagesContainer = document.getElementById('messagesContainer');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const typingIndicator = document.getElementById('typingIndicator');
+        const adminPanel = document.getElementById('adminPanel');
+        const flowEditor = document.getElementById('flowEditor');
+        const overlay = document.getElementById('overlay');
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFlowSteps();
+            messageInput.addEventListener('keypress', handleKeyPress);
+            messageInput.addEventListener('input', autoResize);
+            sendButton.addEventListener('click', sendMessage);
+            
+            // Mensaje inicial del bot después de 1 segundo
+            setTimeout(() => {
+                addBotMessage(flowData[0].content);
+                botState.currentState = 'menu_principal';
+            }, 1000);
+        });
+
+        // Auto-resize del textarea
+        function autoResize() {
+            messageInput.style.height = 'auto';
+            messageInput.style.height = messageInput.scrollHeight + 'px';
+        }
+
+        // Manejar Enter
+        function handleKeyPress(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        }
+
+        // Enviar mensaje
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            // Agregar mensaje del usuario
+            addUserMessage(message);
+            
+            // Limpiar input
+            messageInput.value = '';
+            autoResize();
+
+            // Procesar respuesta del bot
+            processUserInput(message);
+        }
+
+        // Agregar mensaje del usuario
+        function addUserMessage(text) {
+            const messageEl = createMessage(text, true);
+            messagesContainer.appendChild(messageEl);
+            scrollToBottom();
+        }
+
+        // Agregar mensaje del bot
+        function addBotMessage(text, delay = 1500) {
+            // Mostrar indicador de escritura
+            showTyping();
+
+            setTimeout(() => {
+                hideTyping();
+                const messageEl = createMessage(text, false);
+                messagesContainer.appendChild(messageEl);
+                scrollToBottom();
+                
+                // Vibración si está disponible
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(100);
+                }
+
+                // Sonido de notificación (simulado)
+                playNotificationSound();
+            }, delay);
+        }
+
+        // Crear elemento de mensaje
+        function createMessage(text, isSent) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isSent ? 'sent' : 'received'}`;
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            
+            const textDiv = document.createElement('div');
+            textDiv.className = 'message-text';
+            textDiv.innerHTML = formatWhatsAppText(text);
+            
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+            
+            if (isSent) {
+                timeDiv.innerHTML = `${timeStr} <svg class="check-marks" viewBox="0 0 16 11" fill="#53bdeb"><path d="M11.071.653a.457.457 0 0 0-.304-.102.43.43 0 0 0-.304.102l-6.62 6.62-2.089-2.088a.43.43 0 0 0-.304-.102.457.457 0 0 0-.304.102l-.915.915a.458.458 0 0 0-.101.304.43.43 0 0 0 .101.304l2.946 2.946a.43.43 0 0 0 .305.102.457.457 0 0 0 .303-.102l7.88-7.88a.457.457 0 0 0 .102-.304.43.43 0 0 0-.102-.303z"/><path d="M15.276.653a.457.457 0 0 0-.303-.102.43.43 0 0 0-.304.102l-6.62 6.62-2.089-2.088a.43.43 0 0 0-.304-.102.457.457 0 0 0-.304.102l-.915.915a.458.458 0 0 0-.101.304.43.43 0 0 0 .101.304l2.946 2.946a.43.43 0 0 0 .305.102.457.457 0 0 0 .303-.102l7.88-7.88a.457.457 0 0 0 .102-.304.43.43 0 0 0-.102-.303z"/></svg>`;
+            } else {
+                timeDiv.textContent = timeStr;
+            }
+            
+            contentDiv.appendChild(textDiv);
+            contentDiv.appendChild(timeDiv);
+            messageDiv.appendChild(contentDiv);
+            
+            return messageDiv;
+        }
+
+        // Formatear texto estilo WhatsApp
+        function formatWhatsAppText(text) {
+            return text
+                .replace(/\*([^*]+)\*/g, '<strong>$1</strong>')
+                .replace(/_([^_]+)_/g, '<em>$1</em>')
+                .replace(/~([^~]+)~/g, '<del>$1</del>')
+                .replace(/```([^`]+)```/g, '<code>$1</code>')
+                .replace(/\n/g, '<br>');
+        }
+
+        // Procesar input del usuario
+        function processUserInput(input) {
+            const currentStateData = responseMap[botState.currentState];
+            
+            if (currentStateData && currentStateData[input]) {
+                const nextState = currentStateData[input];
+                const nextFlow = flowData.find(f => f.state === nextState);
+                
+                if (nextFlow) {
+                    botState.currentState = nextState;
+                    
+                    // Si es info de curso, mostrar primero la info y luego el menú de seguimiento
+                    if (nextState.includes('info_curso')) {
+                        addBotMessage(nextFlow.content);
+                        setTimeout(() => {
+                            const seguimientoFlow = flowData.find(f => f.state === 'menu_seguimiento_dominio');
+                            if (seguimientoFlow) {
+                                addBotMessage(seguimientoFlow.content);
+                                botState.currentState = 'menu_seguimiento_dominio';
+                            }
+                        }, 2000);
+                    } else {
+                        addBotMessage(nextFlow.content);
+                    }
+                } else {
+                    handleFreeText(input);
+                }
+            } else if (botState.currentState === 'agendar_cita' && input !== '0') {
+                // Procesar datos de cita
+                const confirmFlow = flowData.find(f => f.state === 'confirmacion_cita');
+                addBotMessage(confirmFlow.content);
+                botState.currentState = 'confirmacion_cita';
+            } else if (botState.currentState === 'validacion_alumno' && input !== '0') {
+                // Simular validación
+                addBotMessage('✅ Validación exitosa. Accediendo a tu información...');
+                setTimeout(() => {
+                    addBotMessage('📊 *Calificaciones del periodo actual:*\n\nInglés IV: 9.5\nConversación: 9.0\nGramática: 8.8\n\nPromedio: 9.1\n\n¿Qué más deseas consultar?\n*1* - Volver al menú de alumno\n*0* - Finalizar');
+                }, 1500);
+            } else {
+                handleFreeText(input);
+            }
+        }
+
+        // Manejar texto libre
+        function handleFreeText(text) {
+            const lowerText = text.toLowerCase();
+            
+            // Detectar intenciones comunes
+            if (lowerText.includes('hola') || lowerText.includes('hi') || lowerText.includes('buenos')) {
+                const menuFlow = flowData.find(f => f.state === 'menu_principal');
+                addBotMessage(menuFlow.content);
+                botState.currentState = 'menu_principal';
+            } else if (lowerText.includes('gracias') || lowerText.includes('adios') || lowerText.includes('bye')) {
+                const despedidaFlow = flowData.find(f => f.state === 'despedida');
+                addBotMessage(despedidaFlow.content);
+            } else if (lowerText.includes('precio') || lowerText.includes('costo') || lowerText.includes('cuanto')) {
+                const pagosFlow = flowData.find(f => f.state === 'formas_pago');
+                addBotMessage(pagosFlow.content);
+                botState.currentState = 'formas_pago';
+            } else if (lowerText.includes('horario') || lowerText.includes('cuando')) {
+                const contactoFlow = flowData.find(f => f.state === 'ubicacion_contacto');
+                addBotMessage(contactoFlow.content);
+                botState.currentState = 'ubicacion_contacto';
+            } else {
+                // Respuesta genérica
+                addBotMessage(`No entendí tu mensaje "${text}". 
+
+Por favor selecciona una opción del menú con su número correspondiente o escribe:
+• "Hola" para ver el menú principal
+• "Precios" para información de costos
+• "Horarios" para ver nuestros horarios
+
+¿En qué puedo ayudarte?`);
+            }
+        }
+
+        // Mostrar indicador de escritura
+        function showTyping() {
+            typingIndicator.classList.add('show');
+            scrollToBottom();
+        }
+
+        // Ocultar indicador de escritura
+        function hideTyping() {
+            typingIndicator.classList.remove('show');
+        }
+
+        // Scroll al final
+        function scrollToBottom() {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Simular sonido de notificación
+        function playNotificationSound() {
+            // En una implementación real, aquí se reproduciría un archivo de audio
+            console.log('🔔 Notification sound');
+        }
+
+        // Admin Panel Functions
+        function toggleAdminPanel() {
+            adminPanel.classList.toggle('open');
+        }
+
+        function loadFlowSteps() {
+            const container = document.getElementById('flowSteps');
+            container.innerHTML = '';
+            
+            flowData.forEach((step, index) => {
+                const stepEl = document.createElement('div');
+                stepEl.className = 'flow-step';
+                stepEl.innerHTML = `
+                    <div class="flow-step-header">
+                        <span class="flow-step-title">${step.title}</span>
+                        <span class="flow-step-state">${step.state}</span>
+                    </div>
+                    <div class="flow-step-content">${step.content}</div>
+                    <button class="edit-button" onclick="editStep(${index})">Editar</button>
+                `;
+                container.appendChild(stepEl);
+            });
+        }
+
+        function editStep(index) {
+            botState.editingIndex = index;
+            const step = flowData[index];
+            
+            document.getElementById('editorTitle').value = step.title;
+            document.getElementById('editorState').value = step.state;
+            document.getElementById('editorContent').value = step.content;
+            
+            flowEditor.classList.add('show');
+            overlay.classList.add('show');
+        }
+
+        function closeEditor() {
+            flowEditor.classList.remove('show');
+            overlay.classList.remove('show');
+            botState.editingIndex = null;
+        }
+
+        function saveEdit() {
+            if (botState.editingIndex === null) return;
+            
+            const index = botState.editingIndex;
+            flowData[index] = {
+                ...flowData[index],
+                title: document.getElementById('editorTitle').value,
+                state: document.getElementById('editorState').value,
+                content: document.getElementById('editorContent').value
+            };
+            
+            // Actualizar vista
+            loadFlowSteps();
+            closeEditor();
+            
+            // Guardar en localStorage
+            localStorage.setItem('botFlowData', JSON.stringify(flowData));
+            
+            // Mostrar confirmación
+            alert('Cambios guardados exitosamente');
+        }
+
+        // Cargar datos guardados si existen
+        window.addEventListener('load', () => {
+            const savedData = localStorage.getItem('botFlowData');
+            if (savedData) {
+                try {
+                    const parsed = JSON.parse(savedData);
+                    flowData.length = 0;
+                    flowData.push(...parsed);
+                    loadFlowSteps();
+                } catch (e) {
+                    console.error('Error loading saved data:', e);
+                }
+            }
+        });
+
+        // Exportar configuración
+        function exportConfig() {
+            const dataStr = JSON.stringify(flowData, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportLink = document.createElement('a');
+            exportLink.setAttribute('href', dataUri);
+            exportLink.setAttribute('download', 'bot-flow-config.json');
+            document.body.appendChild(exportLink);
+            exportLink.click();
+            document.body.removeChild(exportLink);
+        }
+    </script>
+</body>
+</html>
