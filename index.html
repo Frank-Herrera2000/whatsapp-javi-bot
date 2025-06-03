@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Universal House - Simulador WhatsApp Bot</title>
+    <title>Universal House - Simulador WhatsApp Bot MEJORADO</title>
     <style>
         * {
             margin: 0;
@@ -94,42 +94,6 @@
                 right: 10px !important;
                 padding: 8px 15px !important;
                 font-size: 12px !important;
-            }
-
-            .admin-panel {
-                width: 100% !important;
-                right: -100% !important;
-            }
-
-            .flow-editor {
-                width: 95% !important;
-                padding: 20px !important;
-            }
-
-            .sidebar-header {
-                padding: 10px 12px;
-            }
-
-            .search-container {
-                padding: 6px 10px;
-            }
-
-            .chat-item {
-                padding: 10px 12px;
-            }
-
-            .input-container {
-                padding: 8px 10px;
-            }
-
-            .flow-step {
-                padding: 12px;
-                margin-bottom: 10px;
-            }
-
-            .flow-step-content {
-                font-size: 13px;
-                max-height: 150px;
             }
         }
 
@@ -542,34 +506,6 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
 
-        /* Prevenir selección de texto en iOS */
-        @media (pointer: coarse) {
-            .message-text {
-                -webkit-user-select: text;
-                user-select: text;
-            }
-            
-            .chat-name, .chat-message, .message-time {
-                -webkit-user-select: none;
-                user-select: none;
-            }
-        }
-
-        /* Safe area para iPhone con notch */
-        @supports (padding-top: env(safe-area-inset-top)) {
-            .sidebar-header {
-                padding-top: calc(10px + env(safe-area-inset-top));
-            }
-            
-            .chat-header {
-                padding-top: calc(10px + env(safe-area-inset-top));
-            }
-            
-            .input-container {
-                padding-bottom: calc(10px + env(safe-area-inset-bottom));
-            }
-        }
-
         @keyframes slideUp {
             from {
                 opacity: 0;
@@ -602,194 +538,126 @@
             transform: translateY(-2px);
         }
 
-        /* Panel de administración */
-        .admin-panel {
-            position: fixed;
-            right: -400px;
-            top: 0;
-            width: 400px;
-            height: 100vh;
-            background: #0b141a;
-            border-left: 1px solid #2a3942;
-            transition: right 0.3s ease;
-            z-index: 999;
-            overflow-y: auto;
-            padding: 20px;
+        /* Error message styles */
+        .error-message {
+            background: #dc2626 !important;
+            color: #fee2e2 !important;
         }
 
-        .admin-panel.open {
-            right: 0;
+        .suggestion-message {
+            background: #1f2937 !important;
+            color: #9ca3af !important;
+            border-left: 4px solid #3b82f6;
+            padding-left: 16px !important;
         }
 
-        .admin-header {
-            color: #e9edef;
-            font-size: 20px;
-            margin-bottom: 20px;
+        /* Quick reply buttons */
+        .quick-replies {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .close-admin {
-            background: none;
-            border: none;
-            color: #8696a0;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .flow-step {
-            background: #202c33;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #374045;
-        }
-
-        .flow-step-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .flow-step-title {
-            color: #00a884;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        .flow-step-state {
-            color: #8696a0;
-            font-size: 12px;
-            background: #182229;
-            padding: 4px 8px;
-            border-radius: 4px;
-        }
-
-        .flow-step-content {
-            color: #e9edef;
-            font-size: 14px;
-            line-height: 1.5;
-            white-space: pre-wrap;
-            background: #111b21;
-            padding: 10px;
-            border-radius: 6px;
+            flex-wrap: wrap;
+            gap: 8px;
             margin-top: 10px;
-            max-height: 200px;
-            overflow-y: auto;
         }
 
-        .edit-button {
-            background: #00a884;
-            color: #111b21;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
+        .quick-reply-btn {
+            background: #2a3942;
+            color: #e9edef;
+            border: 1px solid #374045;
+            padding: 8px 16px;
+            border-radius: 20px;
             cursor: pointer;
             font-size: 13px;
-            margin-top: 10px;
-            transition: background 0.2s;
-        }
-
-        .edit-button:hover {
-            background: #00c897;
-        }
-
-        /* Editor de flujo */
-        .flow-editor {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #202c33;
-            border-radius: 12px;
-            padding: 24px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
-            z-index: 1001;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-        }
-
-        .flow-editor.show {
-            display: block;
-        }
-
-        .editor-header {
-            color: #e9edef;
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        .editor-field {
-            margin-bottom: 15px;
-        }
-
-        .editor-label {
-            color: #8696a0;
-            font-size: 14px;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .editor-input, .editor-textarea {
-            width: 100%;
-            background: #2a3942;
-            border: 1px solid #374045;
-            color: #e9edef;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-family: inherit;
-        }
-
-        .editor-textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .editor-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
-
-        .editor-button {
-            padding: 8px 20px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
             transition: all 0.2s;
         }
 
-        .editor-button.save {
-            background: #00a884;
-            color: #111b21;
-        }
-
-        .editor-button.cancel {
+        .quick-reply-btn:hover {
             background: #374045;
-            color: #e9edef;
+            transform: translateY(-1px);
         }
 
-        .overlay {
-            display: none;
+        /* Debug panel */
+        .debug-panel {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: #00ff00;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            display: none;
+            z-index: 10000;
+        }
+
+        .debug-panel.show {
+            display: block;
+        }
+        
+        /* Estilos para edición de mensajes */
+        .message-text {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .message-text:hover {
+            background: rgba(255,255,255,0.05);
+            outline: 1px dashed rgba(255,255,255,0.3);
+        }
+        
+        .message-text.editing {
+            background: rgba(0,168,132,0.1);
+            outline: 2px solid #00a884;
+            padding: 12px;
+            cursor: text;
+            -webkit-user-select: text;
+            user-select: text;
+        }
+        
+        /* Botón de exportar */
+        .export-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #00a884;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        
+        .export-btn:hover {
+            background: #00c897;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+        }
+        
+        /* Modo edición toggle */
+        .edit-mode-toggle {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            background: #202c33;
+            color: #e9edef;
+            border: 1px solid #374045;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
             z-index: 1000;
         }
-
-        .overlay.show {
-            display: block;
+        
+        .edit-mode-toggle.active {
+            background: #00a884;
+            color: #111b21;
+            border-color: #00a884;
         }
     </style>
 </head>
@@ -850,8 +718,8 @@
                     <div class="chat-header-status">en línea</div>
                 </div>
                 <div class="sidebar-icons">
-                    <button class="icon-btn">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.9 14.3H15l-.3-.3c1-1.1 1.6-2.7 1.6-4.3 0-3.7-3-6.7-6.7-6.7S3 6 3 9.7s3 6.7 6.7 6.7c1.6 0 3.2-.6 4.3-1.6l.3.3v.8l5.1 5.1 1.5-1.5-5-5.2zm-6.2 0c-2.6 0-4.6-2.1-4.6-4.6s2.1-4.6 4.6-4.6 4.6 2.1 4.6 4.6-2 4.6-4.6 4.6z"/></svg>
+                    <button class="icon-btn" onclick="toggleDebug()">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20,8H17.19C16.74,7.22 16.12,6.55 15.37,6.04L17,4.41L15.59,3L13.42,5.17C12.96,5.06 12.49,5 12,5C11.51,5 11.04,5.06 10.59,5.17L8.41,3L7,4.41L8.62,6.04C7.88,6.55 7.26,7.22 6.81,8H4V10H6.09C6.04,10.33 6,10.66 6,11V12H4V14H6V15C6,15.34 6.04,15.67 6.09,16H4V18H6.81C7.85,19.79 9.78,21 12,21C14.22,21 16.15,19.79 17.19,18H20V16H17.91C17.96,15.67 18,15.34 18,15V14H20V12H18V11C18,10.66 17.96,10.33 17.91,10H20V8Z"/></svg>
                     </button>
                     <button class="icon-btn">
                         <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
@@ -896,53 +764,43 @@
         </div>
     </div>
 
+    <!-- Debug Panel -->
+    <div class="debug-panel" id="debugPanel">
+        <div>Estado actual: <span id="currentState">iniciando</span></div>
+        <div>Último input: <span id="lastInput">-</span></div>
+        <div>Errores: <span id="errorCount">0</span></div>
+    </div>
+
     <!-- Admin Panel -->
     <button class="admin-toggle" onclick="toggleAdminPanel()">
-        Panel de Administración
+        Debug Panel
+    </button>
+    
+    <!-- Botón de Modo Edición -->
+    <button class="edit-mode-toggle" id="editModeToggle" onclick="toggleEditMode()">
+        ✏️ Modo Edición: OFF
+    </button>
+    
+    <!-- Botón de Exportar -->
+    <button class="export-btn" onclick="exportarChat()">
+        📤 Exportar Chat
     </button>
 
-    <div class="admin-panel" id="adminPanel">
-        <div class="admin-header">
-            <span>Flujo del Bot</span>
-            <button class="close-admin" onclick="toggleAdminPanel()">×</button>
-        </div>
-        <div id="flowSteps"></div>
-    </div>
-
-    <!-- Flow Editor -->
-    <div class="overlay" id="overlay" onclick="closeEditor()"></div>
-    <div class="flow-editor" id="flowEditor">
-        <div class="editor-header">Editar Paso del Flujo</div>
-        <div class="editor-field">
-            <label class="editor-label">Título</label>
-            <input type="text" class="editor-input" id="editorTitle">
-        </div>
-        <div class="editor-field">
-            <label class="editor-label">Estado</label>
-            <input type="text" class="editor-input" id="editorState">
-        </div>
-        <div class="editor-field">
-            <label class="editor-label">Contenido del Mensaje</label>
-            <textarea class="editor-textarea" id="editorContent"></textarea>
-        </div>
-        <div class="editor-buttons">
-            <button class="editor-button cancel" onclick="closeEditor()">Cancelar</button>
-            <button class="editor-button save" onclick="saveEdit()">Guardar</button>
-        </div>
-    </div>
-
     <script>
-        // Estado del bot
+        // Estado del bot MEJORADO
         const botState = {
-            currentState: 'inicio',
+            currentState: 'menu_principal',
             userName: '',
             userPhone: '',
             conversationHistory: [],
             currentFlow: null,
-            editingIndex: null
+            editingIndex: null,
+            errorCount: 0,
+            lastInput: '',
+            debugMode: false
         };
 
-        // Flujo completo del bot
+        // Flujo simplificado y mejorado
         const flowData = [
             {
                 id: 1,
@@ -950,475 +808,285 @@
                 state: "menu_principal",
                 content: `🏫 *Universal House - Escuela de Inglés*
 
-🤖 Buen día, mi nombre es Javi y es un gusto para mí atenderte el día de hoy.
-Por favor bríndame la siguiente información y con gusto te atenderé de la mejor manera:
+🤖 ¡Hola! Soy Javi, tu asistente virtual. Es un gusto atenderte.
 
-• 1. 🌐💻 Me interesa información para ingresar a sus cursos. 
-• 2. 👨‍🎓👩‍🎓 Soy alumno/a de Universal House.
-• 3. 🔐 Admin (Biométricos)
+Selecciona una opción escribiendo el número:
 
-🤖 Puedes indicarme únicamente el número correspondiente. 🤗`
+*1* 🌐 Información de cursos
+*2* 👨‍🎓 Soy alumno de Universal House
+*3* 🔐 Acceso administrativo
+
+💡 También puedes escribir:
+• "precios" para ver costos
+• "horarios" para ver horarios
+• "ubicación" para ver dónde estamos
+
+¿En qué puedo ayudarte?`
             },
             {
                 id: 2,
-                title: "Menú Información",
+                title: "Información de Cursos",
                 state: "menu_informacion",
-                content: `• 1. 🌐💻 Me interesa información para ingresar a sus cursos. 🔻
+                content: `📚 *INFORMACIÓN DE CURSOS*
 
-🤖 ¡Muy bien! Por favor indícame que información deseas conocer:
+¿Qué información necesitas?
 
-* 1 💰 Información y costos de nuestros cursos.
-* 2 🕒 Horarios de clases.
-* 3 📝 Examen de ubicación.
-* 4 ✍🏻 Cómo realizo mi inscripción?
-* 5 🗓️ Inicio de sus cursos.
-* 6 ℹ️ Quiero conocer toda la información anterior.
-* 7 🎖️ Deseo conocer sus niveles.
-* 8 📜 Certificaciones.
-* 9 🕣 Quiero conocer sus horarios de atención.
-* 10 🪪 Quiero conocer sus métodos de pago.
+*1* 💰 Precios y costos
+*2* 🕒 Horarios de clase
+*3* 📝 Examen de ubicación
+*4* ✍️ Proceso de inscripción
+*5* 🗓️ Inicio de cursos
+*6* 🎖️ Niveles que manejamos
+*7* 📜 Certificaciones
+*8* 📍 Ubicación y contacto
+*9* 🪪 Métodos de pago
+*0* ⬅️ Volver al menú principal
 
-🤖 Puedes indicarme únicamente el número correspondiente. 🤗`
+Escribe el número de tu opción:`
             },
             {
                 id: 3,
-                title: "Submenú Precios",
-                state: "submenu_precios",
-                content: `* 1 💰 Información y costos de nuestros cursos. 🔻
+                title: "Precios y Costos",
+                state: "info_precios",
+                content: `💰 *PRECIOS DE NUESTROS CURSOS*
 
-SUBMENÚ:
-* 1 Curso Dominio (11 años en adelante niveles Básicos – Intermedios)
-* 2 Curso Kids (Alumnos 7 – 10 años Cualquier nivel)
-* 3 Curso Mastery Course. (Alumnos 11 años en adelante niveles de Perfeccionamiento B2 o más)`
+🔸 *CURSO DOMINIO (11+ años)*
+• Semanal: $1,300/mes (4 hrs/semana)
+• Sabatino: $1,200 cada 4 semanas (3 hrs)
+
+🔸 *CURSO KIDS (7-10 años)*
+• $1,100/mes (4 hrs/semana)
+• Martes y jueves 17:00-19:00
+
+🔸 *MASTERY B2/C1*
+• B2: $1,600/mes (4 hrs/semana)
+• C1: $1,500 cada 4 semanas
+
+📋 *COSTOS ADICIONALES*
+• Inscripción: $280
+• Material (18 meses): $1,700
+
+🎁 *BENEFICIO ESPECIAL*
+Clases presenciales + acceso virtual incluido
+
+*1* Ver horarios disponibles
+*2* Proceso de inscripción
+*0* Volver al menú anterior`
             },
             {
                 id: 4,
-                title: "Info Curso Dominio",
-                state: "info_curso_dominio",
-                content: `*1 Curso Dominio (11 años en adelante niveles Básicos – Avanzados)
-🤖 ¡Claro! Con gusto te comparto los precios de nuestros cursos en Universal House 🏫:
+                title: "Horarios Disponibles",
+                state: "info_horarios",
+                content: `🕒 *HORARIOS DISPONIBLES*
 
-Información para curso niveles A1-B1
+📅 *CLASES SEMANALES*
+• 17:00 - 18:00 hrs
+• 18:00 - 19:00 hrs  
+• 19:00 - 20:00 hrs
+(Lunes a Jueves)
 
-🔘Frecuencia Semanal: 4 horas a la semana, 1 hora diaria de lunes a jueves. Costo $1,300.00 al mes.
+📅 *CLASES SABATINAS*
+• 08:00 - 11:00 hrs
+• 11:00 - 14:00 hrs
 
-🔹Horario de lunes a jueves de;
-     17:00 a 18:00 hrs
-     18:00 a 19:00 hrs
-     19:00 a 20:00 hrs
+👶 *KIDS*
+• Martes y Jueves 17:00 - 19:00 hrs
 
-El horario exacto dependerá de tu nivel el cual podemos conocer mediante un examen de ubicación
+*Tu horario final depende de tu nivel actual*
 
-
-🔘 Frecuencia Sabatino: 3 horas semanales, 3 horas de clase. 
-Costo $1,200.00 cada 4 semanas. (El pago no es mensual).
-
-🔸Horario sabatino de:
-     - 8:00 a 11:00 hrs  
-     - 11:00 a 14:00 hrs
-*El horario exacto dependerá de tu nivel el cual podemos conocer mediante un examen de ubicación*
-
-
-📋Inscripción $280.00
-📚Material $1,700.00 (Duración aprox. de 18 meses)
-
-El material consiste en 2 libros originales los cuales incluyen el acceso a una plataforma electrónica que podrás utilizar desde casa.
-
--La duración de todo el curso es de 3.5 años.
-Este tiempo puede reducirse, dependiendo el nivel en el que comiences.
-
-
-🤖 De igual manera, te comento que, si decides incorporarte a nuestros cursos este mes, contarás con un servicio adicional por ser parte de nosotros; (En caso de faltar a tu clase presencial, tendrás la opción de visualizarla a distancia sin costo adicional y así no perder ningún avance estes donde estes).
-
-✨ Presiona 1 para continuar explorando nuestras opciones:
-
-* 1 ➡️ Continuar`
+*1* Hacer examen de ubicación
+*2* Ver precios
+*0* Volver al menú anterior`
             },
             {
                 id: 5,
-                title: "Menú Continuidad Dominio",
-                state: "menu_continuidad_dominio",
-                content: `🤖 ¡Excelente! Aquí tienes más opciones para complementar tu información:
+                title: "Examen de Ubicación",
+                state: "info_examen",
+                content: `📝 *EXAMEN DE UBICACIÓN*
 
-* 1 🎓 Cursos de Perfeccionamiento Mastery B2
-* 2 📝 Examen de Ubicación
-* 3 ⬅️ Volver al menú de Información y costos de nuestros cursos
-* 4 👋 Salir
+💵 *Costo:* $280 pesos
 
-🤖 Puedes indicarme únicamente el número correspondiente. 🤗`
+📅 *Fechas disponibles:*
+• Lunes y Miércoles 19:00 hrs
+• Sábados 11:00 hrs
+
+📍 *Ubicación:*
+Francisco I. Madero 1408, Centro
+(A espaldas de presidencia, Portal Morelos Local 14)
+
+⏰ *Importante:*
+• Llega 15 minutos antes
+• Trae comprobante de pago
+• No necesitas agendar
+
+*1* Ver métodos de pago
+*2* Ver ubicación en mapa
+*0* Volver al menú anterior`
             },
             {
                 id: 6,
-                title: "Info Curso Mastery B2",
-                state: "info_curso_mastery_b2",
-                content: `CURSO B2:
+                title: "Portal de Alumnos",
+                state: "portal_alumnos",
+                content: `👨‍🎓 *PORTAL DE ALUMNOS*
 
-Actualmente el curso de B2 puedes tomarlo únicamente entre semana.
+Ingresa tu matrícula (8 dígitos):
+Ejemplo: 12345678
 
-🔘Curso Semanal: 4 horas a la semana por $1,600.00 al mes.
+O selecciona una opción:
 
-🔹Horario de lunes a jueves de;
-     
-     18:00 a 19:00 hrs
-
-📋Inscripción $280.00
-📚Material: $1,700.00 (2 Libros originales con duración de 18 meses) 
-
--La duración del curso B2 semanal es de 18 meses. 
-*Dependiendo de tu nivel y donde comiences el tiempo puede reducirse.
-
-🤖: De igual manera, te comento que, si decides incorporarte a nuestros cursos este mes, contarás con un servicio adicional por ser parte de nosotros; En caso de faltar a tu clase presencial, tendrás la opción de visualizarla a distancia sin costo adicional y así no perder ningún avance estes donde estes.
-
-✨ Presiona 1 para continuar explorando nuestras opciones:
-
-* 1 ➡️ Continuar con C1
-* 2 ⬅️ Volver a info A1-B1`
+*1* 📋 Consultar calificaciones
+*2* 📅 Mi horario de clases  
+*3* 💳 Pagar mensualidad
+*4* 📧 Solicitar constancia
+*5* 📱 Actualizar datos
+*6* 🔔 Reportar inasistencia
+*7* 📚 Plataforma digital
+*8* 👩‍🏫 Contactar profesor
+*0* ⬅️ Volver al menú principal`
             },
             {
                 id: 7,
-                title: "Info Curso Kids",
-                state: "info_curso_kids",
-                content: `*2 Curso Kids (Alumnos 7 – 10 años Cualquier nivel)
+                title: "Ubicación y Contacto",
+                state: "info_ubicacion",
+                content: `📍 *UBICACIÓN Y CONTACTO*
 
-🤖: ¡Perfecto! Te proporciono los costos y horarios de nuestro curso de niños:
+🏫 *Dirección:*
+Francisco I. Madero 1408
+Col. Centro, Cd. Guzmán, Jalisco
+(Portal Morelos, Planta Alta, Local 14)
 
-🔘Semanal kids: 4 horas a la semana por $1,100.00 al mes.
-
-🔹Martes y jueves de 17:00 a 19:00 hrs
-
-📋Inscripción $280.00
-📚Material: $1,700.00 (2 Libros originales con duración de 18 meses) 
-*Depende de tu nivel y donde comiences el tiempo puede reducirse.
-
-🤖: De igual manera, te comento que, si decides incorporarte a nuestros cursos este mes, contarás con un servicio adicional por ser parte de nosotros; En caso de faltar a tu clase presencial, tendrás la opción de visualizarla a distancia sin costo adicional y así no perder ningún avance estes donde estes.
-
-✨ Presiona 1 para continuar explorando nuestras opciones:
-
-* 1 ➡️ Continuar`
-            },
-            {
-                id: 8,
-                title: "Info Curso Mastery",
-                state: "info_curso_mastery",
-                content: `*3 Curso Mastery Course. (Alumnos 11 años en adelante niveles de Perfeccionamiento B2 o más)
-
-🤖: ¡Claro! Te proporciono los costos y horarios de nuestros Mastery Course:
-
-CURSO B2:
-
-Actualmente el curso de B2 puedes tomarlo únicamente entre semana.
-
-🔘Curso Semanal: 4 horas a la semana por $1,600.00 al mes.
-
-🔹Horario de lunes a jueves de;
-     
-     18:00 a 19:00 hrs
-
-📋Inscripción $280.00
-📚Material: $1,700.00 (2 Libros originales con duración de 18 meses) 
-
--La duración del curso B2 semanal es de 18 meses. 
-*Dependiendo de tu nivel y donde comiences el tiempo puede reducirse.
-
-🤖: CURSO C1
-Nuestro curso C1 se encuentra actualmente los días sábado;
-
-🔘Curso Sabatino C1: 3 horas semanales por $1,500 cada 4 semanas.
-
-🔹Horario sabatino de;
-     11:00 a 14:00 hrs
-
-📋Inscripción $280.00
-📚Material: $1,700.00 (2 Libros originales con duración de 18 meses) 
-
--La duración del curso C1 sabatino es de 18 meses. 
-*Dependiendo de tu nivel y donde comiences el tiempo puede reducirse.
-Inicios inmediatos.
-
-
-🤖: De igual manera, te comento que, si decides incorporarte a nuestros cursos este mes, contarás con un servicio adicional por ser parte de nosotros; En caso de faltar a tu clase presencial, tendrás la opción de visualizarla a distancia sin costo adicional y así no perder ningún avance estes donde estes.
-
-✨ Presiona 1 para continuar explorando nuestras opciones:
-
-* 1 ➡️ Continuar`
-            },
-            {
-                id: 9,
-                title: "Info Horarios",
-                state: "info_horarios",
-                content: `*2 🕒 Horarios de clases.*
-
-🤖 Claro te comparto los horarios para que elijas el que mejor se acomode a tus actividades:
-
-*Horarios semanales:*
-     17:00 a 18:00 hrs
-     18:00 a 19:00 hrs
-     19:00 a 20:00 hrs
-
-*Horarios sabatinos:*
-     8:00 a 11:00 hrs  
-     11:00 a 14:00 hrs
-
-*Kids 🧒:*
-     Martes y jueves de 17:00 a 19:00 hrs
-
-*El horario exacto dependerá de tu nivel.*`
-            },
-            {
-                id: 10,
-                title: "Info Examen",
-                state: "info_examen",
-                content: `*3 📝 Examen de ubicación.*
-
-🤖 El examen de ubicación tiene un costo de $280 pesos.
-
-Se realiza en las siguientes fechas y horarios:
-
-*Lunes y miércoles de 19:00 hrs*
-*Sábado de 11:00 hrs*
-
-Si deseas tu examen no necesitas agendar, simplemente debes llegar 15 minutos antes del horario indicado en nuestras instalaciones.
-
-🏫 Dirección: Francisco I. Madero 1408 Col Centro Cd. Guzmán. (Estamos ubicados a espaldas de la presidencia dentro del centro comercial Portal Morelos planta alta local 14.
-
-Para desbloquear tu examen necesitas acudir con tu baucher de pago.`
-            },
-            {
-                id: 11,
-                title: "Menú Alumno",
-                state: "menu_alumno",
-                content: `👨‍🎓 *PORTAL DE ALUMNOS*
-
-Por favor ingresa tu matrícula (8 dígitos) para continuar.
-
-Ejemplo: 12345678
-
-*Escribe tu matrícula o 0 para volver al menú principal*`
-            },
-            {
-                id: 12,
-                title: "Info Horarios Atención",
-                state: "info_horarios_atencion",
-                content: `🕣 Nuestros horarios de atención son:
-
-*Lunes a viernes:*
-🏫 11:00 a 14:00 hrs
-🏫 16:00 a 20:00 hrs
-
-*Sábados:*
-🏫 9:00 a 14:00 hrs
-
-📍 *Ubicación:*
-Francisco I. Madero 1408 Col Centro
-Cd. Guzmán, Jalisco
-(A espaldas de la presidencia dentro del centro comercial Portal Morelos planta alta local 14)
-
-📞 Teléfono: 341 414 1215`
-            },
-            {
-                id: 13,
-                title: "Info Métodos Pago",
-                state: "info_metodos_pago",
-                content: `*10 🪪 Quiero conocer sus métodos de pago.*
-
-🤖 Claro, aceptamos los siguientes métodos de pago:
-
-💳 *Tarjetas de crédito y débito* (En sucursal)
-💵 *Efectivo* (En sucursal)  
-🏦 *Transferencia o depósito bancario*
-
-Para pagos con transferencia:
-*Banco:* BBVA
-*Nombre:* Universal Language Center SC
-*Número de cuenta:* 0115693108
-*CLABE:* 012320001156931088
-
-¡Importante! Envía tu comprobante por WhatsApp para registrar tu pago.`
-            },
-            {
-                id: 14,
-                title: "Info Certificaciones",
-                state: "info_certificaciones",
-                content: `*8 📜 Certificaciones.*
-
-🤖 En Universal House ofrecemos:
-
-🎓 *Certificaciones Cambridge:*
-• A2 KEY (KET)
-• B1 Preliminary (PET)
-• B2 First (FCE)
-• C1 Advanced (CAE)
-• C2 Proficiency (CPE)
-
-📚 *TKT* (Teaching Knowledge Test)
-Para profesores de inglés
-
-🌎 *TOEFL & IELTS*
-Preparación especializada
-
-Todas nuestras certificaciones tienen validez internacional y son reconocidas por universidades y empresas en todo el mundo.`
-            },
-            {
-                id: 15,
-                title: "Despedida",
-                state: "despedida",
-                content: `🤖 ¡Fue un placer atenderte! 😊
-
-Recuerda que en Universal House estamos para apoyarte en tu aprendizaje del inglés.
-
-📞 Si necesitas más información:
+📞 *Teléfono:*
 341 414 1215
 
-🏫 Te esperamos en:
-Francisco I. Madero 1408 Col Centro
-Cd. Guzmán, Jalisco
+🕒 *Horarios de Atención:*
+• Lunes a Viernes: 11:00-14:00 y 16:00-20:00
+• Sábados: 9:00-14:00
 
-*¡Have a great day!* 🌟`
-            },
-            {
-                id: 16,
-                title: "Menú Seguimiento General",
-                state: "seguimiento_general",
-                content: `🤖 ¿Te gustaría conocer más información?
+📧 *Email:*
+info@universalhouse.edu.mx
 
-* 1 ➡️ Ver todos los cursos y precios
-* 2 📝 Agendar examen de ubicación 
-* 3 📞 Hablar con un asesor
-* 4 📍 Ver ubicación
-* 0 👋 Salir`
-            },
-            {
-                id: 17,
-                title: "Menú Continuidad Kids",
-                state: "menu_continuidad_kids",
-                content: `🤖: ¡Excelente! Aquí tienes más opciones para complementar tu información:
+🗺️ *Referencias:*
+A espaldas de la presidencia municipal
 
-* 1 📝 Examen de Ubicación
-* 2 🎓 Cursos Dominio (A1-B1)
-* 3 ⬅️ Volver al menú de Información y costos de nuestros cursos
-* 4 👋 Salir
-
-🤖 Puedes indicarme únicamente el número correspondiente. 🤗`
-            },
-            {
-                id: 18,
-                title: "Menú Continuidad Mastery",
-                state: "menu_continuidad_mastery",
-                content: `🤖: ¡Excelente! Aquí tienes más opciones para complementar tu información:
-
-* 1 📝 Examen de Ubicación
-* 2 ⬅️ Volver a B2
-* 3 👋 Salir
-
-🤖 Puedes indicarme únicamente el número correspondiente. 🤗`
-            },
-            {
-                id: 19,
-                title: "Info Curso C1",
-                state: "info_curso_c1",
-                content: `CURSO C1:
-Nuestro curso C1 se encuentra actualmente los días sábado;
-
-🔘Curso Sabatino C1: 3 horas semanales por $1,500 cada 4 semanas.
-
-🔹Horario sabatino de;
-     11:00 a 14:00 hrs
-
-📋Inscripción $280.00
-📚Material: $1,700.00 (2 Libros originales con duración de 18 meses) 
-
--La duración del curso C1 sabatino es de 18 meses. 
-*Dependiendo de tu nivel y donde comiences el tiempo puede reducirse.
-Inicios inmediatos.
-
-🤖: De igual manera, te comento que, si decides incorporarte a nuestros cursos este mes, contarás con un servicio adicional por ser parte de nosotros; En caso de faltar a tu clase presencial, tendrás la opción de visualizarla a distancia sin costo adicional y así no perder ningún avance estes donde estes.
-
-✨ Presiona 1 para continuar explorando nuestras opciones:
-
-* 1 ➡️ Continuar`
-            },
-            {
-                id: 20,
-                title: "Menú Continuidad C1",
-                state: "menu_continuidad_c1",
-                content: `🤖 ¡Excelente! Aquí tienes más opciones para complementar tu información:
-
-* 1 📝 Examen de Ubicación
-* 2 ⬅️ Volver a B2
-* 3 👋 Salir
-
-🤖 Puedes indicarme únicamente el número correspondiente. 🤗`
+*1* Ver horarios de clase
+*2* Agendar cita
+*0* Volver al menú anterior`
             }
         ];
 
-        // Mapeo de respuestas a flujos
+        // Mapeo SIMPLIFICADO de respuestas
         const responseMap = {
             'menu_principal': {
                 '1': 'menu_informacion',
-                '2': 'alumno_existente',
-                '3': 'admin_biometricos'
+                '2': 'portal_alumnos', 
+                '3': 'admin_access',
+                'precios': 'info_precios',
+                'horarios': 'info_horarios',
+                'ubicacion': 'info_ubicacion',
+                'ubicación': 'info_ubicacion'
             },
             'menu_informacion': {
-                '1': 'submenu_precios',
+                '1': 'info_precios',
                 '2': 'info_horarios',
                 '3': 'info_examen',
                 '4': 'info_inscripcion',
                 '5': 'info_inicio_cursos',
-                '6': 'info_general',
-                '7': 'info_niveles',
-                '8': 'info_certificaciones',
-                '9': 'info_horarios_atencion',
-                '10': 'info_metodos_pago'
+                '6': 'info_niveles',
+                '7': 'info_certificaciones',
+                '8': 'info_ubicacion',
+                '9': 'info_metodos_pago',
+                '0': 'menu_principal'
             },
-            'submenu_precios': {
-                '1': 'info_curso_dominio',
-                '2': 'info_curso_kids',
-                '3': 'info_curso_mastery'
+            'info_precios': {
+                '1': 'info_horarios',
+                '2': 'info_inscripcion',
+                '0': 'menu_informacion'
             },
-            'info_curso_dominio': {
-                '1': 'menu_continuidad_dominio',
-                '0': 'despedida'
-            },
-            'info_curso_kids': {
-                '1': 'menu_continuidad_kids',
-                '0': 'despedida'
-            },
-            'info_curso_mastery': {
-                '1': 'menu_continuidad_mastery',
-                '0': 'despedida'
-            },
-            'menu_continuidad_dominio': {
-                '1': 'info_curso_mastery_b2',
-                '2': 'info_examen',
-                '3': 'submenu_precios',
-                '4': 'despedida'
-            },
-            'info_curso_mastery_b2': {
-                '1': 'info_curso_c1',
-                '2': 'info_curso_dominio',
-                '0': 'despedida'
-            },
-            'info_curso_c1': {
-                '1': 'menu_continuidad_c1',
-                '0': 'despedida'
-            },
-            'menu_continuidad_kids': {
+            'info_horarios': {
                 '1': 'info_examen',
-                '2': 'info_curso_dominio',
-                '3': 'submenu_precios',
-                '4': 'despedida'
+                '2': 'info_precios',
+                '0': 'menu_informacion'
             },
-            'menu_continuidad_mastery': {
-                '1': 'info_examen',
-                '2': 'info_curso_c1',
-                '3': 'info_curso_dominio',
-                '4': 'despedida'
+            'info_examen': {
+                '1': 'info_metodos_pago',
+                '2': 'info_ubicacion',
+                '0': 'menu_informacion'
             },
-            'menu_continuidad_c1': {
-                '1': 'info_examen',
-                '2': 'info_curso_mastery_b2',
-                '3': 'despedida'
+            'portal_alumnos': {
+                '1': 'consultar_calificaciones',
+                '2': 'ver_horario',
+                '3': 'pago_mensualidad',
+                '4': 'solicitar_constancia',
+                '5': 'actualizar_datos',
+                '6': 'reportar_inasistencia',
+                '7': 'plataforma_digital',
+                '8': 'contactar_profesor',
+                '0': 'menu_principal'
+            },
+            'info_ubicacion': {
+                '1': 'info_horarios',
+                '2': 'agendar_cita',
+                '0': 'menu_informacion'
             }
+        };
+
+        // Palabras clave para inteligencia artificial
+        const keywordResponses = {
+            // Saludos
+            'hola': () => showMainMenu(),
+            'hi': () => showMainMenu(),
+            'buenos': () => showMainMenu(),
+            'buenas': () => showMainMenu(),
+            
+            // Precios
+            'precio': () => goToState('info_precios'),
+            'costo': () => goToState('info_precios'),
+            'cuanto': () => goToState('info_precios'),
+            'cuánto': () => goToState('info_precios'),
+            
+            // Horarios
+            'horario': () => goToState('info_horarios'),
+            'cuando': () => goToState('info_horarios'),
+            'cuándo': () => goToState('info_horarios'),
+            'tiempo': () => goToState('info_horarios'),
+            
+            // Ubicación
+            'donde': () => goToState('info_ubicacion'),
+            'dónde': () => goToState('info_ubicacion'),
+            'ubicacion': () => goToState('info_ubicacion'),
+            'ubicación': () => goToState('info_ubicacion'),
+            'direccion': () => goToState('info_ubicacion'),
+            'dirección': () => goToState('info_ubicacion'),
+            
+            // Examen
+            'examen': () => goToState('info_examen'),
+            'test': () => goToState('info_examen'),
+            'evaluacion': () => goToState('info_examen'),
+            'evaluación': () => goToState('info_examen'),
+            
+            // Cursos
+            'curso': () => goToState('menu_informacion'),
+            'clases': () => goToState('menu_informacion'),
+            'ingles': () => goToState('menu_informacion'),
+            'inglés': () => goToState('menu_informacion'),
+            
+            // Despedidas
+            'gracias': () => showGoodbye(),
+            'adios': () => showGoodbye(),
+            'adiós': () => showGoodbye(),
+            'bye': () => showGoodbye(),
+            'hasta': () => showGoodbye(),
+            
+            // Reset
+            'menu': () => showMainMenu(),
+            'inicio': () => showMainMenu(),
+            'principal': () => showMainMenu(),
+            'reset': () => showMainMenu(),
+            
+            // Ayuda
+            'ayuda': () => showHelp(),
+            'help': () => showHelp(),
+            '?': () => showHelp()
         };
 
         // Elementos del DOM
@@ -1426,25 +1094,21 @@ Inicios inmediatos.
         const messageInput = document.getElementById('messageInput');
         const sendButton = document.getElementById('sendButton');
         const typingIndicator = document.getElementById('typingIndicator');
-        const adminPanel = document.getElementById('adminPanel');
-        const flowEditor = document.getElementById('flowEditor');
-        const overlay = document.getElementById('overlay');
+        const debugPanel = document.getElementById('debugPanel');
         const sidebar = document.getElementById('sidebar');
 
         // Inicializar
         document.addEventListener('DOMContentLoaded', () => {
-            loadFlowSteps();
             messageInput.addEventListener('keypress', handleKeyPress);
             messageInput.addEventListener('input', autoResize);
             sendButton.addEventListener('click', sendMessage);
             
-            // Mensaje inicial del bot después de 1 segundo
+            // Mensaje inicial del bot
             setTimeout(() => {
-                addBotMessage(flowData[0].content);
-                botState.currentState = 'menu_principal';
+                showMainMenu();
             }, 1000);
 
-            // Detectar clics fuera del sidebar en móvil
+            // Cerrar sidebar en móvil al hacer clic fuera
             document.addEventListener('click', (e) => {
                 if (window.innerWidth <= 430) {
                     if (!sidebar.contains(e.target) && !e.target.closest('.mobile-menu-btn')) {
@@ -1453,16 +1117,29 @@ Inicios inmediatos.
                 }
             });
 
-            // Cerrar sidebar al seleccionar un chat en móvil
-            const chatItems = document.querySelectorAll('.chat-item');
-            chatItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    if (window.innerWidth <= 430) {
-                        sidebar.classList.remove('show');
-                    }
-                });
-            });
+            updateDebugPanel();
         });
+
+        // Toggle sidebar móvil
+        function toggleSidebar() {
+            sidebar.classList.toggle('show');
+        }
+
+        // Toggle debug panel
+        function toggleDebug() {
+            botState.debugMode = !botState.debugMode;
+            debugPanel.classList.toggle('show');
+            updateDebugPanel();
+        }
+
+        // Actualizar panel de debug
+        function updateDebugPanel() {
+            if (botState.debugMode) {
+                document.getElementById('currentState').textContent = botState.currentState;
+                document.getElementById('lastInput').textContent = botState.lastInput || '-';
+                document.getElementById('errorCount').textContent = botState.errorCount;
+            }
+        }
 
         // Auto-resize del textarea
         function autoResize() {
@@ -1478,10 +1155,14 @@ Inicios inmediatos.
             }
         }
 
-        // Enviar mensaje
+        // Enviar mensaje MEJORADO
         function sendMessage() {
             const message = messageInput.value.trim();
             if (!message) return;
+
+            // Guardar input para debug
+            botState.lastInput = message;
+            updateDebugPanel();
 
             // Agregar mensaje del usuario
             addUserMessage(message);
@@ -1494,41 +1175,241 @@ Inicios inmediatos.
             processUserInput(message);
         }
 
+        // Procesar input INTELIGENTE
+        function processUserInput(input) {
+            const normalizedInput = input.toLowerCase().trim();
+            
+            try {
+                // 1. Verificar si es un número válido para el estado actual
+                const currentStateData = responseMap[botState.currentState];
+                if (currentStateData && currentStateData[normalizedInput]) {
+                    const nextState = currentStateData[normalizedInput];
+                    goToState(nextState);
+                    return;
+                }
+
+                // 2. Verificar palabras clave
+                for (const [keyword, action] of Object.entries(keywordResponses)) {
+                    if (normalizedInput.includes(keyword)) {
+                        action();
+                        return;
+                    }
+                }
+
+                // 3. Verificar si es matrícula (8 dígitos)
+                if (/^\d{8}$/.test(normalizedInput) && botState.currentState === 'portal_alumnos') {
+                    handleStudentLogin(normalizedInput);
+                    return;
+                }
+
+                // 4. Verificar números válidos pero fuera de rango
+                if (/^\d+$/.test(normalizedInput)) {
+                    showInvalidOptionError(normalizedInput);
+                    return;
+                }
+
+                // 5. Respuesta inteligente basada en contexto
+                handleIntelligentResponse(input);
+
+            } catch (error) {
+                botState.errorCount++;
+                updateDebugPanel();
+                showErrorMessage("Ocurrió un error inesperado. Intenta nuevamente o escribe 'menu' para volver al inicio.");
+            }
+        }
+
+        // Ir a un estado específico
+        function goToState(stateName) {
+            const flow = flowData.find(f => f.state === stateName);
+            if (flow) {
+                addBotMessage(flow.content);
+                botState.currentState = stateName;
+                updateDebugPanel();
+            } else {
+                showErrorMessage(`Estado '${stateName}' no encontrado. Volviendo al menú principal.`);
+                showMainMenu();
+            }
+        }
+
+        // Mostrar menú principal
+        function showMainMenu() {
+            goToState('menu_principal');
+        }
+
+        // Mostrar despedida
+        function showGoodbye() {
+            addBotMessage(`🌟 *¡Gracias por contactar Universal House!*
+
+Fue un placer atenderte. Si necesitas más información, no dudes en escribirnos.
+
+📞 *Contacto:* 341 414 1215
+📍 *Visítanos:* Portal Morelos, Local 14
+
+*¡Have a great day!* 😊
+
+Escribe 'hola' para comenzar de nuevo.`);
+        }
+
+        // Mostrar ayuda
+        function showHelp() {
+            addBotMessage(`❓ *AYUDA - CÓMO USAR EL BOT*
+
+🤖 Puedes interactuar conmigo de estas formas:
+
+📝 *Por números:* Escribe el número de la opción que deseas
+📱 *Por palabras:* Escribe lo que buscas como:
+   • "precios" → Ver costos
+   • "horarios" → Ver horarios
+   • "ubicación" → Ver dónde estamos
+   • "examen" → Info de ubicación
+
+🔢 *Comandos útiles:*
+   • "menu" → Volver al inicio
+   • "ayuda" → Ver esta ayuda
+   • "gracias" → Despedirse
+
+¿En qué puedo ayudarte?`);
+        }
+
+        // Manejar login de estudiante
+        function handleStudentLogin(matricula) {
+            addBotMessage(`✅ *Matrícula validada: ${matricula}*
+
+Accediendo a tu información...`, 1000);
+
+            setTimeout(() => {
+                addBotMessage(`👨‍🎓 *Bienvenido/a de vuelta!*
+
+📊 *Tu información:*
+• Nivel actual: B1 Intermediate
+• Próxima clase: Hoy 18:00 hrs
+• Mensualidad: Al día ✅
+
+🔗 *Opciones rápidas:*
+*1* Ver calificaciones
+*2* Pagar mensualidad  
+*3* Horario completo
+*0* Volver al menú`);
+                
+                botState.currentState = 'portal_alumnos';
+                updateDebugPanel();
+            }, 2000);
+        }
+
+        // Mostrar error de opción inválida
+        function showInvalidOptionError(input) {
+            const validOptions = getValidOptionsForCurrentState();
+            
+            addBotMessage(`❌ La opción "${input}" no es válida.
+
+📋 *Opciones disponibles:*
+${validOptions}
+
+💡 También puedes escribir palabras como "precios", "horarios", "ubicación" o "menu" para navegar.`, false, true);
+        }
+
+        // Obtener opciones válidas para el estado actual
+        function getValidOptionsForCurrentState() {
+            const currentStateData = responseMap[botState.currentState];
+            if (!currentStateData) return "• Escribe 'menu' para volver al inicio";
+            
+            return Object.keys(currentStateData)
+                .filter(key => !isNaN(key) || key.length <= 10)
+                .map(key => `• ${key}`)
+                .join('\n');
+        }
+
+        // Respuesta inteligente
+        function handleIntelligentResponse(input) {
+            const normalizedInput = input.toLowerCase();
+            
+            // Detectar intenciones comunes
+            if (normalizedInput.includes('certificad') || normalizedInput.includes('titulo')) {
+                goToState('info_certificaciones');
+            } else if (normalizedInput.includes('nivel') || normalizedInput.includes('basico') || normalizedInput.includes('avanzado')) {
+                goToState('info_niveles');
+            } else if (normalizedInput.includes('pag') || normalizedInput.includes('mensualidad')) {
+                goToState('info_metodos_pago');
+            } else if (normalizedInput.includes('inscri') || normalizedInput.includes('registr')) {
+                goToState('info_inscripcion');
+            } else if (normalizedInput.includes('kid') || normalizedInput.includes('niño') || normalizedInput.includes('pequeño')) {
+                addBotMessage(`👶 *CURSOS PARA NIÑOS*
+
+🎯 Tenemos cursos especiales para niños de 7-10 años:
+• $1,100/mes
+• Martes y jueves 17:00-19:00
+• Método especializado para su edad
+
+*1* Ver más información sobre kids
+*2* Ver precios generales
+*0* Volver al menú`);
+            } else {
+                // Respuesta genérica con sugerencias
+                addBotMessage(`🤔 No estoy seguro de entender "${input}".
+
+💡 *Puedo ayudarte con:*
+• Información de cursos y precios
+• Horarios disponibles  
+• Ubicación y contacto
+• Examen de ubicación
+
+📝 Escribe una palabra clave como "precios", "horarios" o "ubicación", o selecciona una opción del menú escribiendo 'menu'.`, false, true);
+            }
+        }
+
+        // Mostrar mensaje de error
+        function showErrorMessage(message) {
+            addBotMessage(message, 1000, true);
+        }
+
         // Agregar mensaje del usuario
         function addUserMessage(text) {
             const messageEl = createMessage(text, true);
             messagesContainer.appendChild(messageEl);
             scrollToBottom();
+            
+            // Actualizar historial
+            botState.conversationHistory.push({
+                type: 'user',
+                message: text,
+                timestamp: new Date()
+            });
         }
 
-        // Agregar mensaje del bot
-        function addBotMessage(text, delay = 1500) {
-            // Mostrar indicador de escritura
+        // Agregar mensaje del bot MEJORADO
+        function addBotMessage(text, delay = 1500, isError = false) {
             showTyping();
 
             setTimeout(() => {
                 hideTyping();
-                const messageEl = createMessage(text, false);
+                const messageEl = createMessage(text, false, isError);
                 messagesContainer.appendChild(messageEl);
                 scrollToBottom();
                 
-                // Vibración si está disponible
+                // Actualizar historial
+                botState.conversationHistory.push({
+                    type: 'bot',
+                    message: text,
+                    timestamp: new Date(),
+                    error: isError
+                });
+                
+                // Vibración y sonido
                 if ('vibrate' in navigator) {
-                    navigator.vibrate(100);
+                    navigator.vibrate(isError ? [100, 50, 100] : 100);
                 }
-
-                // Sonido de notificación (simulado)
-                playNotificationSound();
+                
+                playNotificationSound(isError);
             }, delay);
         }
 
-        // Crear elemento de mensaje
-        function createMessage(text, isSent) {
+        // Crear elemento de mensaje MEJORADO
+        function createMessage(text, isSent, isError = false) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${isSent ? 'sent' : 'received'}`;
             
             const contentDiv = document.createElement('div');
-            contentDiv.className = 'message-content';
+            contentDiv.className = `message-content ${isError ? 'error-message' : ''}`;
             
             const textDiv = document.createElement('div');
             textDiv.className = 'message-text';
@@ -1562,69 +1443,6 @@ Inicios inmediatos.
                 .replace(/\n/g, '<br>');
         }
 
-        // Procesar input del usuario
-        function processUserInput(input) {
-            const currentStateData = responseMap[botState.currentState];
-            
-            if (currentStateData && currentStateData[input]) {
-                const nextState = currentStateData[input];
-                const nextFlow = flowData.find(f => f.state === nextState);
-                
-                if (nextFlow) {
-                    addBotMessage(nextFlow.content);
-                    botState.currentState = nextState;
-                } else {
-                    handleFreeText(input);
-                }
-            } else if (botState.currentState === 'agendar_cita' && input !== '0') {
-                // Procesar datos de cita
-                const confirmFlow = flowData.find(f => f.state === 'confirmacion_cita');
-                addBotMessage(confirmFlow.content);
-                botState.currentState = 'confirmacion_cita';
-            } else if (botState.currentState === 'validacion_alumno' && input !== '0') {
-                // Simular validación
-                addBotMessage('✅ Validación exitosa. Accediendo a tu información...');
-                setTimeout(() => {
-                    addBotMessage('📊 *Calificaciones del periodo actual:*\n\nInglés IV: 9.5\nConversación: 9.0\nGramática: 8.8\n\nPromedio: 9.1\n\n¿Qué más deseas consultar?\n*1* - Volver al menú de alumno\n*0* - Finalizar');
-                }, 1500);
-            } else {
-                handleFreeText(input);
-            }
-        }
-
-        // Manejar texto libre
-        function handleFreeText(text) {
-            const lowerText = text.toLowerCase();
-            
-            // Detectar intenciones comunes
-            if (lowerText.includes('hola') || lowerText.includes('hi') || lowerText.includes('buenos')) {
-                const menuFlow = flowData.find(f => f.state === 'menu_principal');
-                addBotMessage(menuFlow.content);
-                botState.currentState = 'menu_principal';
-            } else if (lowerText.includes('gracias') || lowerText.includes('adios') || lowerText.includes('bye')) {
-                const despedidaFlow = flowData.find(f => f.state === 'despedida');
-                addBotMessage(despedidaFlow.content);
-            } else if (lowerText.includes('precio') || lowerText.includes('costo') || lowerText.includes('cuanto')) {
-                const pagosFlow = flowData.find(f => f.state === 'formas_pago');
-                addBotMessage(pagosFlow.content);
-                botState.currentState = 'formas_pago';
-            } else if (lowerText.includes('horario') || lowerText.includes('cuando')) {
-                const contactoFlow = flowData.find(f => f.state === 'ubicacion_contacto');
-                addBotMessage(contactoFlow.content);
-                botState.currentState = 'ubicacion_contacto';
-            } else {
-                // Respuesta genérica
-                addBotMessage(`No entendí tu mensaje "${text}". 
-
-Por favor selecciona una opción del menú con su número correspondiente o escribe:
-• "Hola" para ver el menú principal
-• "Precios" para información de costos
-• "Horarios" para ver nuestros horarios
-
-¿En qué puedo ayudarte?`);
-            }
-        }
-
         // Mostrar indicador de escritura
         function showTyping() {
             typingIndicator.classList.add('show');
@@ -1641,108 +1459,251 @@ Por favor selecciona una opción del menú con su número correspondiente o escr
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
-        // Simular sonido de notificación
-        function playNotificationSound() {
-            // En una implementación real, aquí se reproduciría un archivo de audio
-            console.log('🔔 Notification sound');
+        // Sonido de notificación mejorado
+        function playNotificationSound(isError = false) {
+            if (isError) {
+                console.log('🔊 Error sound');
+            } else {
+                console.log('🔔 Notification sound');
+            }
         }
 
-        // Admin Panel Functions
+        // Admin Panel (simplificado)
         function toggleAdminPanel() {
-            adminPanel.classList.toggle('open');
+            toggleDebug();
         }
 
-        function loadFlowSteps() {
-            const container = document.getElementById('flowSteps');
-            container.innerHTML = '';
+        // Exportar conversación
+        function exportConversation() {
+            let text = 'CONVERSACIÓN UNIVERSAL HOUSE BOT\n';
+            text += '================================\n\n';
             
-            flowData.forEach((step, index) => {
-                const stepEl = document.createElement('div');
-                stepEl.className = 'flow-step';
-                stepEl.innerHTML = `
-                    <div class="flow-step-header">
-                        <span class="flow-step-title">${step.title}</span>
-                        <span class="flow-step-state">${step.state}</span>
-                    </div>
-                    <div class="flow-step-content">${step.content}</div>
-                    <button class="edit-button" onclick="editStep(${index})">Editar</button>
-                `;
-                container.appendChild(stepEl);
+            botState.conversationHistory.forEach(entry => {
+                const time = entry.timestamp.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+                text += `[${time}] ${entry.type === 'user' ? 'Usuario' : 'Bot'}: ${entry.message}\n\n`;
+            });
+            
+            navigator.clipboard.writeText(text).then(() => {
+                alert('¡Conversación copiada al portapapeles!');
             });
         }
 
-        function editStep(index) {
-            botState.editingIndex = index;
-            const step = flowData[index];
-            
-            document.getElementById('editorTitle').value = step.title;
-            document.getElementById('editorState').value = step.state;
-            document.getElementById('editorContent').value = step.content;
-            
-            flowEditor.classList.add('show');
-            overlay.classList.add('show');
-        }
-
-        function closeEditor() {
-            flowEditor.classList.remove('show');
-            overlay.classList.remove('show');
-            botState.editingIndex = null;
-        }
-
-        function saveEdit() {
-            if (botState.editingIndex === null) return;
-            
-            const index = botState.editingIndex;
-            flowData[index] = {
-                ...flowData[index],
-                title: document.getElementById('editorTitle').value,
-                state: document.getElementById('editorState').value,
-                content: document.getElementById('editorContent').value
-            };
-            
-            // Actualizar vista
-            loadFlowSteps();
-            closeEditor();
-            
-            // Guardar en localStorage
-            localStorage.setItem('botFlowData', JSON.stringify(flowData));
-            
-            // Mostrar confirmación
-            alert('Cambios guardados exitosamente');
-        }
-
-        // Cargar datos guardados si existen
-        window.addEventListener('load', () => {
-            const savedData = localStorage.getItem('botFlowData');
-            if (savedData) {
-                try {
-                    const parsed = JSON.parse(savedData);
-                    flowData.length = 0;
-                    flowData.push(...parsed);
-                    loadFlowSteps();
-                } catch (e) {
-                    console.error('Error loading saved data:', e);
+        // Atajos de teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'e':
+                        e.preventDefault();
+                        exportConversation();
+                        break;
+                    case 'd':
+                        e.preventDefault();
+                        toggleDebug();
+                        break;
+                    case 'r':
+                        e.preventDefault();
+                        showMainMenu();
+                        break;
                 }
             }
         });
 
-        // Exportar configuración
-        function exportConfig() {
-            const dataStr = JSON.stringify(flowData, null, 2);
-            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-            
-            const exportLink = document.createElement('a');
-            exportLink.setAttribute('href', dataUri);
-            exportLink.setAttribute('download', 'bot-flow-config.json');
-            document.body.appendChild(exportLink);
-            exportLink.click();
-            document.body.removeChild(exportLink);
+        // Agregar botón de exportación
+        function addExportButton() {
+            const exportBtn = document.createElement('button');
+            exportBtn.innerHTML = '📤';
+            exportBtn.style.cssText = `
+                position: fixed;
+                bottom: 70px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: #00a884;
+                color: white;
+                border: none;
+                cursor: pointer;
+                font-size: 16px;
+                z-index: 1000;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            `;
+            exportBtn.onclick = exportConversation;
+            exportBtn.title = 'Exportar conversación (Ctrl+E)';
+            document.body.appendChild(exportBtn);
         }
 
-        // Toggle sidebar en móvil
-        function toggleSidebar() {
-            sidebar.classList.toggle('show');
+        // FUNCIONES DE EDICIÓN Y EXPORTACIÓN MEJORADAS
+        let editMode = false;
+        
+        function toggleEditMode() {
+            editMode = !editMode;
+            const btn = document.getElementById('editModeToggle');
+            const messages = document.querySelectorAll('.message-text');
+            
+            if (editMode) {
+                btn.classList.add('active');
+                btn.innerHTML = '✏️ Modo Edición: ON';
+                messages.forEach(msg => {
+                    msg.contentEditable = true;
+                    msg.classList.add('editing');
+                });
+                showNotification('🔴 MODO EDICIÓN ACTIVADO - Click en cualquier mensaje para editarlo');
+            } else {
+                btn.classList.remove('active');
+                btn.innerHTML = '✏️ Modo Edición: OFF';
+                messages.forEach(msg => {
+                    msg.contentEditable = false;
+                    msg.classList.remove('editing');
+                });
+                showNotification('✅ Modo edición desactivado');
+            }
         }
+        
+        // Hacer mensajes editables al hacer click (solo en modo edición)
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('message-text') && editMode) {
+                e.target.focus();
+                // Seleccionar todo el texto
+                const range = document.createRange();
+                range.selectNodeContents(e.target);
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        });
+        
+        // Guardar cambios al presionar Enter o perder foco
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.target.classList.contains('message-text') && editMode) {
+                e.preventDefault();
+                e.target.blur();
+                showNotification('✅ Mensaje guardado');
+            }
+        });
+        
+        // Función de exportar mejorada
+        function exportarChat() {
+            const mensajes = document.querySelectorAll('.message');
+            let texto = '=== CONVERSACIÓN WHATSAPP BOT UNIVERSAL HOUSE ===\n';
+            texto += 'Fecha de exportación: ' + new Date().toLocaleString('es-MX') + '\n';
+            texto += 'Total de mensajes: ' + mensajes.length + '\n';
+            texto += '================================================\n\n';
+            
+            mensajes.forEach((mensaje, index) => {
+                const esUsuario = mensaje.classList.contains('sent');
+                const contenido = mensaje.querySelector('.message-text').innerText;
+                const tiempo = mensaje.querySelector('.message-time')?.innerText || new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+                
+                texto += `[${tiempo}] ${esUsuario ? 'USUARIO' : 'BOT'}:\n`;
+                texto += contenido + '\n\n';
+            });
+            
+            texto += '\n=== FIN DE LA CONVERSACIÓN ===\n';
+            texto += 'Exportado desde Universal House WhatsApp Bot Simulator';
+            
+            // Crear y descargar archivo
+            const blob = new Blob([texto], { type: 'text/plain;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `UH-WhatsApp-Chat-${new Date().toISOString().slice(0,10)}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            // También copiar al portapapeles
+            navigator.clipboard.writeText(texto).then(() => {
+                showNotification('✅ Chat exportado exitosamente - Archivo descargado y copiado al portapapeles');
+            }).catch(() => {
+                showNotification('✅ Chat exportado y descargado');
+            });
+        }
+        
+        // Hacer que los nuevos mensajes también sean editables si el modo está activo
+        const originalAddBotMessage = addBotMessage;
+        addBotMessage = function(text, delay = 1500) {
+            originalAddBotMessage(text, delay);
+            if (editMode) {
+                setTimeout(() => {
+                    const messages = document.querySelectorAll('.message-text:not([contenteditable])');
+                    messages.forEach(msg => {
+                        msg.contentEditable = true;
+                        msg.classList.add('editing');
+                    });
+                }, delay + 100);
+            }
+        };
+        
+        // Atajos de teclado
+        document.addEventListener('keydown', (e) => {
+            // Ctrl+E para modo edición
+            if (e.ctrlKey && e.key === 'e') {
+                e.preventDefault();
+                toggleEditMode();
+            }
+            // Ctrl+S para exportar
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                exportarChat();
+            }
+        });
+        
+        // Notificación visual
+        function showNotification(text) {
+            const notif = document.createElement('div');
+            notif.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #202c33;
+                color: #e9edef;
+                padding: 12px 24px;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideDown 0.3s ease;
+            `;
+            notif.textContent = text;
+            document.body.appendChild(notif);
+            
+            setTimeout(() => {
+                notif.style.animation = 'slideUp 0.3s ease';
+                setTimeout(() => notif.remove(), 300);
+            }, 3000);
+        }
+        
+        // Animaciones para notificaciones
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideDown {
+                from { transform: translate(-50%, -100%); opacity: 0; }
+                to { transform: translate(-50%, 0); opacity: 1; }
+            }
+            @keyframes slideUp {
+                from { transform: translate(-50%, 0); opacity: 1; }
+                to { transform: translate(-50%, -100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Inicializar mejoras
+        window.addEventListener('load', () => {
+            // El botón de exportar ya está en el HTML
+            
+            // Auto-save de conversación cada 30 segundos
+            setInterval(() => {
+                if (botState.conversationHistory.length > 0) {
+                    localStorage.setItem('uhbot_conversation', JSON.stringify(botState.conversationHistory));
+                }
+            }, 30000);
+            
+            // Mostrar ayuda inicial
+            setTimeout(() => {
+                showNotification('💡 Tip: Usa Ctrl+E para modo edición y Ctrl+S para exportar');
+            }, 5000);
+        });
     </script>
 </body>
 </html>
