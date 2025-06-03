@@ -1258,6 +1258,53 @@ Cd. Guzmán, Jalisco
 * 3 📞 Hablar con un asesor
 * 4 📍 Ver ubicación
 * 0 👋 Salir`
+            },
+            {
+                id: 17,
+                title: "Menú Seguimiento Kids",
+                state: "seguimiento_kids",
+                content: `🤖 ¿Te gustaría conocer más información sobre nuestros servicios?
+
+✨ Presiona 1 para continuar explorando nuestras opciones:
+
+* 1 ➡️ Continuar
+* 0 👋 Salir`
+            },
+            {
+                id: 18,
+                title: "Menú Seguimiento Mastery",
+                state: "seguimiento_mastery",
+                content: `🤖 ¿Te gustaría conocer más información sobre nuestros servicios?
+
+✨ Presiona 1 para continuar explorando nuestras opciones:
+
+* 1 ➡️ Continuar
+* 0 👋 Salir`
+            },
+            {
+                id: 19,
+                title: "Menú Opciones Kids",
+                state: "menu_opciones_kids",
+                content: `🤖: ¡Excelente! Aquí tienes más opciones para complementar tu información:
+
+* 1 📝 Examen de Ubicación
+* 2 🎓 Cursos de Perfeccionamiento Mastery (B2 y C1)
+* 3 ⬅️ Volver al menú de Información y costos de nuestros cursos
+* 4 👋 Salir
+
+🤖 Puedes indicarme únicamente el número correspondiente. 🤗`
+            },
+            {
+                id: 20,
+                title: "Menú Opciones Mastery",
+                state: "menu_opciones_mastery",
+                content: `🤖: ¡Excelente! Aquí tienes más opciones para complementar tu información:
+
+* 1 📝 Examen de Ubicación
+* 2 ⬅️ Volver al menú de Información y costos de nuestros cursos
+* 3 👋 Salir
+
+🤖 Puedes indicarme únicamente el número correspondiente. 🤗`
             }
         ];
 
@@ -1286,7 +1333,15 @@ Cd. Guzmán, Jalisco
                 '3': 'info_curso_mastery'
             },
             'info_curso_dominio': {
-                '1': 'menu_opciones_dominio',
+                '1': 'seguimiento_dominio',
+                '0': 'despedida'
+            },
+            'info_curso_kids': {
+                '1': 'seguimiento_kids',
+                '0': 'despedida'
+            },
+            'info_curso_mastery': {
+                '1': 'seguimiento_mastery',
                 '0': 'despedida'
             },
             'seguimiento_dominio': {
@@ -1298,6 +1353,25 @@ Cd. Guzmán, Jalisco
                 '2': 'info_examen',
                 '3': 'submenu_precios',
                 '4': 'despedida'
+            },
+            'seguimiento_kids': {
+                '1': 'menu_opciones_kids',
+                '0': 'despedida'
+            },
+            'seguimiento_mastery': {
+                '1': 'menu_opciones_mastery',
+                '0': 'despedida'
+            },
+            'menu_opciones_kids': {
+                '1': 'info_examen',
+                '2': 'info_curso_mastery',
+                '3': 'submenu_precios',
+                '4': 'despedida'
+            },
+            'menu_opciones_mastery': {
+                '1': 'info_examen',
+                '2': 'submenu_precios',
+                '3': 'despedida'
             }
         };
 
@@ -1451,20 +1525,32 @@ Cd. Guzmán, Jalisco
                 const nextFlow = flowData.find(f => f.state === nextState);
                 
                 if (nextFlow) {
-                    botState.currentState = nextState;
-                    
                     // Si es info de curso, mostrar primero la info y luego el menú de seguimiento
                     if (nextState.includes('info_curso')) {
                         addBotMessage(nextFlow.content);
-                        setTimeout(() => {
-                            const seguimientoFlow = flowData.find(f => f.state === 'menu_seguimiento_dominio');
-                            if (seguimientoFlow) {
-                                addBotMessage(seguimientoFlow.content);
-                                botState.currentState = 'menu_seguimiento_dominio';
-                            }
-                        }, 2000);
+                        
+                        // Determinar cuál menú de seguimiento mostrar
+                        let seguimientoState = '';
+                        if (nextState === 'info_curso_dominio') {
+                            seguimientoState = 'seguimiento_dominio';
+                        } else if (nextState === 'info_curso_kids') {
+                            seguimientoState = 'seguimiento_kids';
+                        } else if (nextState === 'info_curso_mastery') {
+                            seguimientoState = 'seguimiento_mastery';
+                        }
+                        
+                        if (seguimientoState) {
+                            setTimeout(() => {
+                                const seguimientoFlow = flowData.find(f => f.state === seguimientoState);
+                                if (seguimientoFlow) {
+                                    addBotMessage(seguimientoFlow.content);
+                                    botState.currentState = seguimientoState;
+                                }
+                            }, 2000);
+                        }
                     } else {
                         addBotMessage(nextFlow.content);
+                        botState.currentState = nextState;
                     }
                 } else {
                     handleFreeText(input);
