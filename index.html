@@ -647,13 +647,18 @@
                 message: `🏫 *Universal House - Escuela de Inglés*
 
 👋 ¡Hola! Mi nombre es Javi y es un gusto para mí atenderte el día de hoy.
+
 Por favor bríndame la siguiente información y con gusto te atenderé de la mejor manera:
 
-• 1️⃣ 🌎💻 Me interesa información para ingresar a sus cursos
-• 2️⃣ 👨‍🎓👩‍🎓 Soy alumno/a de Universal House
-• 3️⃣ 📞 Necesito hablar con una persona
+- *1️⃣* 🌎💻 Me interesa información para ingresar a sus cursos
+- *2️⃣* 👨‍🎓👩‍🎓 Soy alumno/a de Universal House  
+- *3️⃣* 🔐 Acceso a Admins
 
-🤖 Puedes indicarme únicamente el número correspondiente. 🤗`,
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 Puedes indicarme únicamente el número correspondiente. 🤗
+
+📞 *Para dudas o ayuda, llama: 552651-9373*`,
                 options: [
                     { text: "1", nextState: "menu_informacion" },
                     { text: "2", nextState: "esperando_matricula" },
@@ -699,13 +704,33 @@ Por favor bríndame la siguiente información y con gusto te atenderé de la mej
             // SUBMENU 1'1 - PRECIOS
             {
                 state: "submenu_precios",
-                message: `* 1 💰 Información y costos de nuestros cursos. 🔻
+                message: `💰 INFORMACIÓN Y COSTOS DE CURSOS 💰
 
-SUBMENÚ:
-* 1 Curso Dominio (11 años en adelante niveles Básicos – Intermedios)
-* 2 Curso Kids (Alumnos 7 – 10 años Cualquier nivel)
-* 3 Curso Mastery Course. (Alumnos 11 años en adelante niveles de Perfeccionamiento B2 o más)
-* 0 ⬅️ Volver al menú de información`,
+╔═══════════════════════════════════════════╗
+║    🎓 ELIGE TU CURSO IDEAL 🎓         ║
+╚═══════════════════════════════════════════╝
+
+🤖 Tenemos 3 modalidades diseñadas para cada necesidad:
+
+┌───────────────────────────────────────────────┐
+│ 1️⃣ *CURSO DOMINIO*                      │
+│    👥 11+ años | Niveles A1-B1           │
+│    🎯 Básico a Intermedio                │
+├───────────────────────────────────────────────┤
+│ 2️⃣ *CURSO KIDS*                         │
+│    🧒 7-10 años | Todos los niveles      │
+│    🎮 Método lúdico                       │
+├───────────────────────────────────────────────┤
+│ 3️⃣ *CURSO MASTERY*                      │
+│    🌟 11+ años | Niveles B2-C1           │
+│    🏆 Perfeccionamiento                  │
+└───────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de información
+
+💬 _Selecciona el curso de tu interés_`,
                 options: [
                     { text: "1", nextState: "info_curso_dominio" },
                     { text: "2", nextState: "info_curso_kids" },
@@ -717,44 +742,55 @@ SUBMENÚ:
             // CURSO DOMINIO 1'1'1
             {
                 state: "info_curso_dominio",
-                message: `*1 Curso Dominio (11 años en adelante niveles Básicos – Avanzados)*
-🤖 ¡Claro! Con gusto te comparto los precios de nuestros cursos en Universal House 🏫:
+                message: `┌─────────────────────────────────────┐
+│    👥 *CURSO DOMINIO* 👥           │
+└─────────────────────────────────────┘
 
-📚 *Información para curso niveles A1-B1*
+🎓 *Para jóvenes y adultos (11+ años)*
+📚 *Niveles: A1 - B1 (Básico a Intermedio)*
 
-🔘 *Frecuencia Semanal:* 4 horas semanales, 1 hora diaria de lunes a jueves. 
-💰 Costo: $2,750.00 al mes.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🔹 *Horario de lunes a jueves:*
-     • 17:00 a 18:00 hrs
-     • 18:00 a 19:00 hrs
-     • 19:00 a 20:00 hrs
+🔵 *MODALIDAD SEMANAL*
+┌─────────────────────────────────┐
+│ 📅 Lunes a Jueves              │
+│ ⏰ 1 hora diaria                │
+│ 💰 $2,750 MXN/mes              │
+├─────────────────────────────────┤
+│ 🕒 HORARIOS DISPONIBLES:       │
+│ • 17:00 - 18:00 hrs            │
+│ • 18:00 - 19:00 hrs            │
+│ • 19:00 - 20:00 hrs            │
+└─────────────────────────────────┘
 
-_El horario exacto dependerá de tu nivel el cual podemos conocer mediante un examen de ubicación_
+🔶 *MODALIDAD SABATINA*
+┌─────────────────────────────────┐
+│ 📅 Sábados                     │
+│ ⏰ 3 horas continuas            │
+│ 💰 $2,600 MXN/4 semanas        │
+├─────────────────────────────────┤
+│ 🕒 HORARIOS DISPONIBLES:       │
+│ • 08:00 - 11:00 hrs            │
+│ • 11:00 - 14:00 hrs            │
+└─────────────────────────────────┘
 
-🔘 *Frecuencia Sabatino:* 3 horas semanales, 3 horas de clase.
-💰 Costo: $2,600.00 cada 4 semanas. (El pago no es mensual).
+💳 *INVERSIÓN INICIAL:*
+┌─────────────────────────────────┐
+│ 📝 Inscripción: $580 MXN       │
+│ 📚 Material: $2,120 MXN        │
+│ 📱 Incluye plataforma digital  │
+└─────────────────────────────────┘
 
-🔸 *Horario sabatino:*
-     • 8:00 a 11:00 hrs  
-     • 11:00 a 14:00 hrs
+⏱️ *DURACIÓN TOTAL:*
+• Semanal: 2.5 años
+• Sabatino: 3.5 años
 
-_*El horario exacto dependerá de tu nivel el cual podemos conocer mediante un examen de ubicación*_
+✨ *BENEFICIO EXCLUSIVO:*
+🎆 ¡Inscríbete este mes y obtén acceso a clases virtuales sin costo adicional!
 
-💳 *COSTOS ADICIONALES:*
-📋 Inscripción: $580.00
-📚 Material: $2,120.00 (Duración aprox. de 8-10 meses)
+[ENVIAR IMAGEN: curso-dominio.jpg]
 
-📖 El material consiste en 2 libros originales los cuales incluyen el acceso a una plataforma electrónica que podrás utilizar desde casa.
-
-⏰ *DURACIÓN DEL CURSO:*
-• Curso semanal: 2 años y medio
-• Curso sabatino: 3 años y medio
-
-_Este tiempo puede reducirse, dependiendo el nivel en el que comiences._
-
-🎁 *BENEFICIO ESPECIAL:*
-🤖 De igual manera, te comento que, si decides incorporarte a nuestros cursos este mes, contarás con un servicio adicional por ser parte de nosotros; (En caso de faltar a tu clase presencial, tendrás la opción de visualizarla a distancia sin costo adicional y así no perder ningún avance estés donde estés).
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ✨ Presiona 1 para continuar explorando nuestras opciones:
 
@@ -783,14 +819,35 @@ _Este tiempo puede reducirse, dependiendo el nivel en el que comiences._
             // MENU CONTINUACION DOMINIO
             {
                 state: "menu_continuacion_dominio",
-                message: `🤖 ¡Excelente! Aquí tienes más opciones para complementar tu información:
+                message: `╔═══════════════════════════════════════════╗
+║        🎓 OPCIONES COMPLEMENTARIAS        ║
+╚═══════════════════════════════════════════╝
 
-* 1 🎓 Cursos de Perfeccionamiento Mastery B2
-* 2 📝 Examen de Ubicación
-* 3 ⬅️ Volver al menú de Información y costos de nuestros cursos
-* 4 👋 Salir
+🤖: ¡Excelente! Aquí tienes más opciones para complementar tu información:
 
-🤖 Puedes indicarme únicamente el número correspondiente. 🤗`,
+┌───────────────────────────────────────────┐
+│           📋 MENÚ DE SEGUIMIENTO          │
+├───────────────────────────────────────────┤
+│                                           │
+│ • *1* 🎓 Cursos de Perfeccionamiento      │
+│      Mastery B2                           │
+│                                           │
+│ • *2* 📝 Examen de Ubicación              │
+│                                           │
+│ • *3* ⬅️ Volver al menú de Información    │
+│      y costos de nuestros cursos          │
+│                                           │
+│ • *4* 👋 Salir                            │
+│                                           │
+└───────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 Puedes indicarme únicamente el número correspondiente. 🤗
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 *Selecciona la opción que más te interese* ✨`,
                 options: [
                     { text: "1", nextState: "info_curso_mastery_b2" },
                     { text: "2", nextState: "info_examen" },
@@ -802,33 +859,50 @@ _Este tiempo puede reducirse, dependiendo el nivel en el que comiences._
             // CURSO KIDS 1'1'2
             {
                 state: "info_curso_kids",
-                message: `*2 Curso Kids (Alumnos 7 – 10 años Cualquier nivel)*
+                message: `┌─────────────────────────────────────┐
+│     🧒 *CURSO KIDS* 🧒             │
+└─────────────────────────────────────┘
 
-🤖 ¡Perfecto! Te proporciono los costos y horarios de nuestro curso de niños:
+🎓 *Para niños (7-10 años)*
+🎮 *Método 100% lúdico y divertido*
 
-🔘 *Frecuencia Semanal Kids:* 2 horas semanales
-💰 Costo: $1,850.00 al mes
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🔹 *Horarios disponibles:*
-     • Lunes y Miércoles: 17:00 a 18:00 hrs
-     • Martes y Jueves: 17:00 a 18:00 hrs
-     • Lunes y Miércoles: 18:00 a 19:00 hrs
-     • Martes y Jueves: 18:00 a 19:00 hrs
+🔵 *HORARIOS Y PRECIOS*
+┌─────────────────────────────────┐
+│ 📅 2 horas por semana          │
+│ 💰 $1,850 MXN/mes              │
+├─────────────────────────────────┤
+│ 🕒 HORARIOS DISPONIBLES:       │
+│ • Lun/Mié 17:00-18:00          │
+│ • Mar/Jue 17:00-18:00          │
+│ • Lun/Mié 18:00-19:00          │
+│ • Mar/Jue 18:00-19:00          │
+└─────────────────────────────────┘
 
-💳 *COSTOS ADICIONALES:*
-📋 Inscripción: $580.00
-📚 Material: $1,420.00 (2 libros originales con duración de 8 meses)
+💳 *INVERSIÓN INICIAL:*
+┌─────────────────────────────────┐
+│ 📝 Inscripción: $580 MXN       │
+│ 📚 Material: $1,420 MXN        │
+│ 🎆 Incluye 2 libros + app      │
+└─────────────────────────────────┘
 
-⏰ *DURACIÓN:*
-_Depende de tu nivel y donde comiences, el tiempo puede reducirse._
+✨ *CARACTERÍSTICAS:*
+• Grupos reducidos (máx. 8 niños)
+• Aprendizaje mediante juegos
+• Teachers especializados en niños
+• Ambiente seguro y divertido
 
-🎁 *BENEFICIO ESPECIAL:*
-🤖 De igual manera, te comento que, si decides incorporarte a nuestros cursos este mes, contarás con un servicio adicional por ser parte de nosotros; En caso de faltar a tu clase presencial, tendrás la opción de visualizarla a distancia sin costo adicional y así no perder ningún avance estés donde estés.
+🎁 *BENEFICIO EXCLUSIVO:*
+¡Clases virtuales de respaldo sin costo!
 
-✨ Presiona 1 para continuar explorando nuestras opciones:
+[ENVIAR IMAGEN: curso-kids.jpg]
 
-* 1 ➡️ Continuar
-`,
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ Presiona 1 para continuar:
+
+1️⃣ ➡️ Continuar`,
                 options: [
                     { text: "1", nextState: "menu_continuacion_kids" }
                 ]
@@ -1568,51 +1642,957 @@ Disponible en Plaza Portal Morelos
             // MENU 2 - ALUMNOS
             {
                 state: "esperando_matricula",
-                message: `📚 *Acceso para Alumnos*
+                message: `╔═══════════════════════════════════════════╗
+║        🔐 PORTAL SEGURO DE ESTUDIANTES     ║
+╚═══════════════════════════════════════════╝
 
-Por favor ingresa tu número de *matrícula*:
+📚 *ACCESO PARA ALUMNOS* 📚
 
-_Ejemplo: ENG2301_`,
+🤖: ¡Bienvenido/a! Para acceder a tu portal personalizado necesitarás proporcionar dos datos:
+
+┌───────────────────────────────────────────┐
+│           🔐 DATOS REQUERIDOS             │
+├───────────────────────────────────────────┤
+│                                           │
+│ 🔹 Tu número de matrícula (5-6 dígitos)   │
+│ 🔹 Tu PIN de seguridad (4 dígitos)        │
+│                                           │
+└───────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+┌───────────────────────────────────────────┐
+│             📝 PASO 1 DE 2                │
+├───────────────────────────────────────────┤
+│                                           │
+│ Por favor ingresa tu número de            │
+│ *matrícula*:                              │
+│                                           │
+│ 💡 *Ejemplo: 23101*                       │
+│                                           │
+└───────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú principal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔒 *Información protegida y confidencial*`,
+                options: []
+            },
+            
+            {
+                state: "esperando_pin",
+                message: `✅ Matrícula reconocida.
+
+📝 *PASO 2 DE 2*
+Ahora ingresa tu *PIN de 4 dígitos* para continuar:
+
+🔐 _Tu PIN es personal e intransferible_`,
                 options: []
             },
 
-
             {
                 state: "menu_alumno",
-                message: `✅ *Welcome back!*
+                message: `╔═══════════════════════════════════════════╗
+║        👩👨 SOY ALUMNO/A DE UNIVERSAL      ║
+║                  HOUSE                    ║
+╚═══════════════════════════════════════════╝
 
-Bienvenido/a 🎓
+🤖: ¡Muy bien! Por favor indícame qué información deseas conocer:
 
-¿En qué puedo ayudarte hoy?
+┌───────────────────────────────────────────────┐
+│             📚 MENÚ ALUMNO 📚             │
+├───────────────────────────────────────────────┤
+│                                           │
+│ • 1. Faltas y reposiciones. 📆💻         │
+│ • 2. Información y solicitudes sobre      │
+│      mi curso. 📤🎒                       │
+│ • 3. Pagos y horarios de atención. 💵🕜  │
+│ • 4. Otro. 🤔💭                          │
+│                                           │
+└───────────────────────────────────────────────┘
 
-1️⃣ Ver mi progreso académico
-2️⃣ Consultar horarios
-3️⃣ Solicitar constancia
-4️⃣ Pagos y adeudos
-5️⃣ Contraseña clase grabada
-6️⃣ Material de estudio
-7️⃣ Cambio de grupo/horario
-8️⃣ Solicitar baja
-9️⃣ Información de exámenes
-🔟 Certificaciones internacionales
-1️⃣1️⃣ Problemas con plataforma
-1️⃣2️⃣ Hablar con mi teacher
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-0️⃣ Volver al menú principal`,
+🤖 Puedes indicarme únicamente el número correspondiente. 🤗`,
+                options: [
+                    { text: "1", nextState: "menu_faltas" },
+                    { text: "2", nextState: "menu_solicitudes" },
+                    { text: "3", nextState: "menu_pagos" },
+                    { text: "4", nextState: "otro_alumno" },
+                    { text: "0", nextState: "inicio" }
+                ]
+            },
+
+            // MENU FALTAS Y REPOSICIONES
+            {
+                state: "menu_faltas",
+                message: `╔═══════════════════════════════════════════╗
+║        📆💻 FALTAS Y REPOSICIONES         ║
+╚═══════════════════════════════════════════╝
+
+┌───────────────────────────────────────────────┐
+│             🎥 SUBMENÚ DISPONIBLE         │
+├───────────────────────────────────────────────┤
+│                                           │
+│ • 1. 📹 Quisiera solicitar mi clase       │
+│      grabada. (No tengo un QR)            │
+│                                           │
+│ • 2. 🔓 Quiero la contraseña de mi        │
+│      clase grabada.                       │
+│                                           │
+│ • 3. 🛠️ Tengo dificultades con mi clase   │
+│      grabada y/o contraseña.              │
+│                                           │
+│ • 4. 📝 Quisiera reagendar mi examen      │
+│      de unidad.                           │
+│                                           │
+│ • 5. 🤔 ¿Qué puedo hacer si necesito      │
+│      faltar?                              │
+│                                           │
+└───────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de alumno
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *Selecciona el número que necesites* 🤗`,
+                options: [
+                    { text: "1", nextState: "solicitar_clase_grabada" },
+                    { text: "2", nextState: "solicitar_password" },
+                    { text: "3", nextState: "soporte_tecnico" },
+                    { text: "4", nextState: "reagendar_examen" },
+                    { text: "5", nextState: "opciones_faltar" },
+                    { text: "0", nextState: "menu_alumno" }
+                ]
+            },
+            
+            // SOLICITAR CLASE GRABADA
+            {
+                state: "solicitar_clase_grabada",
+                message: `╔═══════════════════════════════════════════╗
+║     📹 QUISIERA SOLICITAR MI CLASE        ║
+║              GRABADA                      ║
+╚═══════════════════════════════════════════╝
+
+🤖: ¡Con gusto te apoyo para obtenerlo!
+
+Si aún no has leído la guía de acceso a este beneficio, te la comparto a continuación:
+
+┌───────────────────────────────────────────────┐
+│            📋 INSTRUCCIONES               │
+├───────────────────────────────────────────────┤
+│                                           │
+│ ✔️ Favor de visualizar el video por       │
+│    completo y seguir las instrucciones    │
+│    que aparecerán al final del mismo      │
+│    para activar este beneficio:           │
+│                                           │
+│ 🔗 https://www.universalhouse.com.mx/     │
+│    uh_recording/                          │
+│                                           │
+└───────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖: Si ya activaste el servicio, indícame qué día/s deseas recuperar por inasistencia.
+
+💡 *Ejemplo: "Lunes 15 de enero" o "Miércoles pasado"*
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de faltas
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *Escribe la fecha que necesitas recuperar*`,
+                options: [
+                    { text: "0", nextState: "menu_faltas" }
+                ]
+            },
+            
+            // SOLICITAR PASSWORD
+            {
+                state: "solicitar_password",
+                message: `╔═══════════════════════════════════════════╗
+║   🔓 QUIERO LA CONTRASEÑA DE MI CLASE     ║
+║              GRABADA                      ║
+╚═══════════════════════════════════════════╝
+
+🤖: ¡Con gusto te apoyo!
+
+Para proporcionarte la contraseña correcta, necesito saber:
+
+📅 *¿De qué día necesitas la contraseña?*
+
+💡 *Ejemplo:* "Lunes 15 de enero" o "Clase de ayer"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de faltas
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *Escribe la fecha de la clase que necesitas*`,
+                options: [
+                    { text: "0", nextState: "menu_faltas" }
+                ]
+            },
+            
+            // SOPORTE TECNICO
+            {
+                state: "soporte_tecnico",
+                message: `╔═══════════════════════════════════════════╗
+║    🛠️ TENGO DIFICULTADES CON MI CLASE     ║
+║         GRABADA Y/O CONTRASEÑA            ║
+╚═══════════════════════════════════════════╝
+
+🤖: ¡Lamento que tengas dificultades! Te ayudaré a resolverlo.
+
+Por favor, indícame cuál es el problema específico:
+
+┌───────────────────────────────────────────────┐
+│        🔧 PROBLEMAS COMUNES               │
+├───────────────────────────────────────────────┤
+│                                           │
+│ • 1. 🚫 El enlace no funciona             │
+│ • 2. 🔒 La contraseña es incorrecta       │
+│ • 3. ⏹️ El video no se reproduce          │
+│ • 4. 📱 Problemas en dispositivo móvil    │
+│ • 5. 💬 Otro problema                     │
+│                                           │
+└───────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de faltas
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *Selecciona el número de tu problema*`,
+                options: [
+                    { text: "1", nextState: "problema_enlace" },
+                    { text: "2", nextState: "problema_password" },
+                    { text: "3", nextState: "problema_video" },
+                    { text: "4", nextState: "problema_movil" },
+                    { text: "5", nextState: "otro_problema_tecnico" },
+                    { text: "0", nextState: "menu_faltas" }
+                ]
+            },
+            
+            // REAGENDAR EXAMEN
+            {
+                state: "reagendar_examen",
+                message: `╔═══════════════════════════════════════════╗
+║    📝 QUISIERA REAGENDAR MI EXAMEN DE     ║
+║                UNIDAD                     ║
+╚═══════════════════════════════════════════╝
+
+🤖: ¡Por supuesto! Te ayudaré con el reagendamiento.
+
+📋 *POLÍTICA DE REAGENDAMIENTO:*
+• Solo se permite reagendar una vez
+• Debe ser dentro del mismo periodo
+• Sujeto a disponibilidad
+
+Para procesar tu solicitud, necesito:
+
+1️⃣ *Fecha actual de tu examen:*
+2️⃣ *Razón del cambio:*
+3️⃣ *Fecha propuesta (mínimo 48hrs después):*
+
+💡 *Ejemplo:* "Mi examen es el 20 de enero, necesito cambiarlo por trabajo, propongo el 25 de enero"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de faltas
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *Escribe tu solicitud completa*`,
+                options: [
+                    { text: "0", nextState: "menu_faltas" }
+                ]
+            },
+            
+            // OPCIONES FALTAR
+            {
+                state: "opciones_faltar",
+                message: `╔═══════════════════════════════════════════╗
+║    🤔 ¿QUÉ PUEDO HACER SI NECESITO        ║
+║               FALTAR?                     ║
+╚═══════════════════════════════════════════╝
+
+🤖: Aquí están tus opciones para recuperar clases:
+
+┌───────────────────────────────────────────────┐
+│        📚 OPCIONES DISPONIBLES            │
+├───────────────────────────────────────────────┤
+│                                           │
+│ 🎥 *CLASES GRABADAS:*                     │
+│ • Disponibles 24/7                        │
+│ • Solicítalas a través de este chat       │
+│ • Incluyen material de la clase           │
+│                                           │
+│ 👥 *REPOSICIÓN PRESENCIAL:*               │
+│ • Asiste con otro grupo del mismo nivel   │
+│ • Previa autorización                     │
+│ • Sujeto a disponibilidad                 │
+│                                           │
+│ 📝 *JUSTIFICACIÓN:*                       │
+│ • Notifica con anticipación               │
+│ • Envía justificante si es médico         │
+│ • Máximo 20% de faltas permitidas         │
+│                                           │
+└───────────────────────────────────────────────┘
+
+⚠️ *IMPORTANTE:* Más de 20% de faltas puede afectar tu certificación
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de faltas
+🏠 *9* - Menú principal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *Selecciona una opción*`,
+                options: [
+                    { text: "0", nextState: "menu_faltas" },
+                    { text: "9", nextState: "menu_alumno" }
+                ]
+            },
+            
+            // MENU SOLICITUDES (OPCION 2 DEL MENU ALUMNO)
+            {
+                state: "menu_solicitudes",
+                message: `╔═══════════════════════════════════════════╗
+║  📤🎒 INFORMACIÓN Y SOLICITUDES SOBRE     ║
+║              MI CURSO                     ║
+╚═══════════════════════════════════════════╝
+
+┌───────────────────────────────────────────────┐
+│          📋 SUBMENÚ DISPONIBLE            │
+├───────────────────────────────────────────────┤
+│                                           │
+│ • 1. 📊 ¿Cuál es mi progreso académico?   │
+│                                           │
+│ • 2. 🆙 ¿Cuándo paso de nivel?           │
+│                                           │
+│ • 3. 📜 Necesito una constancia.          │
+│                                           │
+│ • 4. 🎓 ¿Cuándo recibo mi certificado?   │
+│                                           │
+│ • 5. 🎯 Quiero presentar un examen de     │
+│      certificación (TOEFL, Cambridge)      │
+│                                           │
+└───────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de alumno
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *Selecciona el número que necesites* 🤗`,
                 options: [
                     { text: "1", nextState: "progreso_academico" },
-                    { text: "2", nextState: "consultar_horarios" },
+                    { text: "2", nextState: "cambio_nivel" },
                     { text: "3", nextState: "solicitar_constancia" },
-                    { text: "4", nextState: "pagos_adeudos" },
-                    { text: "5", nextState: "password_clase" },
-                    { text: "6", nextState: "material_estudio" },
-                    { text: "7", nextState: "cambio_horario" },
-                    { text: "8", nextState: "solicitar_baja" },
-                    { text: "9", nextState: "info_examenes_alumno" },
-                    { text: "10", nextState: "certificaciones_alumno" },
-                    { text: "11", nextState: "problemas_plataforma" },
-                    { text: "12", nextState: "contactar_teacher" },
-                    { text: "0", nextState: "inicio" }
+                    { text: "4", nextState: "info_certificado" },
+                    { text: "5", nextState: "examen_certificacion" },
+                    { text: "0", nextState: "menu_alumno" }
+                ]
+            },
+            
+            // PROGRESO ACADEMICO
+            {
+                state: "progreso_academico",
+                message: `╔═══════════════════════════════════════════╗
+║    📊 ¿CUÁL ES MI PROGRESO ACADÉMICO?     ║
+╚═══════════════════════════════════════════╝
+
+🤖: Con gusto te comparto tu información académica:
+
+┌───────────────────────────────────────────────┐
+│         📈 TU PROGRESO ACTUAL             │
+├───────────────────────────────────────────────┤
+│                                           │
+│ 📚 *Nivel actual:* A2 Elementary          │
+│ 📅 *Inicio en este nivel:* Enero 2025     │
+│ ⏱️ *Tiempo en el nivel:* 2 meses          │
+│ 📊 *Progreso:* 65% completado             │
+│                                           │
+│ ✅ *Unidades completadas:* 4/6            │
+│ 📝 *Promedio general:* 8.7                │
+│ 🎯 *Asistencia:* 92%                      │
+│                                           │
+└───────────────────────────────────────────────┘
+
+💡 *PRÓXIMOS PASOS:*
+• Examen Unidad 5: 15 de marzo
+• Examen final A2: 30 de marzo
+• Inicio B1: 1 de abril (si apruebas)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[ENVIAR IMAGEN: reporte_progreso_alumno.jpg]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de solicitudes
+🏠 *9* - Menú principal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *¿Necesitas más información?*`,
+                options: [
+                    { text: "0", nextState: "menu_solicitudes" },
+                    { text: "9", nextState: "menu_alumno" }
+                ]
+            },
+            
+            // CAMBIO NIVEL
+            {
+                state: "cambio_nivel",
+                message: `╔═══════════════════════════════════════════╗
+║       🆙 ¿CUÁNDO PASO DE NIVEL?          ║
+╚═══════════════════════════════════════════╝
+
+🤖: Te explico el proceso de cambio de nivel:
+
+┌───────────────────────────────────────────────┐
+│      📋 REQUISITOS PARA AVANZAR           │
+├───────────────────────────────────────────────┤
+│                                           │
+│ ✅ *Para pasar al siguiente nivel:*       │
+│                                           │
+│ • 📝 Promedio mínimo: 7.0                 │
+│ • 🎯 Asistencia mínima: 80%               │
+│ • ✔️ Aprobar examen final del nivel       │
+│ • 📚 Completar todas las tareas           │
+│                                           │
+└───────────────────────────────────────────────┘
+
+🗓️ *TU SITUACIÓN ACTUAL:*
+
+• Nivel actual: A2
+• Fecha estimada de cambio: 1 de abril 2025
+• Requisitos cumplidos: 3/4 ✅
+
+⚠️ *IMPORTANTE:*
+El cambio de nivel NO es automático. Debes cumplir todos los requisitos.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de solicitudes
+🏠 *9* - Menú principal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *¿Tienes alguna duda específica?*`,
+                options: [
+                    { text: "0", nextState: "menu_solicitudes" },
+                    { text: "9", nextState: "menu_alumno" }
+                ]
+            },
+            
+            // SOLICITAR CONSTANCIA
+            {
+                state: "solicitar_constancia",
+                message: `╔═══════════════════════════════════════════╗
+║       📜 NECESITO UNA CONSTANCIA          ║
+╚═══════════════════════════════════════════╝
+
+🤖: ¡Con gusto te ayudo con tu constancia!
+
+┌───────────────────────────────────────────────┐
+│      📋 TIPOS DE CONSTANCIAS              │
+├───────────────────────────────────────────────┤
+│                                           │
+│ • 1. 📚 Constancia de estudios            │
+│ • 2. 📊 Constancia con calificaciones     │
+│ • 3. 🎯 Constancia de nivel               │
+│ • 4. 💰 Constancia fiscal                 │
+│ • 5. 📝 Otra constancia                   │
+│                                           │
+└───────────────────────────────────────────────┘
+
+💵 *COSTO:* $50 por constancia
+⏱️ *TIEMPO DE ENTREGA:* 24-48 horas hábiles
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de solicitudes
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *¿Qué tipo de constancia necesitas?*`,
+                options: [
+                    { text: "1", nextState: "constancia_estudios" },
+                    { text: "2", nextState: "constancia_calificaciones" },
+                    { text: "3", nextState: "constancia_nivel" },
+                    { text: "4", nextState: "constancia_fiscal" },
+                    { text: "5", nextState: "otra_constancia" },
+                    { text: "0", nextState: "menu_solicitudes" }
+                ]
+            },
+            
+            // INFO CERTIFICADO
+            {
+                state: "info_certificado",
+                message: `╔═══════════════════════════════════════════╗
+║    🎓 ¿CUÁNDO RECIBO MI CERTIFICADO?      ║
+╚═══════════════════════════════════════════╝
+
+🤖: Te explico sobre los certificados:
+
+┌───────────────────────────────────────────────┐
+│      🏆 CERTIFICADOS POR NIVEL            │
+├───────────────────────────────────────────────┤
+│                                           │
+│ 📜 *CERTIFICADOS DISPONIBLES:*            │
+│                                           │
+│ • A1 → Certificado Básico I               │
+│ • A2 → Certificado Básico II              │
+│ • B1 → Certificado Intermedio I           │
+│ • B1+ → Certificado Intermedio II         │
+│ • B2 → Certificado Intermedio Alto        │
+│ • C1 → Certificado Avanzado               │
+│                                           │
+└───────────────────────────────────────────────┘
+
+📋 *REQUISITOS:*
+• Aprobar examen final (mín. 8.0)
+• 80% asistencia mínima
+• Todas las tareas completadas
+• Sin adeudos
+
+⏱️ *TIEMPO DE ENTREGA:*
+• 15-20 días hábiles después de aprobar
+
+💰 *COSTO:* Incluido en tu inscripción
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de solicitudes
+🏠 *9* - Menú principal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+                options: [
+                    { text: "0", nextState: "menu_solicitudes" },
+                    { text: "9", nextState: "menu_alumno" }
+                ]
+            },
+            
+            // EXAMEN CERTIFICACION
+            {
+                state: "examen_certificacion",
+                message: `╔═══════════════════════════════════════════╗
+║   🎯 QUIERO PRESENTAR UN EXAMEN DE        ║
+║     CERTIFICACIÓN (TOEFL, CAMBRIDGE)      ║
+╚═══════════════════════════════════════════╝
+
+🤖: ¡Excelente decisión! Te apoyo con la información:
+
+┌───────────────────────────────────────────────┐
+│    🏆 CERTIFICACIONES INTERNACIONALES     │
+├───────────────────────────────────────────────┤
+│                                           │
+│ 📘 *CAMBRIDGE:*                           │
+│ • KET (A2) - $2,800                       │
+│ • PET (B1) - $3,200                       │
+│ • FCE (B2) - $4,100                       │
+│ • CAE (C1) - $4,300                       │
+│                                           │
+│ 📕 *TOEFL iBT:*                           │
+│ • Costo: $195 USD                         │
+│ • Niveles B1-C2                           │
+│ • Validez: 2 años                         │
+│                                           │
+└───────────────────────────────────────────────┘
+
+🎓 *PREPARACIÓN EN UNIVERSAL HOUSE:*
+• Curso especializado de 3 meses
+• Simulacros de examen
+• Material incluido
+• Costo: $1,800/mes
+
+📅 *PRÓXIMAS FECHAS 2025:*
+• Cambridge: Mayo y Noviembre
+• TOEFL: Disponible cada mes
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[ENVIAR IMAGEN: certificaciones_internacionales.jpg]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de solicitudes
+🏠 *9* - Menú principal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+                options: [
+                    { text: "0", nextState: "menu_solicitudes" },
+                    { text: "9", nextState: "menu_alumno" }
+                ]
+            },
+            
+            // MENU PAGOS (OPCION 3 DEL MENU ALUMNO)
+            {
+                state: "menu_pagos",
+                message: `╔═══════════════════════════════════════════╗
+║   💵🕜 PAGOS Y HORARIOS DE ATENCIÓN       ║
+╚═══════════════════════════════════════════╝
+
+┌───────────────────────────────────────────────┐
+│          💰 SUBMENÚ DISPONIBLE            │
+├───────────────────────────────────────────────┤
+│                                           │
+│ • 1. 💳 ¿Cuánto debo y cuándo pagar?      │
+│                                           │
+│ • 2. 🏦 ¿Cuáles son los datos bancarios?  │
+│                                           │
+│ • 3. 📧 Necesito factura.                 │
+│                                           │
+│ • 4. 🕐 ¿Cuáles son los horarios de       │
+│      atención en caja?                    │
+│                                           │
+└───────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de alumno
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *Selecciona el número que necesites* 🤗`,
+                options: [
+                    { text: "1", nextState: "estado_cuenta" },
+                    { text: "2", nextState: "datos_bancarios_alumno" },
+                    { text: "3", nextState: "solicitar_factura_alumno" },
+                    { text: "4", nextState: "horarios_caja" },
+                    { text: "0", nextState: "menu_alumno" }
+                ]
+            },
+            
+            // ESTADO DE CUENTA
+            {
+                state: "estado_cuenta",
+                message: `╔═══════════════════════════════════════════╗
+║    💳 ¿CUÁNTO DEBO Y CUÁNDO PAGAR?        ║
+╚═══════════════════════════════════════════╝
+
+🤖: Aquí está tu estado de cuenta actualizado:
+
+┌───────────────────────────────────────────────┐
+│         💰 ESTADO DE CUENTA               │
+├───────────────────────────────────────────────┤
+│                                           │
+│ 👤 *Alumno:* [Tu nombre]                  │
+│ 🆔 *Matrícula:* [Tu matrícula]            │
+│ 📚 *Nivel:* A2 Elementary                 │
+│                                           │
+│ 📅 *HISTORIAL DE PAGOS:*                  │
+│ ✅ Enero 2025: PAGADO                     │
+│ ✅ Febrero 2025: PAGADO                   │
+│ ⏳ Marzo 2025: PENDIENTE                  │
+│                                           │
+│ 💵 *MONTO A PAGAR:* $1,300                │
+│ 📆 *FECHA LÍMITE:* 10 de marzo            │
+│                                           │
+└───────────────────────────────────────────────┘
+
+⚠️ *IMPORTANTE:*
+• Paga antes del día 10 para evitar recargos
+• Recargo por pago tardío: $100
+
+🎁 *DESCUENTOS DISPONIBLES:*
+• Pago anticipado 3 meses: 5% descuento
+• Pago semestre completo: 10% descuento
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[ENVIAR STICKER: recordatorio_pago.webp]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de pagos
+🏦 *1* - Ver datos bancarios
+🏠 *9* - Menú principal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+                options: [
+                    { text: "0", nextState: "menu_pagos" },
+                    { text: "1", nextState: "datos_bancarios_alumno" },
+                    { text: "9", nextState: "menu_alumno" }
+                ]
+            },
+            
+            // OTRO ALUMNO
+            {
+                state: "otro_alumno",
+                message: `╔═══════════════════════════════════════════╗
+║           🤔💭 OTRO ASUNTO                ║
+╚═══════════════════════════════════════════╝
+
+🤖: Entiendo que tienes otra consulta.
+
+Por favor, describe brevemente qué necesitas y te ayudaré o te dirigiré con la persona indicada.
+
+💡 *Ejemplos de consultas:*
+• "Quiero cambiar de horario"
+• "Necesito hablar sobre una situación especial"
+• "Tengo una sugerencia para la escuela"
+• "Problema con mi teacher"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de alumno
+👥 *1* - Hablar con una persona
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *Escribe tu consulta o selecciona una opción*`,
+                options: [
+                    { text: "0", nextState: "menu_alumno" },
+                    { text: "1", nextState: "atencion_humana_alumno" }
+                ]
+            },
+            
+            {
+                state: "consultar_horarios",
+                message: `📅 *TU HORARIO ACTUAL*
+
+🕐 Horario: Lunes a Jueves 18:00-19:00
+👨‍🏫 Teacher: Mrs. Sarah Johnson
+🏫 Salón: 203
+
+Próxima clase: Mañana
+
+✨ Presiona 1 para volver al menú de alumno:
+
+* 1 ➡️ Volver`,
+                options: [
+                    { text: "1", nextState: "menu_alumno" }
+                ]
+            },
+            
+            // DATOS BANCARIOS ALUMNO
+            {
+                state: "datos_bancarios_alumno",
+                message: `╔═══════════════════════════════════════════╗
+║  🏦 ¿CUÁLES SON LOS DATOS BANCARIOS?      ║
+╚═══════════════════════════════════════════╝
+
+🤖: Aquí están los datos para realizar tu pago:
+
+┌───────────────────────────────────────────────┐
+│         🏦 DATOS BANCARIOS                │
+├───────────────────────────────────────────────┤
+│                                           │
+│ 🏛️ *BANCO:* BBVA                          │
+│ 👤 *TITULAR:* Universal House SC          │
+│ 💳 *CUENTA:* 0123456789                   │
+│ 🔢 *CLABE:* 012345678901234567            │
+│                                           │
+│ 📱 *TRANSFERENCIA SPEI:*                  │
+│ • Concepto: TU MATRÍCULA + NOMBRE         │
+│ • Referencia: MES QUE PAGAS               │
+│                                           │
+└───────────────────────────────────────────────┘
+
+💰 *OTRAS FORMAS DE PAGO:*
+• 💵 Efectivo en recepción
+• 💳 Tarjeta (crédito/débito)
+• 📱 Transferencia bancaria
+
+⚠️ *IMPORTANTE:*
+Envía tu comprobante por este medio para registrar tu pago más rápido.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[ENVIAR IMAGEN: datos_bancarios_uh.jpg]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de pagos
+📤 *1* - Enviar comprobante
+🏠 *9* - Menú principal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+                options: [
+                    { text: "0", nextState: "menu_pagos" },
+                    { text: "1", nextState: "enviar_comprobante_alumno" },
+                    { text: "9", nextState: "menu_alumno" }
+                ]
+            },
+            
+            // SOLICITAR FACTURA ALUMNO
+            {
+                state: "solicitar_factura_alumno",
+                message: `╔═══════════════════════════════════════════╗
+║         📧 NECESITO FACTURA               ║
+╚═══════════════════════════════════════════╝
+
+🤖: ¡Por supuesto! Te ayudo con tu factura.
+
+Para procesar tu solicitud necesito:
+
+📋 *DATOS REQUERIDOS:*
+1️⃣ RFC completo
+2️⃣ Razón social
+3️⃣ Correo para envío
+4️⃣ Mes(es) a facturar
+5️⃣ Comprobante de pago
+
+💡 *EJEMPLO:*
+"RFC: XAXX010101000
+Razón: Juan Pérez López
+Correo: juan@email.com
+Facturar: Marzo 2025
+Adjunto comprobante"
+
+⏱️ *TIEMPO:* 24-48 horas hábiles
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de pagos
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *Escribe tus datos fiscales completos*`,
+                options: [
+                    { text: "0", nextState: "menu_pagos" }
+                ]
+            },
+            
+            // HORARIOS CAJA
+            {
+                state: "horarios_caja",
+                message: `╔═══════════════════════════════════════════╗
+║   🕐 ¿CUÁLES SON LOS HORARIOS DE         ║
+║         ATENCIÓN EN CAJA?                 ║
+╚═══════════════════════════════════════════╝
+
+🤖: Aquí están nuestros horarios de atención:
+
+┌───────────────────────────────────────────────┐
+│         🕐 HORARIOS DE CAJA               │
+├───────────────────────────────────────────────┤
+│                                           │
+│ 📅 *LUNES A JUEVES:*                      │
+│ • 🕐 12:00 - 14:00 hrs                    │
+│ • 🕔 17:00 - 20:00 hrs                    │
+│                                           │
+│ 📅 *VIERNES:*                             │
+│ • 🕙 10:15 - 16:00 hrs                    │
+│ • (Horario continuo)                      │
+│                                           │
+│ 📅 *SÁBADOS:*                             │
+│ • 🕐 11:15 - 13:30 hrs                    │
+│                                           │
+└───────────────────────────────────────────────┘
+
+📍 *UBICACIÓN:*
+Bosques de los Continentes No. 124
+(Entre Av. Revolución y Niños Héroes)
+
+☎️ *TELÉFONO:* 552651-9373
+
+💡 *TIPS:*
+• Menos fila: 12:00-13:00 hrs
+• Evita quincenas y fin de mes
+• Sábados solo pagos en efectivo
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[ENVIAR STICKER: horarios_atencion.webp]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de pagos
+🏠 *9* - Menú principal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+                options: [
+                    { text: "0", nextState: "menu_pagos" },
+                    { text: "9", nextState: "menu_alumno" }
+                ]
+            },
+            
+            // ATENCION HUMANA ALUMNO
+            {
+                state: "atencion_humana_alumno",
+                message: `╔═══════════════════════════════════════════╗
+║      👥 CONECTANDO CON UN ASESOR          ║
+╚═══════════════════════════════════════════╝
+
+🤖: Entiendo que necesitas atención personalizada.
+
+Te voy a transferir con uno de nuestros asesores que podrá ayudarte mejor con tu situación específica.
+
+⏱️ *TIEMPO DE ESPERA:* 2-5 minutos
+
+📱 *MIENTRAS ESPERAS:*
+• Ten tu matrícula a la mano
+• Prepara tu consulta específica
+• Si es sobre pagos, ten tu referencia
+
+💬 *En breve un asesor te atenderá...*
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[ENVIAR STICKER: asesor_en_camino.webp]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🟢 *ASESOR CONECTADO*
+
+👤 *Asesor:* Hola, soy María de Universal House. ¿En qué puedo ayudarte hoy?`,
+                options: []
+            },
+            
+            {
+                state: "pagos_adeudos",
+                message: `💳 *ESTADO DE CUENTA*
+
+✅ Enero: PAGADO
+✅ Febrero: PAGADO
+✅ Marzo: PAGADO
+⏳ Abril: Por pagar (vence 10 de abril)
+
+*Saldo actual:* $0.00
+
+✨ Presiona 1 para volver al menú de alumno:
+
+* 1 ➡️ Volver`,
+                options: [
+                    { text: "1", nextState: "menu_alumno" }
+                ]
+            },
+            
+            {
+                state: "password_clase",
+                message: `🔐 *CONTRASEÑA CLASE GRABADA*
+
+Tu contraseña para las clases de esta semana:
+
+📹 Contraseña: UH2024${Math.floor(Math.random() * 1000)}
+
+*Link Zoom:* https://zoom.us/j/123456789
+*Válida hasta:* Domingo 11:59 PM
+
+Recuerda que las grabaciones están disponibles por 7 días.
+
+✨ Presiona 1 para volver al menú de alumno:
+
+* 1 ➡️ Volver`,
+                options: [
+                    { text: "1", nextState: "menu_alumno" }
                 ]
             },
 
@@ -1638,6 +2618,45 @@ Mientras tanto, ¿hay algo específico en lo que pueda ayudarte?
                 ]
             },
 
+            // MENU 3 - ADMIN
+            {
+                state: "esperando_password_admin",
+                message: `🔐 *ACCESO ADMINISTRATIVO*
+
+Por favor ingresa la contraseña de administrador:
+
+_Esta área es solo para personal autorizado_`,
+                options: []
+            },
+            
+            {
+                state: "menu_admin",
+                message: `⚙️ *PANEL DE ADMINISTRACIÓN*
+
+Bienvenido al sistema administrativo.
+
+📊 *OPCIONES DISPONIBLES:*
+
+1️⃣ Ver estadísticas del día
+2️⃣ Consultar alumno específico
+3️⃣ Generar reporte semanal
+4️⃣ Mensajes pendientes
+5️⃣ Configuración del bot
+6️⃣ Base de datos alumnos
+7️⃣ Cerrar sesión
+
+Selecciona una opción:`,
+                options: [
+                    { text: "1", nextState: "estadisticas_dia" },
+                    { text: "2", nextState: "consultar_alumno_admin" },
+                    { text: "3", nextState: "reporte_semanal" },
+                    { text: "4", nextState: "mensajes_pendientes" },
+                    { text: "5", nextState: "configuracion_bot" },
+                    { text: "6", nextState: "base_datos_alumnos" },
+                    { text: "7", nextState: "inicio" }
+                ]
+            },
+            
             // Estados adicionales
             {
                 state: "salir",
@@ -1658,7 +2677,7 @@ Si necesitas algo más, escribe "hola" para comenzar de nuevo.`,
             'inicio': {
                 '1': 'menu_informacion',
                 '2': 'esperando_matricula',
-                '3': 'atencion_humana'
+                '3': 'esperando_password_admin'
             },
             'menu_informacion': {
                 '1': 'submenu_precios',
@@ -1806,19 +2825,100 @@ Si necesitas algo más, escribe "hola" para comenzar de nuevo.`,
                 '4': 'salir'
             },
             'menu_alumno': {
-                '1': 'progreso_academico',
-                '2': 'consultar_horarios',
-                '3': 'solicitar_constancia',
-                '4': 'pagos_adeudos',
-                '5': 'password_clase',
-                '6': 'material_estudio',
-                '7': 'cambio_horario',
-                '8': 'solicitar_baja',
-                '9': 'info_examenes_alumno',
-                '10': 'certificaciones_alumno',
-                '11': 'problemas_plataforma',
-                '12': 'contactar_teacher',
+                '1': 'menu_faltas',
+                '2': 'menu_solicitudes',
+                '3': 'menu_pagos',
+                '4': 'otro_alumno',
                 '0': 'inicio'
+            },
+            'menu_faltas': {
+                '1': 'solicitar_clase_grabada',
+                '2': 'solicitar_password',
+                '3': 'soporte_tecnico',
+                '4': 'reagendar_examen',
+                '5': 'opciones_faltar',
+                '0': 'menu_alumno'
+            },
+            'menu_solicitudes': {
+                '1': 'progreso_academico',
+                '2': 'cambio_nivel',
+                '3': 'solicitar_constancia',
+                '4': 'info_certificado',
+                '5': 'examen_certificacion',
+                '0': 'menu_alumno'
+            },
+            'menu_pagos': {
+                '1': 'estado_cuenta',
+                '2': 'datos_bancarios_alumno',
+                '3': 'solicitar_factura_alumno',
+                '4': 'horarios_caja',
+                '0': 'menu_alumno'
+            },
+            'soporte_tecnico': {
+                '1': 'problema_enlace',
+                '2': 'problema_password',
+                '3': 'problema_video',
+                '4': 'problema_movil',
+                '5': 'otro_problema_tecnico',
+                '0': 'menu_faltas'
+            },
+            'solicitar_constancia': {
+                '1': 'constancia_estudios',
+                '2': 'constancia_calificaciones',
+                '3': 'constancia_nivel',
+                '4': 'constancia_fiscal',
+                '5': 'otra_constancia',
+                '0': 'menu_solicitudes'
+            },
+            'progreso_academico': {
+                '0': 'menu_solicitudes',
+                '9': 'menu_alumno'
+            },
+            'cambio_nivel': {
+                '0': 'menu_solicitudes',
+                '9': 'menu_alumno'
+            },
+            'info_certificado': {
+                '0': 'menu_solicitudes',
+                '9': 'menu_alumno'
+            },
+            'examen_certificacion': {
+                '0': 'menu_solicitudes',
+                '9': 'menu_alumno'
+            },
+            'estado_cuenta': {
+                '0': 'menu_pagos',
+                '1': 'datos_bancarios_alumno',
+                '9': 'menu_alumno'
+            },
+            'datos_bancarios_alumno': {
+                '0': 'menu_pagos',
+                '1': 'enviar_comprobante_alumno',
+                '9': 'menu_alumno'
+            },
+            'solicitar_factura_alumno': {
+                '0': 'menu_pagos'
+            },
+            'horarios_caja': {
+                '0': 'menu_pagos',
+                '9': 'menu_alumno'
+            },
+            'otro_alumno': {
+                '0': 'menu_alumno',
+                '1': 'atencion_humana_alumno'
+            },
+            'solicitar_clase_grabada': {
+                '0': 'menu_faltas'
+            },
+            'solicitar_password': {
+                '0': 'menu_faltas'
+            },
+            'reagendar_examen': {
+                '0': 'menu_faltas'
+            },
+            'opciones_faltar': {
+                '0': 'menu_faltas',
+                '9': 'menu_alumno'
             },
             'atencion_humana': {
                 '1': 'menu_informacion',
@@ -1827,21 +2927,142 @@ Si necesitas algo más, escribe "hola" para comenzar de nuevo.`,
             }
         };
 
-        // Base de datos de alumnos - Ejemplos para pruebas
-        // NOTA: El bot real tiene acceso a los 134 alumnos desde auth-alumnos.js
+        // Base de datos de alumnos - LAS 134 MATRÍCULAS COMPLETAS
         const studentsDB = {
-            // Algunos ejemplos para el simulador
             "17087": { "nombre": "ADRIANA CONTRERAS PICHARDO", "colegiatura": 2200, "tipo": "ST" },
+            "18242": { "nombre": "ISRAEL ARRIAGA FIGUEROA", "colegiatura": 2550, "tipo": "SE" },
+            "18365": { "nombre": "OMAR LÓPEZ LÓPEZ", "colegiatura": 2200, "tipo": "ST" },
+            "19402": { "nombre": "CYNTHIA DANIELA MARTÍNEZ CARMONA", "colegiatura": 2200, "tipo": "ST" },
+            "19454": { "nombre": "IAN ZAID GARCIA TORRES", "colegiatura": 2550, "tipo": "SE" },
+            "19455": { "nombre": "MIRANDA IVANA ZARZOZA MENDOZA", "colegiatura": 2700, "tipo": "ST" },
+            "19458": { "nombre": "ALEXIS LAEL TORRES GARCÍA", "colegiatura": 1900, "tipo": "ST" },
+            "19461": { "nombre": "AXEL FERNANDO GONZÁLEZ MOLINA", "colegiatura": 2550, "tipo": "SE" },
+            "19511": { "nombre": "ANA LUBITZA CUERVO ESQUIVEL", "colegiatura": 2550, "tipo": "SE" },
+            "20541": { "nombre": "NATALY GUADALUPE DAVILA OLVERA", "colegiatura": 750, "tipo": "ST" },
+            "21598": { "nombre": "ERIC ADRIAN PAREDES RODRÍGUEZ", "colegiatura": 2200, "tipo": "ST" },
+            "21601": { "nombre": "PEDRO RUBÉN VEGA GONZÁLEZ", "colegiatura": 2700, "tipo": "ST" },
+            "21613": { "nombre": "CARLOS GARCÍA MARTÍNEZ", "colegiatura": 1950, "tipo": "SE" },
+            "21623": { "nombre": "KAROLIINA MEJÍA ZAMORA", "colegiatura": 1650, "tipo": "SE" },
+            "21648": { "nombre": "JESSICA GARCÌA FERNÀNDEZ", "colegiatura": 1950, "tipo": "SE" },
+            "21649": { "nombre": "DIEGO EMILIO AGUILERA GÓMEZ", "colegiatura": 2550, "tipo": "SE" },
+            "21679": { "nombre": "ANA KAREN SANTILLÁN SÁNCHEZ", "colegiatura": 2050, "tipo": "SE" },
+            "21683": { "nombre": "ANGELICA WHITE MENDOZA", "colegiatura": 2550, "tipo": "SE" },
+            "21690": { "nombre": "CARLOS IVAN DEL RAZO DIAZ", "colegiatura": 2050, "tipo": "SE" },
+            "22700": { "nombre": "ANGELA XIMENA ESTRADA RODRÍGUEZ", "colegiatura": 2050, "tipo": "SE" },
+            "22711": { "nombre": "EMILIO FERNANDO MARTINEZ ALANIZ", "colegiatura": 2200, "tipo": "ST" },
+            "22719": { "nombre": "JUAN RODRIGO JIMÉNEZ DOSTA", "colegiatura": 2200, "tipo": "ST" },
+            "22730": { "nombre": "DANIELA LOPEZ MAGAÑA", "colegiatura": 2550, "tipo": "SE" },
+            "22735": { "nombre": "DIEGO CAZARES MORENO", "colegiatura": 2200, "tipo": "ST" },
+            "22738": { "nombre": "PAOLA ANDREA MENA RODRÍGUEZ", "colegiatura": 2600, "tipo": "ST" },
+            "22754": { "nombre": "SANTIAGO IAN AGUILERA GÓMEZ", "colegiatura": 2550, "tipo": "SE" },
+            "22755": { "nombre": "LEOBARDO DE LEON CARRANZA", "colegiatura": 2200, "tipo": "ST" },
+            "22756": { "nombre": "ELIZABETH ZARATE MARTINEZ", "colegiatura": 2350, "tipo": "SE" },
+            "22758": { "nombre": "PAULA NATALIA RAMOS GALVAN", "colegiatura": 2400, "tipo": "ST" },
+            "22760": { "nombre": "SANTIAGO GALICIA TREVIÑO", "colegiatura": 2700, "tipo": "ST" },
+            "22765": { "nombre": "OSCAR DAVID LÓPEZ MORALES", "colegiatura": 2400, "tipo": "ST" },
+            "22776": { "nombre": "LUIS JORGE VALENCIA DE LEON", "colegiatura": 2350, "tipo": "SE" },
             "23101": { "nombre": "DANA MICHELLE ARENAS MEDINA", "colegiatura": 2200, "tipo": "ST" },
+            "23782": { "nombre": "JEIMY REBECA DÍAZ VARGAS", "colegiatura": 2350, "tipo": "SE" },
+            "23792": { "nombre": "YERAY DIDIER CORNEJO MEDINA", "colegiatura": 2350, "tipo": "SE" },
+            "23794": { "nombre": "YURI GABRIEL MENDOZA ORTÍZ", "colegiatura": 2700, "tipo": "ST" },
+            "23796": { "nombre": "ADRIANA VÁZQUEZ BARRÓN", "colegiatura": 2700, "tipo": "ST" },
+            "23797": { "nombre": "DIANA AURORA REYES HERNÁNDEZ", "colegiatura": 2350, "tipo": "SE" },
+            "23801": { "nombre": "EDER GAEL CORNEJO MEDINA", "colegiatura": 2350, "tipo": "SE" },
+            "23802": { "nombre": "CAROL RENATA SALGADO ESTRADA", "colegiatura": 1650, "tipo": "SE" },
+            "23804": { "nombre": "JIREH VALENCIA MIYANO", "colegiatura": 2400, "tipo": "ST" },
+            "23812": { "nombre": "OSCAR OMAR PAREDES ALCANTARA", "colegiatura": 2200, "tipo": "ST" },
+            "23817": { "nombre": "MARIA PAOLA SANTIAGO PEÑA", "colegiatura": 1650, "tipo": "SE" },
+            "23818": { "nombre": "ALEJANDRA MENA RODRÍGUEZ", "colegiatura": 2350, "tipo": "SE" },
+            "23826": { "nombre": "MARIA FERNANDA CANO PADILLA", "colegiatura": 2350, "tipo": "SE" },
+            "23829": { "nombre": "ANA KAREN MICHELLE SANTIAGO QUINTERO", "colegiatura": 2350, "tipo": "SE" },
+            "23835": { "nombre": "CLAUDIA MARIANA LECONA CORTÉS", "colegiatura": 1800, "tipo": "ST" },
+            "23847": { "nombre": "MIA REGINA TORRES GARCÍA", "colegiatura": 1650, "tipo": "SE" },
+            "23848": { "nombre": "LEONARDO DANIEL ZARZOZA MENDOZA", "colegiatura": 2700, "tipo": "ST" },
+            "23850": { "nombre": "SHAKTI XIMENA LEZAMA RÍOS", "colegiatura": 2550, "tipo": "SE" },
+            "23852": { "nombre": "NICOLE VALERIA MEJIA GUADARRAMA", "colegiatura": 2600, "tipo": "ST" },
+            "23853": { "nombre": "METZLY LUCERO GUZMAN TREJO", "colegiatura": 2350, "tipo": "SE" },
+            "23862": { "nombre": "ITZAYANA GOMEZ PONCE", "colegiatura": 2550, "tipo": "SE" },
+            "23864": { "nombre": "MARÍA JOSÉ GARCIA GARNICA", "colegiatura": 1650, "tipo": "SE" },
+            "23865": { "nombre": "PERLA ANDREA VÁZQUEZ BARRÓN", "colegiatura": 2700, "tipo": "ST" },
+            "23870": { "nombre": "GEORGINA MORELOS NIETO", "colegiatura": 2550, "tipo": "SE" },
+            "23874": { "nombre": "ALAN COLÍN RODRIGUEZ", "colegiatura": 2050, "tipo": "SE" },
+            "23875": { "nombre": "ALISSON NATALIA MEJÍA GUADARRAMA", "colegiatura": 2200, "tipo": "ST" },
+            "23881": { "nombre": "DIANA SANTANA GUTIERREZ", "colegiatura": 1650, "tipo": "SE" },
+            "23883": { "nombre": "KENNY MICHELLE CADENA GONZALEZ", "colegiatura": 2350, "tipo": "SE" },
+            "23890": { "nombre": "RICARDO VILLEGAS ROMERO", "colegiatura": 2550, "tipo": "SE" },
+            "23891": { "nombre": "JUAN RODRIGO JIMÉNEZ DOSTA", "colegiatura": 1650, "tipo": "SE" },
+            "23895": { "nombre": "GAEL ANTONIO RODRIGUEZ MARQUEZ", "colegiatura": 2550, "tipo": "SE" },
+            "23903": { "nombre": "JEYDAN AXEL LEYVA ARIAS", "colegiatura": 2400, "tipo": "ST" },
+            "24103": { "nombre": "PAMELA MARTINEZ FLORES", "colegiatura": 2550, "tipo": "SE" },
+            "24104": { "nombre": "LIAM SANTIAGO MARTINEZ LANUZA", "colegiatura": 2550, "tipo": "SE" },
+            "24107": { "nombre": "STELLA XIMENA ACATA RESENDIZ", "colegiatura": 1750, "tipo": "SE" },
+            "24108": { "nombre": "IKER GAEL MARTINEZ VAZQUEZ", "colegiatura": 2400, "tipo": "ST" },
+            "24109": { "nombre": "JOSE RAUL HERNANDEZ ARELLANO", "colegiatura": 2550, "tipo": "SE" },
+            "24111": { "nombre": "ISABEL FLORES NAVA", "colegiatura": 2550, "tipo": "SE" },
             "24112": { "nombre": "REBECA ESTEFANIA LOPEZ FLORES", "colegiatura": 2400, "tipo": "ST" },
+            "24113": { "nombre": "RAUL FLORES LOPEZ", "colegiatura": 2400, "tipo": "ST" },
+            "24114": { "nombre": "MAYTE VALENTINA AVELINO HERNANDEZ", "colegiatura": 1750, "tipo": "SE" },
             "24120": { "nombre": "PAULINA SOFIA CHAPA LOPEZ", "colegiatura": 2400, "tipo": "ST" },
+            "24206": { "nombre": "ERNESTO CRUZ SUAREZ", "colegiatura": 2550, "tipo": "SE" },
+            "24301": { "nombre": "ANDREA ZOE GARCIA GONZALEZ", "colegiatura": 2400, "tipo": "ST" },
+            "24401": { "nombre": "AYLIN NATASHA SALAS SANCHEZ", "colegiatura": 2750, "tipo": "SE" },
+            "24404": { "nombre": "MARIA JOSE VARAS CISNEROS", "colegiatura": 2600, "tipo": "ST" },
             "24501": { "nombre": "LEONARDO GARCIA RODRIGUEZ", "colegiatura": 2400, "tipo": "ST" },
+            "24503": { "nombre": "CAROLINA RANGEL CORTES", "colegiatura": 2900, "tipo": "ST" },
+            "24506": { "nombre": "MARIANA LOPEZ LECONA", "colegiatura": 2700, "tipo": "ST" },
+            "24507": { "nombre": "DANIELA LOPEZ LECONA", "colegiatura": 2400, "tipo": "ST" },
+            "24601": { "nombre": "DALI SANCHEZ HERNANDEZ", "colegiatura": 2400, "tipo": "ST" },
+            "24602": { "nombre": "DIANA LETICIA ARREOLA TORRES", "colegiatura": 2550, "tipo": "SE" },
             "24606": { "nombre": "SARA PAULA ESPINOSA PASCACIO", "colegiatura": 2750, "tipo": "SE" },
+            "24607": { "nombre": "HECTOR SAMUEL GARIA MARTINEZ", "colegiatura": 2400, "tipo": "ST" },
+            "24608": { "nombre": "JAVIER ISAIAS MARTIN VIDAL", "colegiatura": 1750, "tipo": "SE" },
+            "24609": { "nombre": "CRISTIAN XAVIER TIRO BAUTISTA", "colegiatura": 2550, "tipo": "SE" },
+            "24610": { "nombre": "AMY REYES AGUILAR", "colegiatura": 2400, "tipo": "ST" },
+            "24611": { "nombre": "IAN REYES AGUILAR", "colegiatura": 2900, "tipo": "ST" },
+            "24612": { "nombre": "SANTIAGO PICHARDO GAMBOA", "colegiatura": 1750, "tipo": "SE" },
+            "24704": { "nombre": "SANDRA MARTINEZ ALVARADO", "colegiatura": 2550, "tipo": "SE" },
+            "24801": { "nombre": "ALONDRA LIZETTE RIOS BELLO", "colegiatura": 2400, "tipo": "ST" },
+            "24802": { "nombre": "FRIDA YAMILET PEREZ JIMENEZ", "colegiatura": 2550, "tipo": "SE" },
+            "24805": { "nombre": "CRISTHIAN DANIEL RAMOS MARTINEZ", "colegiatura": 2550, "tipo": "SE" },
+            "24806": { "nombre": "HUGO ANTONIO RIVERA SANCHEZ", "colegiatura": 2550, "tipo": "SE" },
+            "24807": { "nombre": "LAURA AIMEE RIVERA SANCHEZ", "colegiatura": 2550, "tipo": "SE" },
+            "24808": { "nombre": "ALBERTO MIRANDA CASTILLO", "colegiatura": 2550, "tipo": "SE" },
             "24901": { "nombre": "IUHANY PALMA SUAREZ", "colegiatura": 2550, "tipo": "SE" },
+            "24903": { "nombre": "JOSHUA FLORES GUZMAN", "colegiatura": 2550, "tipo": "SE" },
+            "24904": { "nombre": "SCARLETT YAMILETH RIVERA CHALTELL", "colegiatura": 2550, "tipo": "SE" },
+            "24907": { "nombre": "AXEL EMILIANO VAZQUEZ FLORES", "colegiatura": 2550, "tipo": "SE" },
+            "24908": { "nombre": "VERENICE VIRIDIANA CARMONA GARCIA", "colegiatura": 2550, "tipo": "SE" },
+            "24911": { "nombre": "LUIS ENRIQUE CARBAJAL RAMIREZ", "colegiatura": 1100, "tipo": "ST" },
+            "24912": { "nombre": "PAUL ANDERSON SUAREZ MIRELES", "colegiatura": 2550, "tipo": "SE" },
+            "24913": { "nombre": "ANDREA DENISS CAHUANTZI JIMENEZ", "colegiatura": 2550, "tipo": "SE" },
+            "24915": { "nombre": "DAMIAN ALVAREZ ALPIZAR", "colegiatura": 2550, "tipo": "SE" },
+            "24916": { "nombre": "SANTIAGO DECLE GARCIA ", "colegiatura": 2550, "tipo": "SE" },
+            "24917": { "nombre": "ARLETTE CHAVEZ MANDUJANO", "colegiatura": 1750, "tipo": "SE" },
+            "24918": { "nombre": "PAMELA ESTEFANIA PONCE CELAYA", "colegiatura": 2400, "tipo": "ST" },
+            "24920": { "nombre": "ALAN DAMIAN HERNANDEZ MARTINEZ", "colegiatura": 2400, "tipo": "ST" },
+            "24921": { "nombre": "ANTHONY CEDILLO CERON", "colegiatura": 2550, "tipo": "SE" },
+            "24922": { "nombre": "MARIANA TRINIDAD SANCHEZ", "colegiatura": 2550, "tipo": "SE" },
+            "24925": { "nombre": "SALMA NALLELY COLIN OLMOS", "colegiatura": 2400, "tipo": "ST" },
             "25103": { "nombre": "MARIANA BERENICE LOJERO DE LA ROSA", "colegiatura": 2750, "tipo": "SE" },
+            "25104": { "nombre": "MATEO TORRES ORTIZ", "colegiatura": 2600, "tipo": "ST" },
+            "25105": { "nombre": "IDRISH EMMANUEL PORRAS JUAREZ", "colegiatura": 2600, "tipo": "ST" },
+            "25106": { "nombre": "ELIAN KARIM PORRAS JUAREZ", "colegiatura": 2600, "tipo": "ST" },
+            "25107": { "nombre": "ELIDETH TORRES PULIDO", "colegiatura": 2600, "tipo": "ST" },
+            "25108": { "nombre": "GEMMA GERALDINE LUGO CASTRO", "colegiatura": 2750, "tipo": "SE" },
+            "25109": { "nombre": "JOSE MANUEL CORONA GONZALEZ", "colegiatura": 2600, "tipo": "ST" },
+            "25110": { "nombre": "MONICA GABRIELA ANGUIANO MARTINEZ", "colegiatura": 2600, "tipo": "ST" },
+            "25201": { "nombre": "DIEGO BELLO HERNANDEZ", "colegiatura": 2600, "tipo": "ST" },
+            "25202": { "nombre": "JULIO CESAR CHAVEZ MARTINEZ", "colegiatura": 2600, "tipo": "ST" },
+            "25203": { "nombre": "ERIKA CAMILA CASTILLO SANCHEZ", "colegiatura": 2750, "tipo": "SE" },
+            "25204": { "nombre": "ZURIEL DAVID ESPINDOLA OLMOS", "colegiatura": 2600, "tipo": "ST" },
+            "25205": { "nombre": "ALEXA FERNANDA CRUZ MARTINEZ", "colegiatura": 1850, "tipo": "SE" },
+            "25206": { "nombre": "HAROL ANTHUAN ARELLANO HERRERA", "colegiatura": 2750, "tipo": "SE" },
+            "25207": { "nombre": "HECTOR JIBRAN MORENO ALANIS", "colegiatura": 2750, "tipo": "SE" },
+            "25208": { "nombre": "ALFREDO ANTONIO GOMEZ CARREON", "colegiatura": 2750, "tipo": "SE" },
+            "25209": { "nombre": "ANGELA MENDOZA NOLASCO", "colegiatura": 2750, "tipo": "SE" },
             "25301": { "nombre": "MIA PACHECO MARINES", "colegiatura": 2750, "tipo": "SE" },
-            "25304": { "nombre": "FATIMA IXCHEL DE LEON CARRANZA", "colegiatura": 2600, "tipo": "ST" },
-            // Nota: En el bot real se cargan todas las 134 matrículas desde auth-alumnos.js
+            "25302": { "nombre": "CRUZ ELENA VITE GONZALEZ", "colegiatura": 2600, "tipo": "ST" },
+            "25304": { "nombre": "FATIMA IXCHEL DE LEON CARRANZA", "colegiatura": 2600, "tipo": "ST" }
         };
 
         // Elementos del DOM
@@ -1907,6 +3128,18 @@ Si necesitas algo más, escribe "hola" para comenzar de nuevo.`,
             // Manejo especial para sistema de alumnos
             if (botState.currentState === 'esperando_matricula') {
                 handleMatriculaInput(input);
+                return;
+            }
+            
+            // Manejo especial para PIN
+            if (botState.currentState === 'esperando_pin') {
+                handlePinInput(input);
+                return;
+            }
+            
+            // Manejo especial para regresar al menú después de agotar intentos
+            if (botState.currentState === 'esperando_regreso_menu') {
+                showMainMenu();
                 return;
             }
             
@@ -2178,11 +3411,101 @@ ${exportData.editedStates.map(([state, message]) =>
         }
 
         function handleMatriculaInput(matricula) {
+            // Inicializar contador si no existe
+            if (!botState.sessionData) {
+                botState.sessionData = {};
+            }
+            if (!botState.sessionData.intentosMatricula) {
+                botState.sessionData.intentosMatricula = 0;
+            }
+            
+            // Si escribe "1" o "salir", regresar al menú
+            if (matricula === '1' || matricula.toLowerCase() === 'salir') {
+                showMainMenu();
+                delete botState.sessionData.intentosMatricula;
+                return;
+            }
+            
             const alumno = studentsDB[matricula];
             if (alumno) {
-                botState.sessionData = botState.sessionData || {};
                 botState.sessionData.studentData = alumno;
                 botState.sessionData.matricula = matricula;
+                botState.sessionData.intentosPIN = 0;
+                delete botState.sessionData.intentosMatricula;
+                
+                // Actualizar mensaje de esperando_pin para incluir instrucciones
+                const pinState = flowData.find(f => f.state === 'esperando_pin');
+                if (pinState) {
+                    pinState.message = `✅ Matrícula reconocida.
+
+📝 *PASO 2 DE 2*
+Ahora ingresa tu *PIN de 4 dígitos* para continuar:
+
+🔐 _Tu PIN es personal e intransferible_
+
+Tienes 3 intentos. Escribe "1" para salir.`;
+                }
+                
+                goToState('esperando_pin');
+            } else {
+                botState.sessionData.intentosMatricula++;
+                
+                if (botState.sessionData.intentosMatricula >= 3) {
+                    // Tercer intento fallido
+                    addBotMessage(`❌ Has agotado los 3 intentos.
+
+📞 Comunícate al 552651-9373 en horario de servicio para verificar tu matrícula.
+
+Presiona cualquier tecla para regresar al menú principal.`);
+                    botState.currentState = 'esperando_regreso_menu';
+                    delete botState.sessionData.intentosMatricula;
+                } else {
+                    // Aún tiene intentos
+                    const intentosRestantes = 3 - botState.sessionData.intentosMatricula;
+                    addBotMessage(`❌ Matrícula no encontrada.
+
+Intento ${botState.sessionData.intentosMatricula}/3
+Te quedan ${intentosRestantes} intentos.
+
+Ingresa tu matrícula nuevamente o escribe "1" para salir.`);
+                }
+            }
+        }
+        
+        function handlePinInput(pin) {
+            // Inicializar intentos si no existe
+            if (!botState.sessionData.intentosPIN) {
+                botState.sessionData.intentosPIN = 0;
+            }
+            
+            // Si escribe "1" o "salir", regresar al menú
+            if (pin === '1' || pin.toLowerCase() === 'salir') {
+                showMainMenu();
+                delete botState.sessionData.intentosPIN;
+                delete botState.sessionData.studentData;
+                delete botState.sessionData.matricula;
+                return;
+            }
+            
+            // Verificar si está bloqueado
+            const ahora = Date.now();
+            if (botState.sessionData.bloqueadoHasta && ahora < botState.sessionData.bloqueadoHasta) {
+                const minutosRestantes = Math.ceil((botState.sessionData.bloqueadoHasta - ahora) / 60000);
+                addBotMessage(`🚫 Aún estás bloqueado.
+
+Tiempo restante: ${minutosRestantes} minutos.
+
+Intenta más tarde.`);
+                setTimeout(() => {
+                    showMainMenu();
+                }, 2000);
+                return;
+            }
+            
+            if (pin === '0000') {
+                // PIN correcto
+                const alumno = botState.sessionData.studentData;
+                const matricula = botState.sessionData.matricula;
                 
                 // Determinar tipo de curso
                 let tipoTexto = '';
@@ -2194,27 +3517,54 @@ ${exportData.editedStates.map(([state, message]) =>
                     default: tipoTexto = alumno.tipo;
                 }
                 
-                addBotMessage(`🎓 *¡Hola ${alumno.nombre}!*
+                addBotMessage(`🎓 *¡Bienvenido/a ${alumno.nombre}!*
 
-✅ Matrícula: ${matricula}
-💵 Colegiatura: $${alumno.colegiatura.toLocaleString()}.00
-📚 Curso: ${tipoTexto}
+✅ Acceso autorizado
+📚 Matrícula: ${matricula}
+💰 Colegiatura: $${alumno.colegiatura.toLocaleString()}.00
 
-Ahora puedes acceder a todos los servicios para alumnos.`);
+Cargando tu menú personalizado...`);
                 
-                // Ir directamente al menú de alumno sin PIN
+                // Limpiar datos temporales
+                delete botState.sessionData.intentosPIN;
+                delete botState.sessionData.bloqueadoHasta;
+                
                 setTimeout(() => {
                     goToState('menu_alumno');
                 }, 1500);
+            } else if (pin.length === 4 && /^\d+$/.test(pin)) {
+                // PIN incorrecto pero formato válido
+                botState.sessionData.intentosPIN++;
+                
+                if (botState.sessionData.intentosPIN >= 3) {
+                    // Bloquear por 1 hora
+                    botState.sessionData.bloqueadoHasta = Date.now() + (60 * 60 * 1000);
+                    addBotMessage(`🚫 Has agotado los 3 intentos.
+
+⏰ Has sido bloqueado por 1 hora.
+
+Regresando al menú principal...`);
+                    
+                    setTimeout(() => {
+                        showMainMenu();
+                        delete botState.sessionData.intentosPIN;
+                        delete botState.sessionData.studentData;
+                        delete botState.sessionData.matricula;
+                    }, 3000);
+                } else {
+                    // Aún tiene intentos
+                    const intentosRestantes = 3 - botState.sessionData.intentosPIN;
+                    addBotMessage(`❌ PIN incorrecto.
+
+Intento ${botState.sessionData.intentosPIN}/3
+Te quedan ${intentosRestantes} intentos.
+
+Ingresa tu PIN nuevamente o escribe "1" para salir.`);
+                }
             } else {
-                addBotMessage(`❌ Matrícula no encontrada en nuestro sistema.
+                addBotMessage(`❌ El PIN debe ser de 4 dígitos numéricos.
 
-Por favor verifica que sea correcta o contacta a recepción:
-📞 341 414 1215
-
-También puedes solicitar información como nuevo interesado usando la opción 1 del menú principal.
-
-Escribe "salir" para volver al menú principal.`);
+Ingresa tu PIN o escribe "1" para salir.`);
             }
         }
 
