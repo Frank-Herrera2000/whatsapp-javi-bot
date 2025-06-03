@@ -1335,8 +1335,19 @@ Inicios inmediatos.
 
 ✨ Presiona 1 para continuar explorando nuestras opciones:
 
+* 1 ➡️ Continuar`
+            },
+            {
+                id: 20,
+                title: "Menú Continuidad C1",
+                state: "menu_continuidad_c1",
+                content: `🤖 ¡Excelente! Aquí tienes más opciones para complementar tu información:
+
 * 1 📝 Examen de Ubicación
-* 2 ⬅️ Volver a B2`
+* 2 ⬅️ Volver a B2
+* 3 👋 Salir
+
+🤖 Puedes indicarme únicamente el número correspondiente. 🤗`
             }
         ];
 
@@ -1388,8 +1399,7 @@ Inicios inmediatos.
                 '0': 'despedida'
             },
             'info_curso_c1': {
-                '1': 'info_examen',
-                '2': 'info_curso_mastery_b2',
+                '1': 'menu_continuidad_c1',
                 '0': 'despedida'
             },
             'menu_continuidad_kids': {
@@ -1403,6 +1413,11 @@ Inicios inmediatos.
                 '2': 'info_curso_c1',
                 '3': 'info_curso_dominio',
                 '4': 'despedida'
+            },
+            'menu_continuidad_c1': {
+                '1': 'info_examen',
+                '2': 'info_curso_mastery_b2',
+                '3': 'despedida'
             }
         };
 
