@@ -1032,8 +1032,7 @@ Este tiempo puede reducirse, dependiendo el nivel en el que comiences.
 
 ✨ Presiona 1 para continuar explorando nuestras opciones:
 
-* 1 ➡️ Continuar
-* 0 👋 Salir`
+* 1 ➡️ Continuar`
             },
             {
                 id: 5,
@@ -1068,11 +1067,12 @@ Actualmente el curso de B2 puedes tomarlo únicamente entre semana.
 -La duración del curso B2 semanal es de 18 meses. 
 *Dependiendo de tu nivel y donde comiences el tiempo puede reducirse.
 
+🤖: De igual manera, te comento que, si decides incorporarte a nuestros cursos este mes, contarás con un servicio adicional por ser parte de nosotros; En caso de faltar a tu clase presencial, tendrás la opción de visualizarla a distancia sin costo adicional y así no perder ningún avance estes donde estes.
+
 ✨ Presiona 1 para continuar explorando nuestras opciones:
 
 * 1 ➡️ Continuar con C1
-* 2 ⬅️ Volver a info A1-B1
-* 0 👋 Salir`
+* 2 ⬅️ Volver a info A1-B1`
             },
             {
                 id: 7,
@@ -1094,8 +1094,7 @@ Actualmente el curso de B2 puedes tomarlo únicamente entre semana.
 
 ✨ Presiona 1 para continuar explorando nuestras opciones:
 
-* 1 ➡️ Continuar
-* 0 👋 Salir`
+* 1 ➡️ Continuar`
             },
             {
                 id: 8,
@@ -1141,8 +1140,7 @@ Inicios inmediatos.
 
 ✨ Presiona 1 para continuar explorando nuestras opciones:
 
-* 1 ➡️ Continuar
-* 0 👋 Salir`
+* 1 ➡️ Continuar`
             },
             {
                 id: 9,
@@ -1333,11 +1331,12 @@ Nuestro curso C1 se encuentra actualmente los días sábado;
 *Dependiendo de tu nivel y donde comiences el tiempo puede reducirse.
 Inicios inmediatos.
 
+🤖: De igual manera, te comento que, si decides incorporarte a nuestros cursos este mes, contarás con un servicio adicional por ser parte de nosotros; En caso de faltar a tu clase presencial, tendrás la opción de visualizarla a distancia sin costo adicional y así no perder ningún avance estes donde estes.
+
 ✨ Presiona 1 para continuar explorando nuestras opciones:
 
 * 1 📝 Examen de Ubicación
-* 2 ⬅️ Volver a B2
-* 0 👋 Salir`
+* 2 ⬅️ Volver a B2`
             }
         ];
 
@@ -1557,33 +1556,8 @@ Inicios inmediatos.
                 const nextFlow = flowData.find(f => f.state === nextState);
                 
                 if (nextFlow) {
-                    // Si es info de curso, mostrar primero la info y luego el menú de seguimiento
-                    if (nextState.includes('info_curso')) {
-                        addBotMessage(nextFlow.content);
-                        
-                        // Determinar cuál menú de seguimiento mostrar
-                        let seguimientoState = '';
-                        if (nextState === 'info_curso_dominio') {
-                            seguimientoState = 'seguimiento_dominio';
-                        } else if (nextState === 'info_curso_kids') {
-                            seguimientoState = 'seguimiento_kids';
-                        } else if (nextState === 'info_curso_mastery') {
-                            seguimientoState = 'seguimiento_mastery';
-                        }
-                        
-                        if (seguimientoState) {
-                            setTimeout(() => {
-                                const seguimientoFlow = flowData.find(f => f.state === seguimientoState);
-                                if (seguimientoFlow) {
-                                    addBotMessage(seguimientoFlow.content);
-                                    botState.currentState = seguimientoState;
-                                }
-                            }, 2000);
-                        }
-                    } else {
-                        addBotMessage(nextFlow.content);
-                        botState.currentState = nextState;
-                    }
+                    addBotMessage(nextFlow.content);
+                    botState.currentState = nextState;
                 } else {
                     handleFreeText(input);
                 }
