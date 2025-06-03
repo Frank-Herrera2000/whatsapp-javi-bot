@@ -2,7 +2,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Universal House - Simulador WhatsApp Bot</title>
     <style>
         * {
@@ -16,12 +18,16 @@
             background: #0a1014;
             height: 100vh;
             overflow: hidden;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         .whatsapp-container {
             display: flex;
             height: 100vh;
             background: #111b21;
+            position: relative;
         }
 
         /* Panel izquierdo - Lista de chats */
@@ -32,6 +38,103 @@
             border-right: 1px solid #2a3942;
             display: flex;
             flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        /* Estilos móviles para iPhone 15 Pro Max */
+        @media screen and (max-width: 430px) {
+            .sidebar {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                min-width: unset;
+                height: 100%;
+                z-index: 10;
+                transform: translateX(-100%);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .main-chat {
+                width: 100% !important;
+            }
+
+            .mobile-menu-btn {
+                display: block !important;
+                position: absolute;
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: none;
+                border: none;
+                color: #e9edef;
+                font-size: 24px;
+                padding: 8px;
+                cursor: pointer;
+                z-index: 1;
+            }
+
+            .chat-header {
+                padding-left: 50px;
+            }
+
+            .messages-container {
+                padding: 10px 15px !important;
+            }
+
+            .message-content {
+                max-width: 85% !important;
+            }
+
+            .admin-toggle {
+                bottom: 80px !important;
+                right: 10px !important;
+                padding: 8px 15px !important;
+                font-size: 12px !important;
+            }
+
+            .admin-panel {
+                width: 100% !important;
+                right: -100% !important;
+            }
+
+            .flow-editor {
+                width: 95% !important;
+                padding: 20px !important;
+            }
+
+            .sidebar-header {
+                padding: 10px 12px;
+            }
+
+            .search-container {
+                padding: 6px 10px;
+            }
+
+            .chat-item {
+                padding: 10px 12px;
+            }
+
+            .input-container {
+                padding: 8px 10px;
+            }
+
+            .flow-step {
+                padding: 12px;
+                margin-bottom: 10px;
+            }
+
+            .flow-step-content {
+                font-size: 13px;
+                max-height: 150px;
+            }
+        }
+
+        .mobile-menu-btn {
+            display: none;
         }
 
         .sidebar-header {
@@ -197,6 +300,7 @@
             align-items: center;
             height: 60px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            position: relative;
         }
 
         .chat-header-info {
@@ -363,6 +467,7 @@
             resize: none;
             padding: 8px 0;
             font-family: inherit;
+            -webkit-appearance: none;
         }
 
         .message-input::placeholder {
@@ -435,6 +540,34 @@
             display: none;
             animation: slideUp 0.3s ease-out;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Prevenir selección de texto en iOS */
+        @media (pointer: coarse) {
+            .message-text {
+                -webkit-user-select: text;
+                user-select: text;
+            }
+            
+            .chat-name, .chat-message, .message-time {
+                -webkit-user-select: none;
+                user-select: none;
+            }
+        }
+
+        /* Safe area para iPhone con notch */
+        @supports (padding-top: env(safe-area-inset-top)) {
+            .sidebar-header {
+                padding-top: calc(10px + env(safe-area-inset-top));
+            }
+            
+            .chat-header {
+                padding-top: calc(10px + env(safe-area-inset-top));
+            }
+            
+            .input-container {
+                padding-bottom: calc(10px + env(safe-area-inset-bottom));
+            }
         }
 
         @keyframes slideUp {
@@ -663,7 +796,7 @@
 <body>
     <div class="whatsapp-container">
         <!-- Sidebar -->
-        <div class="sidebar">
+        <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="profile-pic">UH</div>
                 <div class="sidebar-icons">
@@ -706,6 +839,11 @@
         <!-- Main Chat -->
         <div class="main-chat">
             <div class="chat-header">
+                <button class="mobile-menu-btn" onclick="toggleSidebar()">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </button>
                 <div class="chat-avatar">🤖</div>
                 <div class="chat-header-info">
                     <div class="chat-header-name">Universal House Bot</div>
@@ -1171,6 +1309,7 @@ Cd. Guzmán, Jalisco
         const adminPanel = document.getElementById('adminPanel');
         const flowEditor = document.getElementById('flowEditor');
         const overlay = document.getElementById('overlay');
+        const sidebar = document.getElementById('sidebar');
 
         // Inicializar
         document.addEventListener('DOMContentLoaded', () => {
@@ -1184,6 +1323,25 @@ Cd. Guzmán, Jalisco
                 addBotMessage(flowData[0].content);
                 botState.currentState = 'menu_principal';
             }, 1000);
+
+            // Detectar clics fuera del sidebar en móvil
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 430) {
+                    if (!sidebar.contains(e.target) && !e.target.closest('.mobile-menu-btn')) {
+                        sidebar.classList.remove('show');
+                    }
+                }
+            });
+
+            // Cerrar sidebar al seleccionar un chat en móvil
+            const chatItems = document.querySelectorAll('.chat-item');
+            chatItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    if (window.innerWidth <= 430) {
+                        sidebar.classList.remove('show');
+                    }
+                });
+            });
         });
 
         // Auto-resize del textarea
@@ -1472,6 +1630,11 @@ Por favor selecciona una opción del menú con su número correspondiente o escr
             document.body.appendChild(exportLink);
             exportLink.click();
             document.body.removeChild(exportLink);
+        }
+
+        // Toggle sidebar en móvil
+        function toggleSidebar() {
+            sidebar.classList.toggle('show');
         }
     </script>
 </body>
