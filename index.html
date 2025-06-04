@@ -1455,31 +1455,37 @@ Duración de 15 a 18 meses según sea el curso semanal o sabatino.
             // CERTIFICACIONES 1'8
             {
                 state: "info_certificaciones",
-                message: `📜 *CERTIFICACIONES INTERNACIONALES*
+                message: `🌟✨ **CERTIFICACIONES** ✨🌟
 
-🌍 *CERTIFICACIONES DISPONIBLES:*
+🇬🇧 **UNIVERSITY OF CAMBRIDGE** 🇬🇧
+✨ **CENTRO AUTORIZADO** 🏆 ✨
 
-📘 *TOEFL (Test of English as Foreign Language)*
-• Reconocido mundialmente
-• Válido para universidades USA/Canadá
-• Preparación incluida en nivel B2
-• Costo examen: $185 USD
+🎓 **CENTRO AUTORIZADO DE PREPARACIÓN**
+▫️ Centro certificado Cambridge English
+▫️ Apegados al CEFR
+▫️ Preparación incluida
 
-📕 *CAMBRIDGE*
-• KET (A2), PET (B1), FCE (B2), CAE (C1)
-• Validez de por vida
-• Reconocimiento europeo
-• Costo: Desde $2,500 MXN
+🏆 **CERTIFICACIONES DISPONIBLES:**
+🥉 **KET (A2)** - Key English Test
+🥈 **PET (B1)** - Preliminary English Test
+🥇 **FCE (B2)** - First Certificate
+💎 **CAE (C1)** - Advanced Certificate
+👑 **CPE (C2)** - Proficiency
 
-📗 *IELTS*
-• Para estudios y migración
-• UK, Australia, Canadá
-• Preparación en nivel C1
-• Costo: $4,500 MXN aprox
+✨ **VENTAJAS EXCLUSIVAS:**
+🎯 Preparación integrada en el curso
+💰 Sin costo adicional de preparación
+🌍 Certificación internacional
+⭐ Validez mundial permanente
 
-📙 *TOEIC*
-• Inglés de negocios
-• Requerido por empresas
+🤖 En caso de ya contar con el nivel suficiente y tener el interés de obtener alguna certificación, deberás presentar un examen de ubicación para determinar si eres candidato.
+
+[ENVIAR STICKERS: certificaciones_cambridge]
+[ENVIAR IMAGEN: certificaciones_disponibles.jpg]
+
+⬅️ *0* - Volver al menú de cursos
+
+🚀 **¡Tu futuro académico garantizado!** 🚀
 • Preparación especial
 • Costo: $1,800 MXN
 
@@ -1731,133 +1737,140 @@ Disponible en Plaza Portal Morelos
                 ]
             },
 
-            // MENU 2 - ALUMNOS
+            // =====================================================
+            // 👨‍🎓 PORTAL DE ESTUDIANTES COMPLETO - RUTA 2
+            // =====================================================
+            
+            // ENTRADA AL PORTAL - SOLICITUD DE MATRÍCULA
             {
                 state: "esperando_matricula",
-                message: `╔═══════════════════════════════════════════╗
-║        🔐 PORTAL SEGURO DE ESTUDIANTES     ║
-╚═══════════════════════════════════════════╝
+                message: `📚 *ACCESO PARA ALUMNOS* 📚
 
-📚 *ACCESO PARA ALUMNOS* 📚
+🔐 **PORTAL SEGURO DE ESTUDIANTES** 🔐
 
-🤖: ¡Bienvenido/a! Para acceder a tu portal personalizado necesitarás proporcionar dos datos:
+🤖 ¡Bienvenido/a! Para acceder a tu portal personalizado necesitarás proporcionar dos datos:
 
-┌───────────────────────────────────────────┐
-│           🔐 DATOS REQUERIDOS             │
-├───────────────────────────────────────────┤
-│                                           │
-│ 🔹 Tu número de matrícula (5-6 dígitos)   │
-│ 🔹 Tu PIN de seguridad (4 dígitos)        │
-│                                           │
-└───────────────────────────────────────────┘
+🔹 Tu número de matrícula (5-6 dígitos)
+🔹 Tu PIN de seguridad (4 dígitos)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📝 *PASO 1 DE 2*
 
-┌───────────────────────────────────────────┐
-│             📝 PASO 1 DE 2                │
-├───────────────────────────────────────────┤
-│                                           │
-│ Por favor ingresa tu número de            │
-│ *matrícula*:                              │
-│                                           │
-│ 💡 *Ejemplo: 23101*                       │
-│                                           │
-└───────────────────────────────────────────┘
+Por favor ingresa tu número de *matrícula*:
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 *Ejemplo: 23101*
 
 ⬅️ *0* - Volver al menú principal
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 🔒 *Información protegida y confidencial*`,
-                options: []
+                options: [
+                    { text: "0", nextState: "inicio" }
+                ]
             },
             
+            // SOLICITUD DE PIN
             {
                 state: "esperando_pin",
-                message: `✅ Matrícula reconocida.
+                message: `🔐 *VALIDACIÓN DE SEGURIDAD* 🔐
+
+📝 **PASO 2 DE 2** 📝
+
+🤖 Matrícula recibida: [NÚMERO_MATRÍCULA]
 
 📝 *PASO 2 DE 2*
-Ahora ingresa tu *PIN de 4 dígitos* para continuar:
 
-🔐 _Tu PIN es personal e intransferible_`,
-                options: []
+Ahora ingresa tu *PIN de seguridad* (4 dígitos):
+
+💡 *Ejemplo: 1234*
+
+⬅️ *0* - Volver al menú principal
+
+🔒 *Validación en proceso...*`,
+                options: [
+                    { text: "0", nextState: "inicio" }
+                ]
             },
+            
+            // ERROR DE VALIDACIÓN
+            {
+                state: "error_validacion",
+                message: `❌ *ACCESO DENEGADO* ❌
 
+🔐 Los datos proporcionados no coinciden con nuestros registros.
+
+🤖 Por favor verifica:
+• Número de matrícula correcto
+• PIN de 4 dígitos
+
+📞 *Si necesitas ayuda:*
+Llama: *552651-9373*
+L-J: 12:00-20:00 | V: 10:15-16:00 | S: 11:15-13:30
+
+🔄 *¿Intentar de nuevo?*
+
+✨ *1* ➤ Reintentar acceso
+✨ *0* ➤ Volver al menú principal
+
+🤖 *Selecciona una opción* 🤗`,
+                options: [
+                    { text: "1", nextState: "esperando_matricula" },
+                    { text: "0", nextState: "inicio" }
+                ]
+            },
+            
+            // MENÚ PRINCIPAL DE ALUMNO
             {
                 state: "menu_alumno",
-                message: `╔═══════════════════════════════════════════╗
-║        👩👨 SOY ALUMNO/A DE UNIVERSAL      ║
-║                  HOUSE                    ║
-╚═══════════════════════════════════════════╝
+                message: `👨‍🎓👩‍🎓 ¡BIENVENIDO A TU PORTAL! 👩‍🎓👨‍🎓
 
-🤖: ¡Muy bien! Por favor indícame qué información deseas conocer:
+🎓 **PORTAL PERSONALIZADO DE ALUMNO** 🎓
+✨ **MATRÍCULA: [NÚMERO]** ✨
 
-┌───────────────────────────────────────────────┐
-│             📚 MENÚ ALUMNO 📚             │
-├───────────────────────────────────────────────┤
-│                                           │
-│ • 1. Faltas y reposiciones. 📆💻         │
-│ • 2. Información y solicitudes sobre      │
-│      mi curso. 📤🎒                       │
-│ • 3. Pagos y horarios de atención. 💵🕜  │
-│ • 4. Otro. 🤔💭                          │
-│                                           │
-└───────────────────────────────────────────────┘
+🤖 ¡Muy bien! Por favor indícame qué información deseas conocer:
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 *MENÚ ALUMNO:*
 
-🤖 Puedes indicarme únicamente el número correspondiente. 🤗`,
+• *1* ➤ Faltas y reposiciones 📆💻
+• *2* ➤ Información y solicitudes sobre mi curso 📤🎒  
+• *3* ➤ Pagos y horarios de atención 💵🕜
+• *4* ➤ Otro 🤔💭
+
+⬅️ *0* - Volver al menú principal
+
+🤖 *Puedes indicarme únicamente el número correspondiente* 🤗`,
                 options: [
                     { text: "1", nextState: "menu_faltas" },
-                    { text: "2", nextState: "menu_solicitudes" },
-                    { text: "3", nextState: "menu_pagos" },
+                    { text: "2", nextState: "menu_solicitudes_curso" },
+                    { text: "3", nextState: "menu_pagos_alumno" },
                     { text: "4", nextState: "otro_alumno" },
                     { text: "0", nextState: "inicio" }
                 ]
             },
-
-            // MENU FALTAS Y REPOSICIONES
+            
+            // MENÚ FALTAS Y REPOSICIONES
             {
                 state: "menu_faltas",
-                message: `╔═══════════════════════════════════════════╗
-║        📆💻 FALTAS Y REPOSICIONES         ║
-╚═══════════════════════════════════════════╝
+                message: `📆💻 FALTAS Y REPOSICIONES 💻📆
 
-┌───────────────────────────────────────────────┐
-│             🎥 SUBMENÚ DISPONIBLE         │
-├───────────────────────────────────────────────┤
-│                                           │
-│ • 1. 📹 Quisiera solicitar mi clase       │
-│      grabada. (No tengo un QR)            │
-│                                           │
-│ • 2. 🔓 Quiero la contraseña de mi        │
-│      clase grabada.                       │
-│                                           │
-│ • 3. 🛠️ Tengo dificultades con mi clase   │
-│      grabada y/o contraseña.              │
-│                                           │
-│ • 4. 📝 Quisiera reagendar mi examen      │
-│      de unidad.                           │
-│                                           │
-│ • 5. 🤔 ¿Qué puedo hacer si necesito      │
-│      faltar?                              │
-│                                           │
-└───────────────────────────────────────────────┘
+🎥 **CLASES GRABADAS Y REPOSICIONES** 🎥
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🤖 ¿En qué puedo ayudarte hoy?
+
+📋 *OPCIONES DISPONIBLES:*
+
+• *1* ➤ Solicitar mi clase grabada (No tengo QR) 📹
+• *2* ➤ Quiero la contraseña de mi clase grabada 🔓  
+• *3* ➤ Tengo dificultades con mi clase grabada/contraseña 🛠️
+• *4* ➤ Quisiera reagendar mi examen de unidad 📝
+• *5* ➤ ¿Qué puedo hacer si necesito faltar? 🤔
 
 ⬅️ *0* - Volver al menú de alumno
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🤖 *Selecciona el número que necesites* 🤗`,
                 options: [
                     { text: "1", nextState: "solicitar_clase_grabada" },
                     { text: "2", nextState: "solicitar_password" },
                     { text: "3", nextState: "soporte_tecnico" },
-                    { text: "4", nextState: "reagendar_examen" },
+                    { text: "4", nextState: "reagendar_examen_unidad" },
                     { text: "5", nextState: "opciones_faltar" },
                     { text: "0", nextState: "menu_alumno" }
                 ]
@@ -1866,829 +1879,878 @@ Ahora ingresa tu *PIN de 4 dígitos* para continuar:
             // SOLICITAR CLASE GRABADA
             {
                 state: "solicitar_clase_grabada",
-                message: `╔═══════════════════════════════════════════╗
-║     📹 QUISIERA SOLICITAR MI CLASE        ║
-║              GRABADA                      ║
-╚═══════════════════════════════════════════╝
+                message: `📹 SOLICITAR CLASE GRABADA 📹
 
-🤖: ¡Con gusto te apoyo para obtenerlo!
+🎥 **ACCESO A CLASES VIRTUALES** 🎥
+
+🤖 ¡Con gusto te apoyo para obtenerlo!
 
 Si aún no has leído la guía de acceso a este beneficio, te la comparto a continuación:
 
-┌───────────────────────────────────────────────┐
-│            📋 INSTRUCCIONES               │
-├───────────────────────────────────────────────┤
-│                                           │
-│ ✔️ Favor de visualizar el video por       │
-│    completo y seguir las instrucciones    │
-│    que aparecerán al final del mismo      │
-│    para activar este beneficio:           │
-│                                           │
-│ 🔗 https://www.universalhouse.com.mx/     │
-│    uh_recording/                          │
-│                                           │
-└───────────────────────────────────────────────┘
+✔️ Favor de visualizar el video por completo y seguir las instrucciones que aparecerán al final del mismo para activar este beneficio:
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔗 https://www.universalhouse.com.mx/uh_recording/
 
-🤖: Si ya activaste el servicio, indícame qué día/s deseas recuperar por inasistencia.
+🤖 Si ya activaste el servicio, indícame qué día/s deseas recuperar por inasistencia.
 
-💡 *Ejemplo: "Lunes 15 de enero" o "Miércoles pasado"*
+📅 *Ejemplo: "Lunes 15 de enero" o "Miércoles pasado"*
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 *Escribe la fecha que necesitas recuperar*
 
-⬅️ *0* - Volver al menú de faltas
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-🤖 *Escribe la fecha que necesitas recuperar*`,
+⬅️ *0* - Volver al menú de faltas`,
                 options: [
                     { text: "0", nextState: "menu_faltas" }
                 ]
             },
             
-            // SOLICITAR PASSWORD
+            // RESPUESTA CON QR Y CONTRASEÑA
+            {
+                state: "clase_grabada_disponible",
+                message: `✅ *CLASE GRABADA DISPONIBLE* ✅
+
+🤖 Muy bien, te proporciono el código QR de tu grupo y la contraseña del [FECHA]:
+
+🔐 *Contraseña:* [CONTRASEÑA_DEL_DÍA]
+
+💡 *IMPORTANTE:*
+En futuras ocasiones solamente deberás solicitar tu contraseña del día de tu falta y el código QR será el mismo.
+
+En caso de algún cambio se notificará.
+
+[ENVIAR QR: codigo_qr_grupo.jpg]
+
+🤖 ¡Saludos y buen estudio! ✨
+
+⬅️ *0* - Volver al menú de faltas`,
+                options: [
+                    { text: "0", nextState: "menu_faltas" }
+                ]
+            },
+            
+            // SOLICITAR CONTRASEÑA
             {
                 state: "solicitar_password",
-                message: `╔═══════════════════════════════════════════╗
-║   🔓 QUIERO LA CONTRASEÑA DE MI CLASE     ║
-║              GRABADA                      ║
-╚═══════════════════════════════════════════╝
+                message: `🔓 CONTRASEÑA DE CLASE GRABADA 🔓
 
-🤖: ¡Con gusto te apoyo!
+🔑 **ACCESO RÁPIDO A CLASES** 🔑
 
-Para proporcionarte la contraseña correcta, necesito saber:
+🤖 ¡Con gusto te apoyo para obtenerla!
 
-📅 *¿De qué día necesitas la contraseña?*
+Indícame qué día/s deseas recuperar por inasistencia.
 
-💡 *Ejemplo:* "Lunes 15 de enero" o "Clase de ayer"
+⏰ *RECORDATORIO IMPORTANTE:*
+Las clases están disponibles en la nube únicamente *7 días naturales*.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Por lo que te recomiendo solicitar tus clases lo antes posible para tener el mayor tiempo de visualización. 🤗
 
-⬅️ *0* - Volver al menú de faltas
+📅 *Ejemplo: "Viernes 12 de enero" o "Clase de ayer"*
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 *Escribe la fecha que necesitas*
 
-🤖 *Escribe la fecha de la clase que necesitas*`,
+⬅️ *0* - Volver al menú de faltas`,
                 options: [
                     { text: "0", nextState: "menu_faltas" }
                 ]
             },
             
-            // SOPORTE TECNICO
+            // RESPUESTA CON CONTRASEÑA
+            {
+                state: "password_proporcionada",
+                message: `🔐 *CONTRASEÑA PROPORCIONADA* 🔐
+
+🤖 De acuerdo, te proporciono la contraseña de tu clase del día [FECHA]:
+
+🔑 *Contraseña:* [CONTRASEÑA_DEL_DÍA]
+
+🤖 Es un gusto atenderte, ¿Deseas que te apoye con algo más?
+
+✨ *1* ➤ Es todo, muchas gracias 🤗
+✨ *2* ➤ Ver de nuevo el Menú de opciones para alumno 🔻
+
+⬅️ *0* - Volver al menú de faltas`,
+                options: [
+                    { text: "1", nextState: "despedida_alumno" },
+                    { text: "2", nextState: "menu_alumno" },
+                    { text: "0", nextState: "menu_faltas" }
+                ]
+            },
+            
+            // SOPORTE TÉCNICO
             {
                 state: "soporte_tecnico",
-                message: `╔═══════════════════════════════════════════╗
-║    🛠️ TENGO DIFICULTADES CON MI CLASE     ║
-║         GRABADA Y/O CONTRASEÑA            ║
-╚═══════════════════════════════════════════╝
+                message: `🛠️ SOPORTE TÉCNICO 🛠️
 
-🤖: ¡Lamento que tengas dificultades! Te ayudaré a resolverlo.
+🔧 **RESOLUCIÓN DE PROBLEMAS** 🔧
 
-Por favor, indícame cuál es el problema específico:
+🤖 Lamento que estés teniendo dificultades, ¿Podrías platicarme la situación más a detalle?
 
-┌───────────────────────────────────────────────┐
-│        🔧 PROBLEMAS COMUNES               │
-├───────────────────────────────────────────────┤
-│                                           │
-│ • 1. 🚫 El enlace no funciona             │
-│ • 2. 🔒 La contraseña es incorrecta       │
-│ • 3. ⏹️ El video no se reproduce          │
-│ • 4. 📱 Problemas en dispositivo móvil    │
-│ • 5. 💬 Otro problema                     │
-│                                           │
-└───────────────────────────────────────────────┘
+📝 *Por favor describe:*
+• ¿Qué problema estás experimentando?
+• ¿En qué momento ocurre?
+• ¿Has intentado alguna solución?
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 *Escribe tu problema detalladamente*
 
-⬅️ *0* - Volver al menú de faltas
+🔧 *Un técnico revisará tu caso y te contactará pronto*
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-🤖 *Selecciona el número de tu problema*`,
+⬅️ *0* - Volver al menú de faltas`,
                 options: [
-                    { text: "1", nextState: "problema_enlace" },
-                    { text: "2", nextState: "problema_password" },
-                    { text: "3", nextState: "problema_video" },
-                    { text: "4", nextState: "problema_movil" },
-                    { text: "5", nextState: "otro_problema_tecnico" },
+                    { text: "0", nextState: "menu_faltas" }
+                ]
+            },
+            
+            // RESPUESTA DE SOPORTE
+            {
+                state: "reporte_tecnico_recibido",
+                message: `🔧 *REPORTE TÉCNICO RECIBIDO* 🔧
+
+🤖 Comprendo, permítenos revisarlo para trabajar en el problema y solucionarlo lo antes posible. En cuanto tengamos resolución un agente se pondrá en contacto contigo por este medio.
+
+🎫 *Ticket de soporte creado*
+📋 *Tu caso ha sido registrado*
+
+🤖 Espero haberte ayudado, ¿Deseas que te apoye con algo más?
+
+✨ *1* ➤ Es todo, quedo en espera 🤗
+✨ *2* ➤ Ver de nuevo el Menú de opciones para alumno 🔻
+
+⬅️ *0* - Volver al menú de faltas`,
+                options: [
+                    { text: "1", nextState: "despedida_alumno" },
+                    { text: "2", nextState: "menu_alumno" },
                     { text: "0", nextState: "menu_faltas" }
                 ]
             },
             
             // REAGENDAR EXAMEN
             {
-                state: "reagendar_examen",
-                message: `╔═══════════════════════════════════════════╗
-║    📝 QUISIERA REAGENDAR MI EXAMEN DE     ║
-║                UNIDAD                     ║
-╚═══════════════════════════════════════════╝
+                state: "reagendar_examen_unidad",
+                message: `📝 REAGENDAR EXAMEN DE UNIDAD 📝
 
-🤖: ¡Por supuesto! Te ayudaré con el reagendamiento.
+📋 **PROGRAMACIÓN DE EXÁMENES** 📋
 
-📋 *POLÍTICA DE REAGENDAMIENTO:*
-• Solo se permite reagendar una vez
-• Debe ser dentro del mismo periodo
-• Sujeto a disponibilidad
+🤖 Con gusto te apoyo a agendar tu examen, puedes realizarlo en un horario de:
 
-Para procesar tu solicitud, necesito:
+⏰ *HORARIOS DISPONIBLES:*
+• Lunes a jueves: 12:30 a 17:00 hrs
+• Viernes: 10:30 a 15:00 hrs  
+• Sábados: 11:30 a 13:30 hrs 🕜
 
-1️⃣ *Fecha actual de tu examen:*
-2️⃣ *Razón del cambio:*
-3️⃣ *Fecha propuesta (mínimo 48hrs después):*
+💻 *MODALIDAD:*
+El examen se realizará a distancia desde casa, y deberás elegir un horario que no se empalme con tu clase.
 
-💡 *Ejemplo:* "Mi examen es el 20 de enero, necesito cambiarlo por trabajo, propongo el 25 de enero"
+📅 ¿En qué horario te gustaría agendarlo? 🗓️
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 *Ejemplo: "Martes 16 de enero a las 15:00 hrs"*
 
-⬅️ *0* - Volver al menú de faltas
+📲 *Escribe tu horario preferido*
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-🤖 *Escribe tu solicitud completa*`,
+⬅️ *0* - Volver al menú de faltas`,
                 options: [
                     { text: "0", nextState: "menu_faltas" }
                 ]
             },
             
-            // OPCIONES FALTAR
+            // CONFIRMACIÓN DE EXAMEN
+            {
+                state: "examen_agendado",
+                message: `✅ *EXAMEN AGENDADO* ✅
+
+🤖 Muy bien, tu examen será agendado para [FECHA Y HORA].
+
+⚠️ *IMPORTANTE:*
+Es importante que nos escribas al menos *10 minutos antes* de la hora seleccionada para confirmar que lo realizarás y enviarte todos los datos necesarios para tu examen. 📝
+
+🎯 *Recordatorios:*
+• Ambiente silencioso
+• Buena conexión a internet
+• Cámara y micrófono funcionales
+
+🤖 Es un gusto atenderte, ¿Deseas que te apoye con algo más?
+
+✨ *1* ➤ Es todo, muchas gracias 🤗
+✨ *2* ➤ Ver de nuevo el Menú de opciones para alumno 🔻
+
+⬅️ *0* - Volver al menú de faltas`,
+                options: [
+                    { text: "1", nextState: "despedida_alumno" },
+                    { text: "2", nextState: "menu_alumno" },
+                    { text: "0", nextState: "menu_faltas" }
+                ]
+            },
+            
+            // OPCIONES SI NECESITO FALTAR
             {
                 state: "opciones_faltar",
-                message: `╔═══════════════════════════════════════════╗
-║    🤔 ¿QUÉ PUEDO HACER SI NECESITO        ║
-║               FALTAR?                     ║
-╚═══════════════════════════════════════════╝
+                message: `🤔 ¿QUÉ PUEDO HACER SI NECESITO FALTAR? 🤔
 
-🤖: Aquí están tus opciones para recuperar clases:
+📚 **ALTERNATIVAS DISPONIBLES** 📚
 
-┌───────────────────────────────────────────────┐
-│        📚 OPCIONES DISPONIBLES            │
-├───────────────────────────────────────────────┤
-│                                           │
-│ 🎥 *CLASES GRABADAS:*                     │
-│ • Disponibles 24/7                        │
-│ • Solicítalas a través de este chat       │
-│ • Incluyen material de la clase           │
-│                                           │
-│ 👥 *REPOSICIÓN PRESENCIAL:*               │
-│ • Asiste con otro grupo del mismo nivel   │
-│ • Previa autorización                     │
-│ • Sujeto a disponibilidad                 │
-│                                           │
-│ 📝 *JUSTIFICACIÓN:*                       │
-│ • Notifica con anticipación               │
-│ • Envía justificante si es médico         │
-│ • Máximo 20% de faltas permitidas         │
-│                                           │
-└───────────────────────────────────────────────┘
+🤖 Tenemos varias opciones para que no pierdas tu avance:
 
-⚠️ *IMPORTANTE:* Más de 20% de faltas puede afectar tu certificación
+🎥 *CLASES GRABADAS:*
+• Acceso 24/7 por 7 días
+• Solicítalas por este chat
+• Incluye material completo
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📱 *CLASE EN LÍNEA:*
+• Únete desde cualquier lugar
+• Mismo horario que tu clase
+• Avisa con anticipación
 
-⬅️ *0* - Volver al menú de faltas
-🏠 *9* - Menú principal
+🔄 *REPOSICIÓN PRESENCIAL:*
+• Con otro grupo del mismo nivel
+• Sujeto a disponibilidad
+• Autorización previa
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ *IMPORTANTE:*
+• Máximo 20% de faltas permitidas
+• Notifica con anticipación
+• Envía justificante médico si aplica
 
-🤖 *Selecciona una opción*`,
+🤖 ¿Necesitas solicitar alguna de estas opciones ahora?
+
+✨ *1* ➤ Solicitar clase grabada 📹
+✨ *2* ➤ Es todo, gracias 🤗
+✨ *3* ➤ Ver menú de alumno 🔻
+
+⬅️ *0* - Volver al menú de faltas`,
                 options: [
-                    { text: "0", nextState: "menu_faltas" },
-                    { text: "9", nextState: "menu_alumno" }
+                    { text: "1", nextState: "solicitar_clase_grabada" },
+                    { text: "2", nextState: "despedida_alumno" },
+                    { text: "3", nextState: "menu_alumno" },
+                    { text: "0", nextState: "menu_faltas" }
                 ]
             },
             
-            // MENU SOLICITUDES (OPCION 2 DEL MENU ALUMNO)
+            // MENÚ SOLICITUDES SOBRE MI CURSO
             {
-                state: "menu_solicitudes",
-                message: `╔═══════════════════════════════════════════╗
-║  📤🎒 INFORMACIÓN Y SOLICITUDES SOBRE     ║
-║              MI CURSO                     ║
-╚═══════════════════════════════════════════╝
+                state: "menu_solicitudes_curso", 
+                message: `📤🎒 INFORMACIÓN Y SOLICITUDES SOBRE MI CURSO 🎒📤
 
-┌───────────────────────────────────────────────┐
-│          📋 SUBMENÚ DISPONIBLE            │
-├───────────────────────────────────────────────┤
-│                                           │
-│ • 1. 📊 ¿Cuál es mi progreso académico?   │
-│                                           │
-│ • 2. 🆙 ¿Cuándo paso de nivel?           │
-│                                           │
-│ • 3. 📜 Necesito una constancia.          │
-│                                           │
-│ • 4. 🎓 ¿Cuándo recibo mi certificado?   │
-│                                           │
-│ • 5. 🎯 Quiero presentar un examen de     │
-│      certificación (TOEFL, Cambridge)      │
-│                                           │
-└───────────────────────────────────────────────┘
+📋 **GESTIÓN ACADÉMICA PERSONAL** 📋
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🤖 ¿En qué puedo ayudarte con tu curso?
+
+📋 *SERVICIOS DISPONIBLES:*
+
+• *1* ➤ ¿En qué nivel me encuentro y a qué certificación podría aspirar? 🔺
+• *2* ➤ Quiero solicitar una constancia de estudios 📃  
+• *3* ➤ Necesito revisar un posible cambio de horario 🕘
+• *4* ➤ Necesito solicitar mi baja 😭
+• *5* ➤ Quisiera saber el período vacacional de esta temporada 🏖️
 
 ⬅️ *0* - Volver al menú de alumno
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 🤖 *Selecciona el número que necesites* 🤗`,
                 options: [
-                    { text: "1", nextState: "progreso_academico" },
-                    { text: "2", nextState: "cambio_nivel" },
-                    { text: "3", nextState: "solicitar_constancia" },
-                    { text: "4", nextState: "info_certificado" },
-                    { text: "5", nextState: "examen_certificacion" },
+                    { text: "1", nextState: "nivel_certificacion" },
+                    { text: "2", nextState: "constancia_estudios" },
+                    { text: "3", nextState: "cambio_horario" },
+                    { text: "4", nextState: "solicitar_baja" },
+                    { text: "5", nextState: "periodo_vacacional" },
                     { text: "0", nextState: "menu_alumno" }
                 ]
             },
             
-            // PROGRESO ACADEMICO
+            // NIVEL Y CERTIFICACIÓN
             {
-                state: "progreso_academico",
-                message: `╔═══════════════════════════════════════════╗
-║    📊 ¿CUÁL ES MI PROGRESO ACADÉMICO?     ║
-╚═══════════════════════════════════════════╝
+                state: "nivel_certificacion",
+                message: `🔺 NIVEL ACTUAL Y CERTIFICACIONES 🔺
 
-🤖: Con gusto te comparto tu información académica:
+🎓 **PROGRESO ACADÉMICO PERSONAL** 🎓
 
-┌───────────────────────────────────────────────┐
-│         📈 TU PROGRESO ACTUAL             │
-├───────────────────────────────────────────────┤
-│                                           │
-│ 📚 *Nivel actual:* A2 Elementary          │
-│ 📅 *Inicio en este nivel:* Enero 2025     │
-│ ⏱️ *Tiempo en el nivel:* 2 meses          │
-│ 📊 *Progreso:* 65% completado             │
-│                                           │
-│ ✅ *Unidades completadas:* 4/6            │
-│ 📝 *Promedio general:* 8.7                │
-│ 🎯 *Asistencia:* 92%                      │
-│                                           │
-└───────────────────────────────────────────────┘
+🤖 Con gusto te comparto la comparativa de niveles, para que puedas identificar en dónde te encuentras actualmente:
 
-💡 *PRÓXIMOS PASOS:*
-• Examen Unidad 5: 15 de marzo
-• Examen final A2: 30 de marzo
-• Inicio B1: 1 de abril (si apruebas)
+[ENVIAR IMÁGENES: niveles_dominio.jpg]
+[ENVIAR IMÁGENES: niveles_mastery.jpg]
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 *CERTIFICACIONES DISPONIBLES:*
+De igual manera te envío las certificaciones que podrías realizar según tu nivel.
 
-[ENVIAR IMAGEN: reporte_progreso_alumno.jpg]
+[ENVIAR IMAGEN: certificaciones_cambridge.png]
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🇬🇧 *CENTRO AUTORIZADO CAMBRIDGE:*
+Como centro autorizado de preparación, nuestros cursos están apegados al marco común de referencia para las lenguas, (CEFR). De esta manera, tendrás la gran ventaja de poder certificar tus conocimientos a través de las certificaciones de University of Cambridge conforme vayas avanzando, ya que la preparación para dichas certificaciones está incluida en tu curso. 🎓🇬🇧
 
-⬅️ *0* - Volver al menú de solicitudes
-🏠 *9* - Menú principal
+🤖 Es un gusto atenderte, ¿Deseas que te apoye con algo más?
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✨ *1* ➤ Quisiera iniciar mi proceso para pagar mi examen de certificación 📜
+✨ *2* ➤ Es todo, muchas gracias 🤗
+✨ *3* ➤ Requiero ver de nuevo el Menú de opciones para alumno 🔻
 
-🤖 *¿Necesitas más información?*`,
+⬅️ *0* - Volver al menú de solicitudes`,
                 options: [
-                    { text: "0", nextState: "menu_solicitudes" },
-                    { text: "9", nextState: "menu_alumno" }
+                    { text: "1", nextState: "proceso_certificacion" },
+                    { text: "2", nextState: "despedida_alumno" },
+                    { text: "3", nextState: "menu_alumno" },
+                    { text: "0", nextState: "menu_solicitudes_curso" }
                 ]
             },
             
-            // CAMBIO NIVEL
+            // PROCESO CERTIFICACIÓN
             {
-                state: "cambio_nivel",
-                message: `╔═══════════════════════════════════════════╗
-║       🆙 ¿CUÁNDO PASO DE NIVEL?          ║
-╚═══════════════════════════════════════════╝
+                state: "proceso_certificacion",
+                message: `📜 *PROCESO DE CERTIFICACIÓN CAMBRIDGE* 📜
 
-🤖: Te explico el proceso de cambio de nivel:
+🤖 Me parece excelente que desees dar este importante paso en tu aprendizaje del idioma.
 
-┌───────────────────────────────────────────────┐
-│      📋 REQUISITOS PARA AVANZAR           │
-├───────────────────────────────────────────────┤
-│                                           │
-│ ✅ *Para pasar al siguiente nivel:*       │
-│                                           │
-│ • 📝 Promedio mínimo: 7.0                 │
-│ • 🎯 Asistencia mínima: 80%               │
-│ • ✔️ Aprobar examen final del nivel       │
-│ • 📚 Completar todas las tareas           │
-│                                           │
-└───────────────────────────────────────────────┘
+🏢 *ASESORÍA PERSONALIZADA:*
+Por favor acércate a recepción en nuestras instalaciones durante nuestros horarios de atención, para platicar al respecto y poder asesorarte de la mejor manera.
 
-🗓️ *TU SITUACIÓN ACTUAL:*
+📞 *CONTACTO:*
+• Teléfono: 552651-9373
+• Horarios: L-J 12:00-20:00 | V 10:15-16:00 | S 11:15-13:30
 
-• Nivel actual: A2
-• Fecha estimada de cambio: 1 de abril 2025
-• Requisitos cumplidos: 3/4 ✅
+🤖 *¡Tu certificación internacional te espera!* 🎓
 
-⚠️ *IMPORTANTE:*
-El cambio de nivel NO es automático. Debes cumplir todos los requisitos.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-⬅️ *0* - Volver al menú de solicitudes
-🏠 *9* - Menú principal
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-🤖 *¿Tienes alguna duda específica?*`,
+⬅️ *0* - Volver al menú de solicitudes`,
                 options: [
-                    { text: "0", nextState: "menu_solicitudes" },
-                    { text: "9", nextState: "menu_alumno" }
+                    { text: "0", nextState: "menu_solicitudes_curso" }
                 ]
             },
             
-            // SOLICITAR CONSTANCIA
+            // CONSTANCIA DE ESTUDIOS
             {
-                state: "solicitar_constancia",
-                message: `╔═══════════════════════════════════════════╗
-║       📜 NECESITO UNA CONSTANCIA          ║
-╚═══════════════════════════════════════════╝
+                state: "constancia_estudios",
+                message: `📃 CONSTANCIA DE ESTUDIOS 📃
 
-🤖: ¡Con gusto te ayudo con tu constancia!
+📋 **DOCUMENTO OFICIAL** 📋
 
-┌───────────────────────────────────────────────┐
-│      📋 TIPOS DE CONSTANCIAS              │
-├───────────────────────────────────────────────┤
-│                                           │
-│ • 1. 📚 Constancia de estudios            │
-│ • 2. 📊 Constancia con calificaciones     │
-│ • 3. 🎯 Constancia de nivel               │
-│ • 4. 💰 Constancia fiscal                 │
-│ • 5. 📝 Otra constancia                   │
-│                                           │
-└───────────────────────────────────────────────┘
+🤖 ¡Con gusto!, te comento que la constancia de alumno tiene un costo de *$280.00* 📃
 
-💵 *COSTO:* $50 por constancia
-⏱️ *TIEMPO DE ENTREGA:* 24-48 horas hábiles
+⏱️ *PROCESO:*
+Solamente debes realizar el pago de la misma y podrás pasar a recogerla en recepción al día laboral siguiente de la confirmación.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🤖 Es un gusto atenderte, ¿Deseas que te apoye con algo más?
 
-⬅️ *0* - Volver al menú de solicitudes
+✨ *1* ➤ Quisiera pagar mi constancia 📜
+✨ *2* ➤ Es todo, muchas gracias 🤗
+✨ *3* ➤ Requiero ver de nuevo el Menú de opciones para alumno 🔻
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-🤖 *¿Qué tipo de constancia necesitas?*`,
+⬅️ *0* - Volver al menú de solicitudes`,
                 options: [
-                    { text: "1", nextState: "constancia_estudios" },
-                    { text: "2", nextState: "constancia_calificaciones" },
-                    { text: "3", nextState: "constancia_nivel" },
-                    { text: "4", nextState: "constancia_fiscal" },
-                    { text: "5", nextState: "otra_constancia" },
-                    { text: "0", nextState: "menu_solicitudes" }
+                    { text: "1", nextState: "pago_constancia" },
+                    { text: "2", nextState: "despedida_alumno" },
+                    { text: "3", nextState: "menu_alumno" },
+                    { text: "0", nextState: "menu_solicitudes_curso" }
                 ]
             },
             
-            // INFO CERTIFICADO
+            // PAGO CONSTANCIA
             {
-                state: "info_certificado",
-                message: `╔═══════════════════════════════════════════╗
-║    🎓 ¿CUÁNDO RECIBO MI CERTIFICADO?      ║
-╚═══════════════════════════════════════════╝
+                state: "pago_constancia",
+                message: `💳 *PAGO DE CONSTANCIA* 💳
 
-🤖: Te explico sobre los certificados:
+🤖 ¡Muy bien! Te comparto nuestros métodos de pago:
 
-┌───────────────────────────────────────────────┐
-│      🏆 CERTIFICADOS POR NIVEL            │
-├───────────────────────────────────────────────┤
-│                                           │
-│ 📜 *CERTIFICADOS DISPONIBLES:*            │
-│                                           │
-│ • A1 → Certificado Básico I               │
-│ • A2 → Certificado Básico II              │
-│ • B1 → Certificado Intermedio I           │
-│ • B1+ → Certificado Intermedio II         │
-│ • B2 → Certificado Intermedio Alto        │
-│ • C1 → Certificado Avanzado               │
-│                                           │
-└───────────────────────────────────────────────┘
+[ENVIAR IMAGEN: metodos_pago_alumnos.jpg]
 
-📋 *REQUISITOS:*
-• Aprobar examen final (mín. 8.0)
-• 80% asistencia mínima
-• Todas las tareas completadas
-• Sin adeudos
+📝 *INFORMACIÓN REQUERIDA:*
+Solamente deberás compartirnos foto de tu comprobante, junto con:
+• Nombre completo del alumno
+• Información específica detallada fuera del nivel y horario que necesites se vea reflejada en tu constancia *(En caso de requerirlo)*
 
-⏱️ *TIEMPO DE ENTREGA:*
-• 15-20 días hábiles después de aprobar
+📤 *Envía tu comprobante cuando esté listo*
 
-💰 *COSTO:* Incluido en tu inscripción
+🤖 *Una vez recibido, procesaremos tu constancia* 📋
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-⬅️ *0* - Volver al menú de solicitudes
-🏠 *9* - Menú principal
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+⬅️ *0* - Volver al menú de solicitudes`,
                 options: [
-                    { text: "0", nextState: "menu_solicitudes" },
-                    { text: "9", nextState: "menu_alumno" }
+                    { text: "0", nextState: "menu_solicitudes_curso" }
                 ]
             },
             
-            // EXAMEN CERTIFICACION
+            // CAMBIO DE HORARIO
             {
-                state: "examen_certificacion",
-                message: `╔═══════════════════════════════════════════╗
-║   🎯 QUIERO PRESENTAR UN EXAMEN DE        ║
-║     CERTIFICACIÓN (TOEFL, CAMBRIDGE)      ║
-╚═══════════════════════════════════════════╝
+                state: "cambio_horario",
+                message: `🕘 CAMBIO DE HORARIO 🕘
 
-🤖: ¡Excelente decisión! Te apoyo con la información:
+🔄 **MODIFICACIÓN DE HORARIO** 🔄
 
-┌───────────────────────────────────────────────┐
-│    🏆 CERTIFICACIONES INTERNACIONALES     │
-├───────────────────────────────────────────────┤
-│                                           │
-│ 📘 *CAMBRIDGE:*                           │
-│ • KET (A2) - $2,800                       │
-│ • PET (B1) - $3,200                       │
-│ • FCE (B2) - $4,100                       │
-│ • CAE (C1) - $4,300                       │
-│                                           │
-│ 📕 *TOEFL iBT:*                           │
-│ • Costo: $195 USD                         │
-│ • Niveles B1-C2                           │
-│ • Validez: 2 años                         │
-│                                           │
-└───────────────────────────────────────────────┘
+🤖 Con gusto te apoyamos a revisar las diferentes opciones. Permíteme comentarlo con algún asesor, para darte respuesta.
 
-🎓 *PREPARACIÓN EN UNIVERSAL HOUSE:*
-• Curso especializado de 3 meses
-• Simulacros de examen
-• Material incluido
-• Costo: $1,800/mes
+De igual manera, puedes acercarte a recepción en nuestras instalaciones durante nuestros horarios de atención, para platicar al respecto y poder asesorarte de la mejor manera.
 
-📅 *PRÓXIMAS FECHAS 2025:*
-• Cambridge: Mayo y Noviembre
-• TOEFL: Disponible cada mes
+[NOTA PARA ADMIN: Consulta de cambio de horario para matrícula [NÚMERO]]
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🤖 Recuerda que actualmente, contamos con diversas alternativas para darle continuidad a tu curso en caso de no poder asistir a tu horario actual por un tiempo.
 
-[ENVIAR IMAGEN: certificaciones_internacionales.jpg]
+¿Deseas conocer las opciones que tenemos?
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✨ *1* ➤ Sí ¿Qué puedo hacer si necesito faltar? ✅
+✨ *2* ➤ Quiero conocer sus horarios de atención 🕓
+✨ *3* ➤ Es todo, espero respuesta gracias 🤗
+✨ *4* ➤ Requiero ver de nuevo el Menú de opciones para alumno 🔻
 
-⬅️ *0* - Volver al menú de solicitudes
-🏠 *9* - Menú principal
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+⬅️ *0* - Volver al menú de solicitudes`,
                 options: [
-                    { text: "0", nextState: "menu_solicitudes" },
-                    { text: "9", nextState: "menu_alumno" }
+                    { text: "1", nextState: "opciones_faltar" },
+                    { text: "2", nextState: "horarios_atencion_alumno" },
+                    { text: "3", nextState: "despedida_alumno" },
+                    { text: "4", nextState: "menu_alumno" },
+                    { text: "0", nextState: "menu_solicitudes_curso" }
                 ]
             },
             
-            // MENU PAGOS (OPCION 3 DEL MENU ALUMNO)
+            // SOLICITAR BAJA
             {
-                state: "menu_pagos",
-                message: `╔═══════════════════════════════════════════╗
-║   💵🕜 PAGOS Y HORARIOS DE ATENCIÓN       ║
-╚═══════════════════════════════════════════╝
+                state: "solicitar_baja",
+                message: `😭 SOLICITAR BAJA 😭
 
-┌───────────────────────────────────────────────┐
-│          💰 SUBMENÚ DISPONIBLE            │
-├───────────────────────────────────────────────┤
-│                                           │
-│ • 1. 💳 ¿Cuánto debo y cuándo pagar?      │
-│                                           │
-│ • 2. 🏦 ¿Cuáles son los datos bancarios?  │
-│                                           │
-│ • 3. 📧 Necesito factura.                 │
-│                                           │
-│ • 4. 🕐 ¿Cuáles son los horarios de       │
-│      atención en caja?                    │
-│                                           │
-└───────────────────────────────────────────────┘
+⚠️ **PROCESO DE BAJA** ⚠️
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🤖 Lamento que tengas que detener tu curso.
+
+💡 *ALTERNATIVAS DISPONIBLES:*
+Recuerda que actualmente, contamos con diversas alternativas para darle continuidad a tu curso en caso de no poder asistir a tu horario actual por un tiempo, incluso indeterminado. O bien, puedes solicitar un cambio de horario.
+
+¿Deseas conocer las opciones que tenemos?
+
+✨ *1* ➤ Sí ¿Qué puedo hacer si necesito faltar? ✅
+✨ *2* ➤ Quiero revisar un posible cambio de horario 🕘
+✨ *3* ➤ Deseo proceder con mi baja 😭
+✨ *4* ➤ Requiero ver de nuevo el Menú de opciones para alumno 🔻
+
+⬅️ *0* - Volver al menú de solicitudes`,
+                options: [
+                    { text: "1", nextState: "opciones_faltar" },
+                    { text: "2", nextState: "cambio_horario" },
+                    { text: "3", nextState: "proceder_baja" },
+                    { text: "4", nextState: "menu_alumno" },
+                    { text: "0", nextState: "menu_solicitudes_curso" }
+                ]
+            },
+            
+            // PROCEDER CON BAJA
+            {
+                state: "proceder_baja", 
+                message: `😭 *PROCESO DE BAJA DEFINITIVA* 😭
+
+⚠️ *IMPORTANTE - LEE CUIDADOSAMENTE:*
+
+🤖 A continuación, procederé con tu baja.
+
+*Recuerda que no existen las bajas temporales, por lo que, una vez dada de baja tu inscripción, si deseas reincorporarte al curso, deberás hacerlo como nuevo alumno. Esto implicará la pérdida de todos tus beneficios, tales como servicios adicionales sin costo y costos preferenciales por antigüedad.*
+
+📮 *FEEDBACK REQUERIDO:*
+Para finalizar con tu proceso de baja, por favor indícame el motivo de la misma y así seguir mejorando día a día. 📮✨
+
+💭 *Comparte tu motivo de baja:*
+
+[NOTA PARA ADMIN: Proceso de baja iniciado para matrícula [NÚMERO]]
+
+⬅️ *0* - Volver al menú de solicitudes`,
+                options: [
+                    { text: "0", nextState: "menu_solicitudes_curso" }
+                ]
+            },
+            
+            // PERÍODO VACACIONAL
+            {
+                state: "periodo_vacacional",
+                message: `🏖️ PERÍODO VACACIONAL 🏖️
+
+📅 **CALENDARIO ACADÉMICO** 📅
+
+🤖 ¡Claro!, te recuerdo que, a lo largo del año, contamos con aproximadamente *7 semanas de vacaciones* distribuidas en los períodos de semana santa, verano, invierno y días de asueto específicos.
+
+📅 *VACACIONES ESTA TEMPORADA:*
+Esta temporada tendremos vacaciones en las siguientes fechas:
+
+[ENVIAR IMAGEN: periodo_vacacional.jpg]
+
+🤖 ¿Puedo apoyarte con algo más?
+
+✨ *1* ➤ Sí ¿Debo pagar el período vacacional? 💳
+✨ *2* ➤ Es todo, espero respuesta gracias 🤗
+✨ *3* ➤ Requiero ver de nuevo el Menú de opciones para alumno 🔻
+
+⬅️ *0* - Volver al menú de solicitudes`,
+                options: [
+                    { text: "1", nextState: "pago_vacacional" },
+                    { text: "2", nextState: "despedida_alumno" },
+                    { text: "3", nextState: "menu_alumno" },
+                    { text: "0", nextState: "menu_solicitudes_curso" }
+                ]
+            },
+            
+            // PAGO VACACIONAL
+            {
+                state: "pago_vacacional",
+                message: `💳 *PERÍODOS VACACIONALES* 💳
+
+🤖 Te explico nuestra política de períodos vacacionales:
+
+📅 *CALENDARIO ANUAL:*
+🌸 Semana Santa: 2 semanas
+☀️ Verano: 2 semanas  
+🎄 Diciembre: 2 semanas
+🎉 Todos los días festivos oficiales
+
+💰 *POLÍTICA DE PAGOS:*
+Estos períodos están *incluidos en tu colegiatura*, por lo que:
+
+✅ *SÍ se pagan* - Forman parte de tu anualidad
+❌ *NO se reponen* - Las clases no se recuperan
+📅 *NO se recorre* - Tu fecha de pago se mantiene
+
+🎯 *BENEFICIOS:*
+De esta manera mantienes activos todos tus beneficios, servicios adicionales sin costo y costos preferenciales por antigüedad.
+
+🤖 *Política transparente para tu tranquilidad* 📚
+
+⬅️ *0* - Volver al menú de solicitudes`,
+                options: [
+                    { text: "0", nextState: "menu_solicitudes_curso" }
+                ]
+            },
+            
+            // MENÚ PAGOS Y HORARIOS DE ATENCIÓN
+            {
+                state: "menu_pagos_alumno",
+                message: `💵🕜 PAGOS Y HORARIOS DE ATENCIÓN 🕜💵
+
+💳 **GESTIÓN FINANCIERA Y HORARIOS** 💳
+
+🤖 ¿En qué puedo ayudarte hoy?
+
+📋 *SERVICIOS DISPONIBLES:*
+
+• *1* ➤ Quisiera conocer sus horarios de atención 🕓
+• *2* ➤ ¿Cuál es el monto de mi colegiatura mensual y mi fecha de pago? 💲  
+• *3* ➤ ¿Cuánto debo pagar de recargos? 💰
+• *4* ➤ Precio de mi nuevo Material 📚
+• *5* ➤ Quisiera conocer sus métodos de pago 🪪
+• *6* ➤ Solicito mi liga de pago Banorte 🔗
+• *7* ➤ Períodos vacacionales 📅
 
 ⬅️ *0* - Volver al menú de alumno
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 🤖 *Selecciona el número que necesites* 🤗`,
                 options: [
-                    { text: "1", nextState: "estado_cuenta" },
-                    { text: "2", nextState: "datos_bancarios_alumno" },
-                    { text: "3", nextState: "solicitar_factura_alumno" },
-                    { text: "4", nextState: "horarios_caja" },
+                    { text: "1", nextState: "horarios_atencion_alumno" },
+                    { text: "2", nextState: "monto_colegiatura" },
+                    { text: "3", nextState: "info_recargos" },
+                    { text: "4", nextState: "precio_material" },
+                    { text: "5", nextState: "metodos_pago_alumno" },
+                    { text: "6", nextState: "liga_banorte" },
+                    { text: "7", nextState: "info_vacaciones_pago" },
                     { text: "0", nextState: "menu_alumno" }
                 ]
             },
             
-            // ESTADO DE CUENTA
+            // HORARIOS DE ATENCIÓN ALUMNO
             {
-                state: "estado_cuenta",
-                message: `╔═══════════════════════════════════════════╗
-║    💳 ¿CUÁNTO DEBO Y CUÁNDO PAGAR?        ║
-╚═══════════════════════════════════════════╝
+                state: "horarios_atencion_alumno",
+                message: `🕓 HORARIOS DE ATENCIÓN 🕓
 
-🤖: Aquí está tu estado de cuenta actualizado:
+📞 **SERVICIO AL ESTUDIANTE** 📞
 
-┌───────────────────────────────────────────────┐
-│         💰 ESTADO DE CUENTA               │
-├───────────────────────────────────────────────┤
-│                                           │
-│ 👤 *Alumno:* [Tu nombre]                  │
-│ 🆔 *Matrícula:* [Tu matrícula]            │
-│ 📚 *Nivel:* A2 Elementary                 │
-│                                           │
-│ 📅 *HISTORIAL DE PAGOS:*                  │
-│ ✅ Enero 2025: PAGADO                     │
-│ ✅ Febrero 2025: PAGADO                   │
-│ ⏳ Marzo 2025: PENDIENTE                  │
-│                                           │
-│ 💵 *MONTO A PAGAR:* $1,300                │
-│ 📆 *FECHA LÍMITE:* 10 de marzo            │
-│                                           │
-└───────────────────────────────────────────────┘
+🤖 ¡Con gusto! A continuación, te comparto los horarios en los que un agente puede atenderte por nuestros medios de contacto, o bien en recepción en nuestras instalaciones para realizar alguna solicitud específica o bien realizar tus pagos.
 
-⚠️ *IMPORTANTE:*
-• Paga antes del día 10 para evitar recargos
-• Recargo por pago tardío: $100
+[ENVIAR IMAGEN: horarios_atencion_alumnos.jpg]
 
-🎁 *DESCUENTOS DISPONIBLES:*
-• Pago anticipado 3 meses: 5% descuento
-• Pago semestre completo: 10% descuento
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-[ENVIAR STICKER: recordatorio_pago.webp]
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📞 *CONTACTO DIRECTO:*
+Puedes comunicarte también dentro de estos horarios al número local de atención, donde un agente podrá atenderte:
+📞 552651-9373
 
 ⬅️ *0* - Volver al menú de pagos
-🏦 *1* - Ver datos bancarios
-🏠 *9* - Menú principal
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+🤖 *Estamos aquí para atenderte* 🤗`,
                 options: [
-                    { text: "0", nextState: "menu_pagos" },
-                    { text: "1", nextState: "datos_bancarios_alumno" },
-                    { text: "9", nextState: "menu_alumno" }
+                    { text: "0", nextState: "menu_pagos_alumno" }
                 ]
             },
             
-            // OTRO ALUMNO
+            // MONTO Y FECHA DE PAGO
+            {
+                state: "monto_colegiatura", 
+                message: `💲 COLEGIATURA Y FECHA DE PAGO 💲
+
+📊 **INFORMACIÓN FINANCIERA** 📊
+
+🤖 ¡Con gusto te apoyo a conseguir la información solicitada! 
+
+📝 *DATOS REQUERIDOS:*
+Favor de indicarme el nombre del alumno y enseguida lo reviso con un agente.
+
+💡 *Información que te proporcionaré:*
+• Monto exacto de tu colegiatura mensual
+• Fecha específica de pago
+• Historial de pagos recientes
+
+📝 *Escribe tu nombre completo para consulta*
+
+[NOTA PARA ADMIN: Consulta de colegiatura para [NOMBRE_ALUMNO] - Matrícula [NÚMERO]]
+
+🤖 ¿Puedo apoyarte con algo más?
+
+✨ *1* ➤ Es todo, espero respuesta gracias 🤗
+✨ *2* ➤ Requiero ver de nuevo el Menú de opciones para alumno 🔻
+
+⬅️ *0* - Volver al menú de pagos
+
+🤖 *Respuesta en máximo 24 horas* ⏰`,
+                options: [
+                    { text: "1", nextState: "despedida_alumno" },
+                    { text: "2", nextState: "menu_alumno" },
+                    { text: "0", nextState: "menu_pagos_alumno" }
+                ]
+            },
+            
+            // INFORMACIÓN DE RECARGOS
+            {
+                state: "info_recargos",
+                message: `💰 INFORMACIÓN DE RECARGOS 💰
+
+⚠️ **POLÍTICA DE RECARGOS** ⚠️
+
+🤖 Comprendo tu duda, te comento; Los recargos comienzan a generarse al cuarto día después de tu fecha de pago, ya que se les otorgan 3 días adicionales en atención a ustedes para realizar su pago sin costos extra en caso de tener algún inconveniente.
+
+📅 *ESCALA DE RECARGOS:*
+• *Cuarto día:* $65.00 (primer recargo)
+• *Quinto día:* $65.00 (segundo recargo)  
+• *Sexto día:* $65.00 (tercer recargo)
+
+💵 *MÁXIMO:* $195.00 total
+
+⚠️ *IMPORTANTE:* Posterior a estos días, no se generarán más recargos. Sin embargo, es esencial realizar su pago correspondiente para poder reactivar el ingreso a clases.
+
+🤖 Con gusto te apoyo a saber cuántos recargos se han generado con tu pago. Favor de indicarme el nombre del alumno y enseguida lo reviso con un agente.
+
+📝 *Escribe tu nombre completo para consulta específica*
+
+[NOTA PARA ADMIN: Consulta de recargos para [NOMBRE_ALUMNO] - Matrícula [NÚMERO]]
+
+🤖 ¿Puedo apoyarte con algo más?
+
+✨ *1* ➤ Es todo, espero respuesta gracias 🤗
+✨ *2* ➤ Requiero ver de nuevo el Menú de opciones para alumno 🔻
+
+⬅️ *0* - Volver al menú de pagos
+
+🤖 *Consulta personalizada en proceso* 📋`,
+                options: [
+                    { text: "1", nextState: "despedida_alumno" },
+                    { text: "2", nextState: "menu_alumno" },
+                    { text: "0", nextState: "menu_pagos_alumno" }
+                ]
+            },
+            
+            // PRECIO DE MATERIAL
+            {
+                state: "precio_material",
+                message: `📚 PRECIO DE MATERIAL NUEVO 📚
+
+📖 **COSTOS DE MATERIALES** 📖
+
+🤖 A continuación, te comparto los costos de nuestros materiales 📚:
+
+🟢🔴🟡🔵 *MATERIAL HEADWAY NIVEL DOMINIO:*
+$2,120.00 (Duración de 8-10 meses)
+El material consiste en 2 libros originales más una plataforma electrónica que podrás utilizar desde casa.
+
+🟣🤹👧👦 *MATERIAL CURSO KIDS:*
+$1,420.00 (2 Libros originales con duración de 8 meses)
+
+🟩📗👨‍🎓 *MATERIAL NIVEL PERFECCIONAMIENTO B2:*
+$2,620.00 (2 Libros originales con duración de 18 meses)
+
+🟧📗👩‍🎓 *MATERIAL NIVEL PERFECCIONAMIENTO C1:*
+$2,620.00 (2 Libros originales con duración de 18 meses)
+
+🤖 ¿Deseas conocer los métodos de pago para apartar tu material?
+
+✨ *1* ➤ Sí me interesa obtener los diferentes métodos de pago ✅
+✨ *2* ➤ Requiero ver de nuevo el Menú de opciones para conocer mayor información 🔻
+
+⬅️ *0* - Volver al menú de pagos
+
+🤖 *Selecciona una opción* 🤗`,
+                options: [
+                    { text: "1", nextState: "metodos_pago_alumno" },
+                    { text: "2", nextState: "menu_alumno" },
+                    { text: "0", nextState: "menu_pagos_alumno" }
+                ]
+            },
+            
+            // MÉTODOS DE PAGO ALUMNO
+            {
+                state: "metodos_pago_alumno",
+                message: `🪪 MÉTODOS DE PAGO 🪪
+
+💳 **FACILIDADES DE PAGO PARA ALUMNOS** 💳
+
+🤖 ¡Muy bien! Te comparto nuestros métodos de pago:
+
+[ENVIAR IMAGEN: metodos_pago_estudiantes.jpg]
+
+📋 *INSTRUCCIONES:*
+Solamente deberás compartirnos foto de tu comprobante junto con el nombre del alumno para poder revisar y registrar el pago.
+
+💳 *PAGO CON TARJETA:*
+Si deseas pagar con tarjeta de crédito o débito a distancia, solicita tu liga personalizada de pago BANORTE por este medio.
+
+🤖 ¿Deseas solicitar tu liga de pago Banorte?
+
+✨ *1* ➤ Sí, me interesa obtener mi liga de pago Banorte 🔗 ✅
+✨ *2* ➤ Ya cuento con un comprobante de pago 🧾
+✨ *3* ➤ Requiero ver de nuevo el Menú de opciones para conocer mayor información 🔻
+
+⬅️ *0* - Volver al menú de pagos
+
+🤖 *Facilidades para tu comodidad* 🤗`,
+                options: [
+                    { text: "1", nextState: "liga_banorte" },
+                    { text: "2", nextState: "comprobante_recibido_alumno" },
+                    { text: "3", nextState: "menu_alumno" },
+                    { text: "0", nextState: "menu_pagos_alumno" }
+                ]
+            },
+            
+            // LIGA DE PAGO BANORTE
+            {
+                state: "liga_banorte",
+                message: `🔗 SOLICITO MI LIGA DE PAGO BANORTE 🔗
+
+💳 **PAGO CON TARJETA EN LÍNEA** 💳
+
+🤖 ¡Claro! Enseguida solicitamos tu liga de pago Banorte y en cuanto la tengamos te la haré llegar por este medio.
+
+⚠️ *IMPORTANTE:*
+Recuerda realizar tu pago dentro de los días límite en el link que se te proporcione.
+
+🎫 *SOLICITUD REGISTRADA*
+📧 Recibirás tu liga personalizada pronto
+
+[NOTA PARA ADMIN: Solicitud de liga Banorte para matrícula [NÚMERO]]
+
+⬅️ *0* - Volver al menú de pagos
+
+🤖 *Tu liga estará lista en breve* ⏰`,
+                options: [
+                    { text: "0", nextState: "menu_pagos_alumno" }
+                ]
+            },
+            
+            // INFORMACIÓN VACACIONES Y PAGOS
+            {
+                state: "info_vacaciones_pago",
+                message: `📅 PERÍODOS VACACIONALES 📅
+
+📅 **INFORMACIÓN ACADÉMICA** 📅
+
+🤖 Te comento sobre nuestros períodos vacacionales a lo largo del año:
+
+📅 *CALENDARIO VACACIONAL:*
+🌸 *Semana Santa:* 2 semanas
+☀️ *Verano:* 2 semanas  
+🎄 *Diciembre:* 2 semanas
+🎉 *Días festivos:* Todos los días festivos oficiales
+
+💰 *POLÍTICA DE PAGOS:*
+Todos estos períodos vacacionales están *incluidos en tu colegiatura mensual*, por lo que:
+
+✅ *SÍ se pagan* - No hay suspensión de pagos
+❌ *NO se reponen* - Las clases no se recuperan  
+📅 *NO se recorre* - Tu fecha de pago se mantiene
+
+🎯 *VENTAJAS DE MANTENER PAGOS AL DÍA:*
+• Conservas tu lugar en el grupo
+• Mantienes todos tus beneficios activos
+• Servicios adicionales sin costo
+• Costos preferenciales por antigüedad
+• Acceso continuo a plataformas
+
+⬅️ *0* - Volver al menú de pagos
+
+🤖 *Política clara y transparente* 📋`,
+                options: [
+                    { text: "0", nextState: "menu_pagos_alumno" }
+                ]
+            },
+            
+            // OTRO (CONSULTA ESPECIAL)
             {
                 state: "otro_alumno",
-                message: `╔═══════════════════════════════════════════╗
-║           🤔💭 OTRO ASUNTO                ║
-╚═══════════════════════════════════════════╝
+                message: `🤔💭 CONSULTA ESPECIAL 💭🤔
 
-🤖: Entiendo que tienes otra consulta.
+📝 **SOLICITUDES PERSONALIZADAS** 📝
 
-Por favor, describe brevemente qué necesitas y te ayudaré o te dirigiré con la persona indicada.
+🤖 Comprendo que tu solicitud no se encuentra en mi menú de opciones, por favor indícame de manera detallada en qué podemos apoyarte, y así, de ser necesario le notificaré de inmediato a un agente para que pueda atenderte dentro de nuestros horarios de atención. 🤗
 
-💡 *Ejemplos de consultas:*
-• "Quiero cambiar de horario"
-• "Necesito hablar sobre una situación especial"
-• "Tengo una sugerencia para la escuela"
-• "Problema con mi teacher"
+📝 *DESCRIBE TU CONSULTA:*
+• Sé específico con tu solicitud
+• Incluye detalles relevantes
+• Menciona si es urgente
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 *Escribe tu consulta detallada aquí*
+
+[NOTA PARA ADMIN: Consulta especial de matrícula [NÚMERO]: [MENSAJE_USUARIO]]
 
 ⬅️ *0* - Volver al menú de alumno
-👥 *1* - Hablar con una persona
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-🤖 *Escribe tu consulta o selecciona una opción*`,
+🤖 *Un agente revisará tu solicitud y te contactará pronto* 📞`,
                 options: [
-                    { text: "0", nextState: "menu_alumno" },
-                    { text: "1", nextState: "atencion_humana_alumno" }
+                    { text: "0", nextState: "menu_alumno" }
                 ]
             },
             
+            // DESPEDIDA ALUMNO
             {
-                state: "consultar_horarios",
-                message: `📅 *TU HORARIO ACTUAL*
+                state: "despedida_alumno",
+                message: `🤗 *¡EXCELENTE!* 🤗
 
-🕐 Horario: Lunes a Jueves 18:00-19:00
-👨‍🏫 Teacher: Mrs. Sarah Johnson
-🏫 Salón: 203
+🤖 Muy bien, seguiré aquí para lo que necesites.
 
-Próxima clase: Mañana
+¡Excelente día! ✨
 
-✨ Presiona 1 para volver al menú de alumno:
+🏠 *MENU* - Ir al menú principal
+👨‍🎓 *ALUMNO* - Portal de estudiantes
 
-* 1 ➡️ Volver`,
+🤖 *Siempre a tu servicio* 💫`,
                 options: [
-                    { text: "1", nextState: "menu_alumno" }
+                    { text: "MENU", nextState: "inicio" },
+                    { text: "ALUMNO", nextState: "menu_alumno" }
                 ]
             },
             
-            // DATOS BANCARIOS ALUMNO
+            // COMPROBANTE RECIBIDO ALUMNO
             {
-                state: "datos_bancarios_alumno",
-                message: `╔═══════════════════════════════════════════╗
-║  🏦 ¿CUÁLES SON LOS DATOS BANCARIOS?      ║
-╚═══════════════════════════════════════════╝
+                state: "comprobante_recibido_alumno",
+                message: `📸 *COMPROBANTE RECIBIDO* 📸
 
-🤖: Aquí están los datos para realizar tu pago:
+✅ **PROCESANDO PAGO** ✅
 
-┌───────────────────────────────────────────────┐
-│         🏦 DATOS BANCARIOS                │
-├───────────────────────────────────────────────┤
-│                                           │
-│ 🏛️ *BANCO:* BBVA                          │
-│ 👤 *TITULAR:* Universal House SC          │
-│ 💳 *CUENTA:* 0123456789                   │
-│ 🔢 *CLABE:* 012345678901234567            │
-│                                           │
-│ 📱 *TRANSFERENCIA SPEI:*                  │
-│ • Concepto: TU MATRÍCULA + NOMBRE         │
-│ • Referencia: MES QUE PAGAS               │
-│                                           │
-└───────────────────────────────────────────────┘
+🤖 Agradezco tu comprobante, enseguida lo verificamos y registramos en tu cuenta.
 
-💰 *OTRAS FORMAS DE PAGO:*
-• 💵 Efectivo en recepción
-• 💳 Tarjeta (crédito/débito)
-• 📱 Transferencia bancaria
+💡 *CONFIRMACIÓN:*
+• Recibirás confirmación en 24 horas
+• Se actualizará tu estado de cuenta
+• Tu acceso a clases quedará activo
 
-⚠️ *IMPORTANTE:*
-Envía tu comprobante por este medio para registrar tu pago más rápido.
+🤖 ¿Necesitas algo más?
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✨ *1* ➤ Es todo, gracias 🤗
+✨ *2* ➤ Ver menú de alumno 🔻
 
-[ENVIAR IMAGEN: datos_bancarios_uh.jpg]
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-⬅️ *0* - Volver al menú de pagos
-📤 *1* - Enviar comprobante
-🏠 *9* - Menú principal
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+⬅️ *0* - Volver al menú de pagos`,
                 options: [
-                    { text: "0", nextState: "menu_pagos" },
-                    { text: "1", nextState: "enviar_comprobante_alumno" },
-                    { text: "9", nextState: "menu_alumno" }
+                    { text: "1", nextState: "despedida_alumno" },
+                    { text: "2", nextState: "menu_alumno" },
+                    { text: "0", nextState: "menu_pagos_alumno" }
                 ]
             },
             
-            // SOLICITAR FACTURA ALUMNO
+            // ERROR EN EL REGRESO AL MENÚ
             {
-                state: "solicitar_factura_alumno",
-                message: `╔═══════════════════════════════════════════╗
-║         📧 NECESITO FACTURA               ║
-╚═══════════════════════════════════════════╝
+                state: "esperando_regreso_menu",
+                message: `🔄 *REDIRIGIENDO...* 🔄
 
-🤖: ¡Por supuesto! Te ayudo con tu factura.
-
-Para procesar tu solicitud necesito:
-
-📋 *DATOS REQUERIDOS:*
-1️⃣ RFC completo
-2️⃣ Razón social
-3️⃣ Correo para envío
-4️⃣ Mes(es) a facturar
-5️⃣ Comprobante de pago
-
-💡 *EJEMPLO:*
-"RFC: XAXX010101000
-Razón: Juan Pérez López
-Correo: juan@email.com
-Facturar: Marzo 2025
-Adjunto comprobante"
-
-⏱️ *TIEMPO:* 24-48 horas hábiles
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-⬅️ *0* - Volver al menú de pagos
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-🤖 *Escribe tus datos fiscales completos*`,
-                options: [
-                    { text: "0", nextState: "menu_pagos" }
-                ]
-            },
-            
-            // HORARIOS CAJA
-            {
-                state: "horarios_caja",
-                message: `╔═══════════════════════════════════════════╗
-║   🕐 ¿CUÁLES SON LOS HORARIOS DE         ║
-║         ATENCIÓN EN CAJA?                 ║
-╚═══════════════════════════════════════════╝
-
-🤖: Aquí están nuestros horarios de atención:
-
-┌───────────────────────────────────────────────┐
-│         🕐 HORARIOS DE CAJA               │
-├───────────────────────────────────────────────┤
-│                                           │
-│ 📅 *LUNES A JUEVES:*                      │
-│ • 🕐 12:00 - 14:00 hrs                    │
-│ • 🕔 17:00 - 20:00 hrs                    │
-│                                           │
-│ 📅 *VIERNES:*                             │
-│ • 🕙 10:15 - 16:00 hrs                    │
-│ • (Horario continuo)                      │
-│                                           │
-│ 📅 *SÁBADOS:*                             │
-│ • 🕐 11:15 - 13:30 hrs                    │
-│                                           │
-└───────────────────────────────────────────────┘
-
-📍 *UBICACIÓN:*
-Bosques de los Continentes No. 124
-(Entre Av. Revolución y Niños Héroes)
-
-☎️ *TELÉFONO:* 552651-9373
-
-💡 *TIPS:*
-• Menos fila: 12:00-13:00 hrs
-• Evita quincenas y fin de mes
-• Sábados solo pagos en efectivo
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-[ENVIAR STICKER: horarios_atencion.webp]
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-⬅️ *0* - Volver al menú de pagos
-🏠 *9* - Menú principal
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
-                options: [
-                    { text: "0", nextState: "menu_pagos" },
-                    { text: "9", nextState: "menu_alumno" }
-                ]
-            },
-            
-            // ATENCION HUMANA ALUMNO
-            {
-                state: "atencion_humana_alumno",
-                message: `╔═══════════════════════════════════════════╗
-║      👥 CONECTANDO CON UN ASESOR          ║
-╚═══════════════════════════════════════════╝
-
-🤖: Entiendo que necesitas atención personalizada.
-
-Te voy a transferir con uno de nuestros asesores que podrá ayudarte mejor con tu situación específica.
-
-⏱️ *TIEMPO DE ESPERA:* 2-5 minutos
-
-📱 *MIENTRAS ESPERAS:*
-• Ten tu matrícula a la mano
-• Prepara tu consulta específica
-• Si es sobre pagos, ten tu referencia
-
-💬 *En breve un asesor te atenderá...*
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-[ENVIAR STICKER: asesor_en_camino.webp]
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-🟢 *ASESOR CONECTADO*
-
-👤 *Asesor:* Hola, soy María de Universal House. ¿En qué puedo ayudarte hoy?`,
+Regresando al menú principal...`,
                 options: []
-            },
-            
-            {
-                state: "pagos_adeudos",
-                message: `💳 *ESTADO DE CUENTA*
-
-✅ Enero: PAGADO
-✅ Febrero: PAGADO
-✅ Marzo: PAGADO
-⏳ Abril: Por pagar (vence 10 de abril)
-
-*Saldo actual:* $0.00
-
-✨ Presiona 1 para volver al menú de alumno:
-
-* 1 ➡️ Volver`,
-                options: [
-                    { text: "1", nextState: "menu_alumno" }
-                ]
-            },
-            
-            {
-                state: "password_clase",
-                message: `🔐 *CONTRASEÑA CLASE GRABADA*
-
-Tu contraseña para las clases de esta semana:
-
-📹 Contraseña: UH2024${Math.floor(Math.random() * 1000)}
-
-*Link Zoom:* https://zoom.us/j/123456789
-*Válida hasta:* Domingo 11:59 PM
-
-Recuerda que las grabaciones están disponibles por 7 días.
-
-✨ Presiona 1 para volver al menú de alumno:
-
-* 1 ➡️ Volver`,
-                options: [
-                    { text: "1", nextState: "menu_alumno" }
-                ]
-            },
-
-            // MENU 3 - ATENCIÓN HUMANA
+            },            // MENU 3 - ATENCIÓN HUMANA
             {
                 state: "atencion_humana",
                 message: `📞 *Solicitud de atención personal*
