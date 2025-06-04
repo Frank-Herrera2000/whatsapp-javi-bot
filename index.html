@@ -669,23 +669,38 @@ Por favor bríndame la siguiente información y con gusto te atenderé de la mej
             // MENU 1 - INFORMACIÓN
             {
                 state: "menu_informacion",
-                message: `• 1. 🌐💻 Me interesa información para ingresar a sus cursos. 🔻
+                message: `🌐💻 ¡EXCELENTE ELECCIÓN! 💻🌐
 
-🤖 ¡Muy bien! Por favor indícame que información deseas conocer:
+╔═══════════════════════════════════════════╗
+║  🎓 INFORMACIÓN COMPLETA DE CURSOS 🎓     ║
+║        ✨ UNIVERSAL HOUSE PREMIUM ✨       ║
+╚═══════════════════════════════════════════╝
 
-* 1 💰 Información y costos de nuestros cursos.
-* 2 🕒 Horarios de clases.
-* 3 📝 Examen de ubicación.
-* 4 ✍🏻 Cómo realizo mi inscripción?
-* 5 🗓️ Inicio de sus cursos.
-* 6 ℹ️ Quiero conocer toda la información anterior.
-* 7 🎖️ Deseo conocer sus niveles.
-* 8 📜 Certificaciones.
-* 9 🕣 Quiero conocer sus horarios de atención.
-* 10 🪪 Quiero conocer sus métodos de pago.
-* 0 ⬅️ Volver al menú principal
+🤖 ¡Muy bien! Por favor indícame qué información deseas conocer:
 
-🤖 Puedes indicarme únicamente el número correspondiente. 🤗`,
+┌───────────────────────────────────────────┐
+│                                           │
+│ 📊 *1*  ➤ Información y costos de nuestros cursos │
+│ 🕒 *2*  ➤ Horarios de clases             │
+│ 📝 *3*  ➤ Examen de ubicación            │
+│ ✍🏻 *4*  ➤ ¿Cómo realizo mi inscripción?  │
+│ 🗓️ *5*  ➤ Inicio de sus cursos           │
+│ ℹ️ *6*  ➤ Quiero conocer toda la información anterior │
+│ 🎖️ *7*  ➤ Deseo conocer sus niveles      │
+│ 📜 *8*  ➤ Certificaciones                │
+│ 🕓 *9*  ➤ Quiero conocer sus horarios de atención │
+│ 🚀 *10* ➤ No tengo conocimientos         │
+│                                           │
+└───────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú principal
+👨‍🎓 *ALUMNO* - Portal de estudiantes
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *Puedes indicarme únicamente el número correspondiente* 🤗`,
                 options: [
                     { text: "1", nextState: "submenu_precios" },
                     { text: "2", nextState: "info_horarios" },
@@ -696,7 +711,7 @@ Por favor bríndame la siguiente información y con gusto te atenderé de la mej
                     { text: "7", nextState: "info_niveles" },
                     { text: "8", nextState: "info_certificaciones" },
                     { text: "9", nextState: "info_horarios_atencion" },
-                    { text: "10", nextState: "info_metodos_pago" },
+                    { text: "10", nextState: "no_tengo_conocimientos" },
                     { text: "0", nextState: "inicio" }
                 ]
             },
@@ -884,11 +899,10 @@ Por favor bríndame la siguiente información y con gusto te atenderé de la mej
 ┌─────────────────────────────────┐
 │ 📝 Inscripción: $580 MXN       │
 │ 📚 Material: $1,420 MXN        │
-│ 🎆 Incluye 2 libros + app      │
+│    (2 Libros originales - 8 meses) │
 └─────────────────────────────────┘
 
 ✨ *CARACTERÍSTICAS:*
-• Grupos reducidos (máx. 8 niños)
 • Aprendizaje mediante juegos
 • Teachers especializados en niños
 • Ambiente seguro y divertido
@@ -896,7 +910,6 @@ Por favor bríndame la siguiente información y con gusto te atenderé de la mej
 🎁 *BENEFICIO EXCLUSIVO:*
 ¡Clases virtuales de respaldo sin costo!
 
-[ENVIAR IMAGEN: curso-kids.jpg]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -1078,6 +1091,8 @@ _1 hora diaria, 4 horas semanales_
      • 11:00 - 14:00 hrs
 _3 horas continuas_
 
+*En esta opción contarás con un receso de 15 minutos* 🍎🥞😋
+
 👶 *HORARIO KIDS (7-10 años):*
      • Lunes y Miércoles: 17:00 - 18:00 hrs
      • Martes y Jueves: 17:00 - 18:00 hrs
@@ -1091,7 +1106,6 @@ _3 horas continuas_
 📌 *IMPORTANTE:*
      • Tu horario se asigna según tu nivel
      • Los grupos se forman con mínimo 5 alumnos
-     • Puedes cambiar de horario al cambiar de nivel
 
 ✨ Presiona 1 para continuar explorando nuestras opciones:
 
@@ -1125,39 +1139,39 @@ _3 horas continuas_
             // EXAMEN 1'3
             {
                 state: "info_examen",
-                message: `📝 *EXAMEN DE UBICACIÓN*
+                message: `📝 EXAMEN DE UBICACIÓN 📝
 
-🎯 *¿Para qué sirve?*
-Determinar tu nivel actual de inglés y asignarte al grupo adecuado.
+╔══════════════════════════════════════════╗
+║      🎯 CONOCE TU NIVEL EXACTO 🎯        ║
+╚══════════════════════════════════════════╝
 
-⏱️ *Duración:* 45-60 minutos
+🤖 Con gusto te proporciono información más concreta al respecto; Puedes realizar tu examen en un horario de lunes a jueves de 12:15 a 17:00 hrs, viernes de 10:15 a 15:00 hrs o sábados de 11:15 a 13:30 hrs 🕜
 
-💰 *Costo:* GRATIS (se descuenta de tu inscripción)
+Solamente hay que *agendarlo* por este medio realizando el pago del mismo. El examen tiene un costo de *$280.00* y al mandar tu comprobante podemos agendar día y hora. 🗓️
 
-📅 *Horarios disponibles:*
-• Lunes y Miércoles: 19:00 hrs
-• Sábados: 11:00 hrs
+🤖 El examen tiene una duración de 15 a 40 minutos dependiendo del nivel del alumno. 🕜
 
-📍 *Lugar:*
-Universal House - Portal Morelos Local 14
-(A espaldas de presidencia municipal)
+*El resultado se entregará en ese mismo momento y si te inscribes el mismo día que realizas el examen, los $280.00 se pueden tomar a cuenta para el pago inicial. Por lo que te recomendamos realizarlo el día que planeas inscribirte y de este modo el costo del examen será gratis al final* 💰
 
-📋 *¿Qué incluye?*
-• Evaluación escrita (gramática y vocabulario)
-• Evaluación oral (conversación)
-• Resultados inmediatos
-• Recomendación de nivel
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-✅ *NO necesitas cita previa*
-Solo preséntate 15 minutos antes en recepción.
+🤖 ¿Deseas conocer los métodos de pago para poder agendar tu examen?
 
-✨ Presiona 1 para continuar explorando nuestras opciones:
+✨ *1* ➤ Sí me interesa obtener los diferentes métodos de pago 🪪 ✅
+✨ *2* ➤ Requiero ver de nuevo el Menú de opciones para conocer mayor información 🔻
 
-* 1 ➡️ Continuar
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de cursos
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *Responde con el número correspondiente* 🤗
 `,
                 options: [
-                    { text: "1", nextState: "menu_continuacion_examen" },
-                    { text: "0", nextState: "salir" }
+                    { text: "1", nextState: "metodos_pago_examen" },
+                    { text: "2", nextState: "menu_informacion" },
+                    { text: "0", nextState: "menu_informacion" }
                 ]
             },
 
@@ -1183,43 +1197,39 @@ Solo preséntate 15 minutos antes en recepción.
             // INSCRIPCION 1'4
             {
                 state: "info_inscripcion",
-                message: `✍️ *PROCESO DE INSCRIPCIÓN*
+                message: `✍🏻 ¿CÓMO REALIZO MI INSCRIPCIÓN? ✍🏻
 
-📋 *REQUISITOS:*
-• Identificación oficial (INE/Pasaporte)
-• Comprobante de domicilio
-• 1 fotografía tamaño infantil
-• Realizar examen de ubicación (gratis)
+╔══════════════════════════════════════════╗
+║       📋 PROCESO DE INSCRIPCIÓN 📋       ║
+╚══════════════════════════════════════════╝
+
+🤖 Solamente deberás realizar tu pago completo de:
+
+Colegiatura de tu primer mes, material e inscripción, los cuales puedes realizar por este medio a través de nuestros métodos de pago a distancia.
 
 💳 *COSTOS DE INSCRIPCIÓN:*
-• Inscripción: $280 pesos
-• Primera mensualidad
-• Material didáctico según el curso
+• Inscripción: $580.00
+• Primera colegiatura (según el curso)
+• Material didáctico (según el curso)
 
-📅 *PASOS PARA INSCRIBIRTE:*
-1️⃣ Realiza tu examen de ubicación
-2️⃣ Recibe tu resultado y nivel asignado
-3️⃣ Elige tu horario disponible
-4️⃣ Realiza el pago en caja o transferencia
-5️⃣ ¡Listo! Recibe tu acceso digital
+🤖 Te comparto nuestros métodos de pago:
 
-🏦 *FORMAS DE PAGO:*
-• Efectivo en plantel
-• Tarjeta de débito/crédito
-• Transferencia bancaria
-• Depósito en OXXO
+[ENVIAR IMAGEN: metodos_pago_inscripcion.jpg]
 
-⏰ *HORARIO DE INSCRIPCIONES:*
-Lunes a Viernes: 11:00-14:00 y 16:00-20:00
-Sábados: 9:00-14:00
+🤖 Solamente deberás compartirnos foto de tu comprobante junto con la edad y nombre completo del nuevo alumno por este medio, para continuar con tu proceso de inscripción.
 
-✨ Presiona 1 para continuar explorando nuestras opciones:
+Al enviarlo recibirás el link de tu hoja de inscripción para finalizar con tu proceso de ingreso y formar parte de Universal House. 🏫
 
-* 1 ➡️ Continuar
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 *Envía tu comprobante + datos del alumno para continuar*
+
+📝 *Formato: Comprobante + "Nombre: [nombre completo], Edad: [edad]"*
+
+⬅️ *0* - Volver al menú de cursos
 `,
                 options: [
-                    { text: "1", nextState: "menu_continuacion_inscripcion" },
-                    { text: "0", nextState: "salir" }
+                    { text: "0", nextState: "menu_informacion" }
                 ]
             },
 
@@ -1340,7 +1350,7 @@ Portal Morelos Local 14, Centro
 (A espaldas de presidencia)
 
 📞 *CONTACTO:*
-Tel: 341 414 1215
+Tel: 552651-9373
 Lun-Vie: 11:00-14:00 y 16:00-20:00
 
 ✨ Presiona 1 para continuar explorando nuestras opciones:
@@ -1375,46 +1385,51 @@ Lun-Vie: 11:00-14:00 y 16:00-20:00
             // NIVELES 1'7
             {
                 state: "info_niveles",
-                message: `🎖️ *NIVELES DE INGLÉS - MARCO COMÚN EUROPEO*
+                message: `🎖️ DESEO CONOCER SUS NIVELES 🎖️
 
-📊 *ESTRUCTURA DE NIVELES:*
+╔══════════════════════════════════════════╗
+║     🏆 SISTEMA DE NIVELES COMPLETO 🏆    ║
+╚══════════════════════════════════════════╝
 
-🟢 *BÁSICO:*
-• A1 (Beginner) - 3 meses
-• A2 (Elementary) - 3 meses
+🤖 Te comparto los niveles de nuestros cursos en Universal House:
 
-🟡 *INTERMEDIO:*
-• B1 (Pre-Intermediate) - 3 meses
-• B1+ (Intermediate) - 3 meses
+📚 *ETAPA DE A1 A B1 DOMINIO:*
 
-🟠 *INTERMEDIO ALTO:*
-• B2 (Upper Intermediate) - 6 meses
+🟢 6 Niveles básicos
+🔴🟠 6 Niveles Intermedios
+🔵 6 Niveles Avanzados Iniciales
 
-🔴 *AVANZADO:*
-• C1 (Advanced) - 6 meses
-• C2 (Proficiency) - Especialización
+Duración total: 2 años y medio o bien, 3 años y medio en caso del curso sabatino.
 
-📈 *¿QUÉ PUEDES HACER EN CADA NIVEL?*
+En caso de contar con conocimientos del idioma este tiempo se reduce.
 
-*A1-A2:* Comunicación básica, presentarse, compras
-*B1:* Conversaciones cotidianas, viajes, trabajo básico
-*B2:* Inglés profesional, presentaciones, negociación
-*C1:* Dominio académico y profesional avanzado
-*C2:* Nivel nativo, especialización profesional
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎯 *CERTIFICACIONES POR NIVEL:*
-• A2: KET (Cambridge)
-• B1: PET (Cambridge) / TOEFL 42-71
-• B2: FCE (Cambridge) / TOEFL 72-94
-• C1: CAE (Cambridge) / TOEFL 95-120
+🎓 *ETAPA DE PERFECCIONAMIENTO O MAESTRÍA DEL IDIOMA (MASTERY COURSE):*
 
-✨ Presiona 1 para continuar explorando nuestras opciones:
+🏅 *(B2)* 6 Niveles Avanzados de Perfeccionamiento
+Duración de 15 a 18 meses según sea el curso semanal o sabatino.
 
-* 1 ➡️ Continuar
+🎖️ *(C1)* 6 Niveles Avanzados Superiores
+Duración de 15 a 18 meses según sea el curso semanal o sabatino.
+
+🥇 *(C2)* 6 Niveles Avanzados Profesionales
+Duración de 15 a 18 meses según sea el curso semanal o sabatino.
+
+🤖 Estos últimos niveles te permitirán titularte, crecer dentro de una empresa y obtener cualquiera de tus objetivos en el extranjero.
+
+🤖 Nuestros cursos están apegados al marco común de referencia para las lenguas, (CEFR). De esta manera, tendrás la gran ventaja de poder certificar tus conocimientos a través de las certificaciones de University of Cambridge conforme vayas avanzando en tu curso, ya que la preparación para dichas certificaciones está incluida en tu curso. 🎓🇬🇧
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de cursos
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *¡Tu certificación internacional te espera!* 🤗
 `,
                 options: [
-                    { text: "1", nextState: "menu_continuacion_niveles" },
-                    { text: "0", nextState: "salir" }
+                    { text: "0", nextState: "menu_informacion" }
                 ]
             },
 
@@ -1522,7 +1537,7 @@ Lun-Vie: 11:00-14:00 y 16:00-20:00
 ☎️ *ATENCIÓN TELEFÓNICA:*
 • Mismo horario que oficina
 • WhatsApp: 24/7 (Bot Javi)
-• Tel: 341 414 1215
+• Tel: 552651-9373
 
 👥 *SERVICIOS DISPONIBLES:*
 • Inscripciones
@@ -1636,6 +1651,83 @@ Disponible en Plaza Portal Morelos
                     { text: "2", nextState: "solicitar_factura" },
                     { text: "3", nextState: "menu_informacion" },
                     { text: "4", nextState: "salir" }
+                ]
+            },
+
+            // NO TENGO CONOCIMIENTOS
+            {
+                state: "no_tengo_conocimientos",
+                message: `🚀 NO TENGO CONOCIMIENTOS 🚀
+
+╔══════════════════════════════════════════╗
+║        📚 PERFECTO PARA PRINCIPIANTES     ║
+╚══════════════════════════════════════════╝
+
+🤖 ¡Excelente! Estás en el lugar correcto. Universal House es ideal para personas que empiezan desde cero.
+
+🎯 *CURSO RECOMENDADO PARA TI:*
+📚 **BÁSICO 01 - Desde Cero**
+
+🔸 Diseñado para personas con nulo o mínimo contacto con el idioma
+🔸 Metodología especial para principiantes
+🔸 Profesores especializados en estudiantes nuevos
+🔸 Ambiente cómodo y sin presión
+
+💰 *COSTOS:*
+• Semanal: $2,750/mes (L-J 1 hora diaria)
+• Sabatino: $2,600/mes (Sábados 3 horas)
+• Inscripción: $580
+• Material: $2,120 (8-10 meses de duración)
+
+🗓️ *PRÓXIMOS INICIOS:*
+[ENVIAR IMAGEN: inicios_basico01.jpg]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *¿Qué te gustaría hacer ahora?*
+
+✨ *1* ➤ Ver horarios disponibles para Básico 01
+✨ *2* ➤ Conocer métodos de pago 💳
+✨ *3* ➤ Agendar una visita a nuestras instalaciones
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver al menú de cursos
+👨‍🎓 *ALUMNO* - Portal de estudiantes
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *¡Tu aventura en inglés comienza aquí!* 🤗`,
+                options: [
+                    { text: "1", nextState: "info_horarios" },
+                    { text: "2", nextState: "info_metodos_pago" },
+                    { text: "3", nextState: "visita_instalaciones" },
+                    { text: "0", nextState: "menu_informacion" },
+                    { text: "ALUMNO", nextState: "esperando_matricula" },
+                    { text: "alumno", nextState: "esperando_matricula" }
+                ]
+            },
+
+            // VISITA INSTALACIONES
+            {
+                state: "visita_instalaciones",
+                message: `🏫 *VISITA NUESTRAS INSTALACIONES* 🏫
+
+📍 *Dirección:* Av. Juárez #123, Col. Centro
+📞 *Teléfono:* 552651-9373
+
+🕓 *HORARIOS DE VISITA:*
+• Lunes a jueves: 12:00 a 20:00 hrs
+• Viernes: 10:15 a 16:00 hrs
+• Sábados: 11:15 a 13:30 hrs
+
+🤖 Te esperamos para mostrarte nuestras modernas instalaciones y resolver todas tus dudas personalmente.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⬅️ *0* - Volver`,
+                options: [
+                    { text: "0", nextState: "no_tengo_conocimientos" }
                 ]
             },
 
